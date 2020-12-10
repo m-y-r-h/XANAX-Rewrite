@@ -57,12 +57,6 @@ public final class PacketMine extends StateModule
 
             if (render.getValue().equals("Full") || render.getValue().equals("Specific")) breakBlock = event.getPos();
             if (noBreak.getValue()) event.setCanceled(true);
-
-            if (silent.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
-            {
-                int slot = InventoryUtil.getHotbarSlot(Items.DIAMOND_PICKAXE);
-                if (slot != -1) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
-            }
         }
     }
 
@@ -71,12 +65,11 @@ public final class PacketMine extends StateModule
     {
         if (isSafe())
         {
-            if (silent.getValue() && !cancel.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
+            if (silent.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
             {
                 int slot = InventoryUtil.getHotbarSlot(Items.DIAMOND_PICKAXE);
                 if (slot != -1) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
             }
-
             if (breakBlock != null) timer.tick();
             if (breakBlock != null && timer.hasPassed(time.getValue().intValue()))
             {
