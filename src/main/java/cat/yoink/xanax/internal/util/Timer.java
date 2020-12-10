@@ -3,12 +3,14 @@ package cat.yoink.xanax.internal.util;
 public final class Timer
 {
     private int ticks;
+    private int old;
 
     public Timer() { }
 
     public Timer(int ticks)
     {
         this.ticks = ticks;
+        this.old = ticks;
     }
 
     public void tick()
@@ -24,5 +26,10 @@ public final class Timer
     public int getTicks()
     {
         return ticks;
+    }
+
+    public void reset()
+    {
+        ticks = old;
     }
 }
