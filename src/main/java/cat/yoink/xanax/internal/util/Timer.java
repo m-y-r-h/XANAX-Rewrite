@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.traits;
+package cat.yoink.xanax.internal.util;
 
 public final class Timer
 {
