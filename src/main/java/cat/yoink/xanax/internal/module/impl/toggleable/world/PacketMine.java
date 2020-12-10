@@ -19,6 +19,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.awt.*;
@@ -41,6 +42,7 @@ public final class PacketMine extends StateModule
     private final StateSetting swing = addSetting(new StateSetting("Swing", false));
     private final StateSetting silent = addSetting(new StateSetting("Silent", false));
     private final NumberSetting time = addSetting(new NumberSetting("Time", v -> !render.getValue().equals("Off"), 300, 100, 1000, 10));
+    private final StateSetting cancel = addSetting(new StateSetting("CancelClick", v -> silent.getValue(), true));
     private BlockPos breakBlock;
     private final Timer timer = new Timer();
 
@@ -55,6 +57,12 @@ public final class PacketMine extends StateModule
 
             if (render.getValue().equals("Full") || render.getValue().equals("Specific")) breakBlock = event.getPos();
             if (noBreak.getValue()) event.setCanceled(true);
+
+            if (silent.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
+            {
+                int slot = InventoryUtil.getHotbarSlot(Items.DIAMOND_PICKAXE);
+                if (slot != -1) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
+            }
         }
     }
 
@@ -63,11 +71,12 @@ public final class PacketMine extends StateModule
     {
         if (isSafe())
         {
-            if (silent.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
+            if (silent.getValue() && !cancel.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
             {
                 int slot = InventoryUtil.getHotbarSlot(Items.DIAMOND_PICKAXE);
                 if (slot != -1) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
             }
+
             if (breakBlock != null) timer.tick();
             if (breakBlock != null && timer.hasPassed(time.getValue().intValue()))
             {
@@ -99,6 +108,15 @@ public final class PacketMine extends StateModule
                 if (render.getValue().equals("Specific")) RenderUtil.drawBox(RenderUtil.convertBox(mc.world.getBlockState(breakBlock).getBoundingBox(mc.world, breakBlock).offset(breakBlock)), c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha(), box.getValue(), outline.getValue());
                 else RenderUtil.drawBox(breakBlock, c, box.getValue(), outline.getValue());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onInputMouseInput(InputEvent.MouseInputEvent event)
+    {
+        if (isSafe() && cancel.getValue())
+        {
+            mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
         }
     }
 }
