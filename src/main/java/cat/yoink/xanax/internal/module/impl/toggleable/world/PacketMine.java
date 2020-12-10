@@ -43,7 +43,6 @@ public final class PacketMine extends StateModule
     private final NumberSetting time = addSetting(new NumberSetting("Time", v -> !render.getValue().equals("Off"), 300, 100, 1000, 10));
     private BlockPos breakBlock;
     private int miningTicks;
-    private int oldSlot;
 
     @SubscribeEvent
     public void onDamageBlock(DamageBlockEvent event)
