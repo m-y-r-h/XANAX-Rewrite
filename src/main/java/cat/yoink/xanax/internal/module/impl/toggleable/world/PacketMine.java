@@ -7,8 +7,12 @@ import cat.yoink.xanax.internal.module.state.StateModule;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
+import cat.yoink.xanax.internal.util.InventoryUtil;
 import cat.yoink.xanax.internal.util.RenderUtil;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -35,9 +39,11 @@ public final class PacketMine extends StateModule
     private final StateSetting change = addSetting(new StateSetting("Change", v -> !render.getValue().equals("Off"), false));
     private final StateSetting noBreak = addSetting(new StateSetting("NoBreak", false));
     private final StateSetting swing = addSetting(new StateSetting("Swing", false));
+    private final StateSetting silent = addSetting(new StateSetting("Silent", false));
     private final NumberSetting time = addSetting(new NumberSetting("Time", v -> !render.getValue().equals("Off"), 300, 100, 1000, 10));
     private BlockPos breakBlock;
     private int miningTicks;
+    private int oldSlot;
 
     @SubscribeEvent
     public void onDamageBlock(DamageBlockEvent event)
@@ -58,11 +64,19 @@ public final class PacketMine extends StateModule
     {
         if (isSafe())
         {
+            if (silent.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
+            {
+                int slot = InventoryUtil.getHotbarSlot(Items.DIAMOND_PICKAXE);
+                if (slot != -1) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
+            }
             if (breakBlock != null) miningTicks++;
             if (breakBlock != null && miningTicks > time.getValue())
             {
                 miningTicks = 0;
                 breakBlock = null;
+
+                System.out.println(mc.player.inventory.currentItem);
+                if (silent.getValue()) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
             }
         }
     }
@@ -76,6 +90,7 @@ public final class PacketMine extends StateModule
             {
                 breakBlock = null;
                 miningTicks = 0;
+                if (silent.getValue()) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
             }
             else if (breakBlock != null && miningTicks != 0)
             {
