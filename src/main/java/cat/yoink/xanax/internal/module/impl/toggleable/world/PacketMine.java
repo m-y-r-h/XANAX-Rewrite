@@ -74,7 +74,6 @@ public final class PacketMine extends StateModule
                 miningTicks = 0;
                 breakBlock = null;
 
-                System.out.println(mc.player.inventory.currentItem);
                 if (silent.getValue()) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
             }
         }
