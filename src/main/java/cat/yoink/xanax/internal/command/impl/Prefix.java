@@ -14,11 +14,7 @@ public final class Prefix extends Command
     @Override
     public void run(String... args)
     {
-        if (args.length == 0)
-        {
-            printUsage();
-            return;
-        }
+        if (args.length == 0 && printUsage()) return;
 
         CommandManager.INSTANCE.setPrefix(args[0]);
         ChatUtil.sendPrivateMessage("Set prefix to " + args[0]);

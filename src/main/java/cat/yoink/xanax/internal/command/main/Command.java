@@ -15,9 +15,10 @@ public abstract class Command implements Nameable, Runnable, Minecraft
     protected final String usage = getClass().getAnnotation(CommandData.class).usage();
     protected final String description = getClass().getAnnotation(CommandData.class).description();
 
-    protected final void printUsage()
+    protected final boolean printUsage()
     {
         ChatUtil.sendPrivateMessage("Usage: " + usage);
+        return true;
     }
 
     @Override
