@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import javax.swing.plaf.nimbus.State;
 
 @Mod.EventBusSubscriber
-@ModuleData(name = "ItemFov", category = ModuleCategory.RENDER, description = "Change ur item model location")
+@ModuleData(name = "ItemFov", category = ModuleCategory.RENDER, description = "Change your fov excluding the item location")
 public final class ItemFov extends StateModule
 {
 
