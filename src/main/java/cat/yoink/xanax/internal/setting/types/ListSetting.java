@@ -40,13 +40,6 @@ public final class ListSetting extends Setting<String>
         index = values.indexOf(value);
     }
 
-    @Override
-    public boolean equals(Object mode)
-    {
-        if (!(mode instanceof String)) return false;
-        return getValue().equalsIgnoreCase((String) mode);
-    }
-
     public void cycleForward()
     {
         if (index < values.size() - 1) index++;
