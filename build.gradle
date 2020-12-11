@@ -19,6 +19,8 @@ group = 'cat.yoink'
 version = '1'
 archivesBaseName = 'XANAX'
 
+compileJava.options.encoding = "UTF-8"
+
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {

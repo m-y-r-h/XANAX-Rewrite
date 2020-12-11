@@ -17,7 +17,7 @@ public final class ChatUtil implements Minecraft
     public static void sendPrivateMessage(String message)
     {
         String s = String.format("&7[&c" + XANAX.INSTANCE.getName() + "&7]&7 %s", message);
-        mc.ingameGUI.getChatGUI().printChatMessage(new TextComponentString(s.replace("&", "\u00A7")));
+        mc.ingameGUI.getChatGUI().printChatMessage(new TextComponentString(s.replace("&", "§")));
     }
 
     public static void addSendMessage(String message)
