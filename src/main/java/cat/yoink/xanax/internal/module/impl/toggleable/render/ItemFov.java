@@ -14,27 +14,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import javax.swing.plaf.nimbus.State;
 
-@Mod.EventBusSubscriber
 @ModuleData(name = "ItemFov", category = ModuleCategory.RENDER, description = "Change your fov excluding the item location")
 public final class ItemFov extends StateModule
 {
-
     private final NumberSetting itemfov = addSetting(new NumberSetting("ItemFov", 130, 110, 170, 1));
 
-
     @SubscribeEvent
-    public void onFov(EntityViewRenderEvent.FOVModifier event) {
+    public void onFov(EntityViewRenderEvent.FOVModifier event) 
+    {
         event.setFOV(itemfov.getValue().floatValue());
     }
-
-    public void onEnable(){
-        MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    public void onDisable(){
-        MinecraftForge.EVENT_BUS.unregister(this);
-    }
-
 }
-
-
