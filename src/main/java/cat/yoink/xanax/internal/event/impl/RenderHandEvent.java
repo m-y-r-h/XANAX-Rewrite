@@ -3,17 +3,20 @@ package cat.yoink.xanax.internal.event.impl;
 import cat.yoink.xanax.internal.event.CustomEvent;
 import net.minecraft.util.EnumHandSide;
 
+/**
+ * @author yoink
+ */
 public final class RenderHandEvent extends CustomEvent<RenderHandEvent>
 {
-    private final EnumHandSide hand;
+    private final EnumHandSide side;
 
-    public RenderHandEvent(EnumHandSide hand)
+    public RenderHandEvent(EnumHandSide side)
     {
-        this.hand = hand;
+        this.side = side;
     }
 
-    public EnumHandSide getHand()
+    public EnumHandSide getSide()
     {
-        return hand;
+        return side;
     }
 }

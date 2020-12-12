@@ -90,8 +90,8 @@ public final class ViewModel extends StateModule
     {
         if (isSafe() && moveHand.getValue())
         {
-            if (event.getHand() == EnumHandSide.RIGHT) GlStateManager.translate(mainX.getValue(), mainY.getValue(), mainZ.getValue());
-            else if (event.getHand() == EnumHandSide.LEFT) GlStateManager.translate(offX.getValue(), offY.getValue(), offZ.getValue());
+            if (event.getSide() == EnumHandSide.RIGHT) GlStateManager.translate(mainX.getValue(), mainY.getValue(), mainZ.getValue());
+            else if (event.getSide() == EnumHandSide.LEFT) GlStateManager.translate(offX.getValue(), offY.getValue(), offZ.getValue());
         }
     }
 }
