@@ -7,8 +7,8 @@ import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@ModuleData(name = "ItemFov", category = ModuleCategory.RENDER, description = "Change your fov excluding the item location")
-public final class ItemFov extends StateModule
+@ModuleData(name = "ViewModel", category = ModuleCategory.RENDER, description = "Changes your view model")
+public final class ViewModel extends StateModule
 {
     private final NumberSetting itemfov = addSetting(new NumberSetting("ItemFov", 130, 110, 170, 1));
 
