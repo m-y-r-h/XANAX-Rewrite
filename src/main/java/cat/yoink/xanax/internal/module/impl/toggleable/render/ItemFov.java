@@ -19,7 +19,7 @@ import javax.swing.plaf.nimbus.State;
 public final class ItemFov extends StateModule
 {
 
-    private final NumberSetting itemfov = addSetting(new NumberSetting("ItemFov", 130, 110, 170, 10));
+    private final NumberSetting itemfov = addSetting(new NumberSetting("ItemFov", 130, 110, 170, 1));
 
 
     @SubscribeEvent
