@@ -5,6 +5,9 @@ import cat.yoink.xanax.internal.setting.Setting;
 import java.awt.*;
 import java.util.function.Predicate;
 
+/**
+ * @author yoink
+ */
 public final class ColorSetting extends Setting<Color>
 {
     private Color value;
