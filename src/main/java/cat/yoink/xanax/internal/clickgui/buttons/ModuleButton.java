@@ -1,6 +1,7 @@
 package cat.yoink.xanax.internal.clickgui.buttons;
 
 import cat.yoink.xanax.internal.clickgui.IGui;
+import cat.yoink.xanax.internal.clickgui.buttons.settings.ColorButton;
 import cat.yoink.xanax.internal.clickgui.buttons.settings.ListButton;
 import cat.yoink.xanax.internal.clickgui.buttons.settings.NumberButton;
 import cat.yoink.xanax.internal.clickgui.buttons.settings.StateButton;
@@ -10,6 +11,7 @@ import cat.yoink.xanax.internal.module.impl.toggleable.client.GuiModule;
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.module.state.StateModule;
 import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.types.ColorSetting;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
@@ -60,6 +62,8 @@ public final class ModuleButton implements IGui
                 buttons.add(new NumberButton(module, windowX + 15 + (left ? 175 : 0), windowY + 70 + setI * 20, 175, 20, (NumberSetting) setting));
             else if (setting instanceof ListSetting)
                 buttons.add(new ListButton(module, windowX + 15 + (left ? 175 : 0), windowY + 70 + setI * 20, 175, 20, (ListSetting) setting));
+            else if (setting instanceof ColorSetting)
+                buttons.add(new ColorButton(module, windowX + 15 + (left ? 175 : 0), windowY + 70 + setI * 20, 175, 20, (ColorSetting) setting));
 
             if (left) setI++;
         }
