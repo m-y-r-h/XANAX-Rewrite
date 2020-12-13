@@ -63,7 +63,7 @@ public final class AutoCreeper extends StateModule
                             if (slot == -1)
                             {
                                 toggle();
-                                continue;
+                                return;
                             }
                             mc.player.inventory.currentItem = slot;
                         }
