@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal.guiscreen.main;
 
+import cat.yoink.xanax.internal.module.ModuleManager;
 import cat.yoink.xanax.internal.util.GuiUtil;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -19,6 +20,7 @@ import java.util.List;
 public final class MainMenu extends GuiScreen
 {
     public static final MainMenu INSTANCE = new MainMenu();
+    private final ResourceLocation texture = new ResourceLocation("main.png");
     private final List<CustomButton> buttons;
     private float panoramaTimer;
     private final ResourceLocation MINECRAFT_TITLE_TEXTURES;
@@ -43,7 +45,17 @@ public final class MainMenu extends GuiScreen
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        renderBackground(partialTicks);
+        if (ModuleManager.INSTANCE.getModule(cat.yoink.xanax.internal.module.impl.toggleable.client.MainMenu.class).getSetting("Mode").getValue().equals("Minecraft"))
+        {
+            renderBackground(partialTicks);
+        }
+        else
+        {
+            mc.getTextureManager().bindTexture(texture);
+            Gui.drawModalRectWithCustomSizedTexture(0, 0, 0, 0, width, height, width, height);
+            mc.getTextureManager().deleteTexture(texture);
+        }
+
         Gui.drawRect(width / 2 - 100, height / 2 - 140, width / 2 - 100 + 200, height / 2 - 140 + 72, new Color(1711276032, true).getRGB());
         GL11.glPushMatrix();
         GL11.glScalef(6.0f, 6.0f, 0.0f);
