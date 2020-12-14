@@ -29,13 +29,7 @@ public final class AutoCreeper extends StateModule
     public void onEnable()
     {
         oldSlot = -1;
-        int slot = InventoryUtil.getHotbarSlot(Items.SPAWN_EGG);
-        if (slot != -1)
-        {
-            oldSlot = mc.player.inventory.currentItem;
-            mc.player.inventory.currentItem = slot;
-        }
-        else toggle();
+        switchSlot();
     }
 
     @Override
@@ -57,21 +51,26 @@ public final class AutoCreeper extends StateModule
                     BlockPos blockPos = new BlockPos(player.posX, player.posY - 1, player.posZ);
                     if (!mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR))
                     {
-                        if (!mc.player.getHeldItemMainhand().getItem().equals(Items.SPAWN_EGG))
-                        {
-                            int slot = InventoryUtil.getHotbarSlot(Items.SPAWN_EGG);
-                            if (slot == -1)
-                            {
-                                toggle();
-                                return;
-                            }
-                            mc.player.inventory.currentItem = slot;
-                        }
+                        switchSlot();
                         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(blockPos, EnumFacing.UP, EnumHand.MAIN_HAND, blockPos.getX(), blockPos.getY(), blockPos.getZ()));
                         mc.player.swingArm(EnumHand.MAIN_HAND);
                     }
                 }
             }
+        }
+    }
+
+    private void switchSlot()
+    {
+        if (!mc.player.getHeldItemMainhand().getItem().equals(Items.SPAWN_EGG))
+        {
+            int slot = InventoryUtil.getHotbarSlot(Items.SPAWN_EGG);
+            if (slot == -1)
+            {
+                toggle();
+                return;
+            }
+            mc.player.inventory.currentItem = slot;
         }
     }
 }
