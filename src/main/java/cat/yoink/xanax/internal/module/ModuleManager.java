@@ -3,6 +3,7 @@ package cat.yoink.xanax.internal.module;
 import cat.yoink.xanax.internal.module.impl.persistent.Binds;
 import cat.yoink.xanax.internal.module.impl.persistent.Commands;
 import cat.yoink.xanax.internal.module.impl.toggleable.client.GuiModule;
+import cat.yoink.xanax.internal.module.impl.toggleable.client.MainMenu;
 import cat.yoink.xanax.internal.module.impl.toggleable.combat.AutoCreeper;
 import cat.yoink.xanax.internal.module.impl.toggleable.combat.Velocity;
 import cat.yoink.xanax.internal.module.impl.toggleable.render.HoleESP;
@@ -45,7 +46,8 @@ public enum ModuleManager implements Configurable, Minecraft
                 new ViewModel(),
                 new PacketMine(),
                 new AutoCreeper(),
-                new HoleESP());
+                new HoleESP(),
+                new MainMenu());
     }
 
     @Override

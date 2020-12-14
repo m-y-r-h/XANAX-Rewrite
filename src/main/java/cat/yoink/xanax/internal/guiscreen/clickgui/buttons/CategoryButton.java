@@ -1,7 +1,7 @@
-package cat.yoink.xanax.internal.clickgui.buttons;
+package cat.yoink.xanax.internal.guiscreen.clickgui.buttons;
 
-import cat.yoink.xanax.internal.clickgui.ClickGUI;
-import cat.yoink.xanax.internal.clickgui.IGui;
+import cat.yoink.xanax.internal.guiscreen.clickgui.ClickGUI;
+import cat.yoink.xanax.internal.guiscreen.clickgui.IGui;
 import cat.yoink.xanax.internal.font.CFontRenderer;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.ModuleManager;

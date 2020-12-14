@@ -9,7 +9,12 @@ import net.minecraftforge.common.MinecraftForge;
  */
 public abstract class StateModule extends Module
 {
-    protected boolean enabled = getClass().getAnnotation(ModuleData.class).enabled();
+    protected boolean enabled;
+
+    public StateModule()
+    {
+        setEnabled(getClass().getAnnotation(ModuleData.class).enabled());
+    }
 
     public final void toggle()
     {
@@ -25,12 +30,12 @@ public abstract class StateModule extends Module
     {
         if (enabled)
         {
-            onEnable();
+            if (isSafe()) onEnable();
             MinecraftForge.EVENT_BUS.register(this);
         }
         else
         {
-            onDisable();
+            if (isSafe()) onDisable();
             MinecraftForge.EVENT_BUS.unregister(this);
         }
         this.enabled = enabled;

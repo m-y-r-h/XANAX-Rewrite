@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.clickgui;
+package cat.yoink.xanax.internal.guiscreen.clickgui;
 
 /**
  * @author yoink
