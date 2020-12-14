@@ -33,6 +33,7 @@ public final class HoleESP extends StateModule
     private final NumberSetting obsidianAlpha = addSetting(new NumberSetting("ObsidianAlpha", 150, 0, 255, 1));
     private final NumberSetting height = addSetting(new NumberSetting("Height", 0.1, -1, 1, 0.1));
     private final NumberSetting range = addSetting(new NumberSetting("Range", 8, 2, 20, 1));
+    private final NumberSetting performance = addSetting(new NumberSetting("Performance", 5, 1, 20, 1));
     private final StateSetting box = addSetting(new StateSetting("Box", true));
     private final StateSetting outline = addSetting(new StateSetting("Outline", true));
     private final StateSetting wide = addSetting(new StateSetting("Wide", false));
@@ -47,7 +48,7 @@ public final class HoleESP extends StateModule
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)
     {
-        if (isSafe())
+        if (isSafe() && mc.player.ticksExisted % performance.getValue().intValue() == 0)
         {
             bedrockHoles.clear();
             obsidianHoles.clear();
