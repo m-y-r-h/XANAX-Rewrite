@@ -30,7 +30,7 @@ public final class ColorButton extends SettingButton
     @Override
     public void drawScreen(int mouseX, int mouseY, int windowX, int windowY, boolean self)
     {
-        updateSlider(mouseX);
+        if (dragging) updateSlider(mouseX);
         boolean outline = ((StateSetting) ModuleManager.INSTANCE.getModule(GuiModule.class).getSetting("Outline")).getValue();
         float[] hue = new float[]{(float) (System.currentTimeMillis() % 11520L) / 11520.0f};
         Color c = new Color(Color.HSBtoRGB(hue[0], 1.0f, 1.0f));
@@ -65,9 +65,9 @@ public final class ColorButton extends SettingButton
 
         sliderWidth = (int) (94f * (Color.RGBtoHSB(setting.getValue().getRed(), setting.getValue().getGreen(), setting.getValue().getBlue(), null)[0]));
 
-        if (sliderWidth == 0 && mouseX > x + 94f / 2) sliderWidth = 94;
         if (dragging)
         {
+            if (sliderWidth == 0 && mouseX > x + 94f / 2) sliderWidth = 94;
             if (diff == 0) setting.setValue(Color.getHSBColor(0, 1, 1));
             else if (diff == 94f) setting.setValue(new Color(255, 0, 0));
             else setting.setValue(Color.getHSBColor((float) (diff / 94f), 1, 1));
