@@ -6,6 +6,9 @@ import net.minecraft.client.gui.Gui;
 
 import java.awt.*;
 
+/**
+ * @author yoink
+ */
 public final class CustomButton implements Minecraft
 {
     public int buttonWidth;

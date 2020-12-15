@@ -8,6 +8,9 @@ import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+/**
+ * @author yoink
+ */
 @ModuleData(name = "MainMenu", category = ModuleCategory.CLIENT, description = "Custom main menu", enabled = true)
 public final class MainMenu extends StateModule
 {

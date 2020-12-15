@@ -17,6 +17,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author yoink
+ */
 public final class MainMenu extends GuiScreen
 {
     public static final MainMenu INSTANCE = new MainMenu();
