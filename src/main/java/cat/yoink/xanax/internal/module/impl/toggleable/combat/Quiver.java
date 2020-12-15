@@ -19,6 +19,9 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.List;
 
+/**
+ * @author yoink
+ */
 @ModuleData(name = "Quiver", category = ModuleCategory.COMBAT)
 public final class Quiver extends StateModule
 {
