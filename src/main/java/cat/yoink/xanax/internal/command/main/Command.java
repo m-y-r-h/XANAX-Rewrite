@@ -15,7 +15,7 @@ public abstract class Command implements Nameable, Runnable, Minecraft
     protected final String usage;
     protected final String description;
 
-    public Command()
+    protected Command()
     {
         name = getClass().getAnnotation(CommandData.class).name();
         aliases = getClass().getAnnotation(CommandData.class).aliases();

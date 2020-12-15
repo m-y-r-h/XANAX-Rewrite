@@ -12,7 +12,7 @@ public abstract class StateModule extends Module implements Toggleable, IState
 {
     protected boolean state;
 
-    public StateModule()
+    protected StateModule()
     {
         setState(getClass().getAnnotation(ModuleData.class).enabled());
     }

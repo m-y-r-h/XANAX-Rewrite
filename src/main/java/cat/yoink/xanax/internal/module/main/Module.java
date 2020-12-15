@@ -20,7 +20,7 @@ public abstract class Module implements Minecraft, Nameable, IModule
     protected int bind;
     protected final List<Setting<?>> settings;
 
-    public Module()
+    protected Module()
     {
         name = getClass().getAnnotation(ModuleData.class).name();
         category = getClass().getAnnotation(ModuleData.class).category();
