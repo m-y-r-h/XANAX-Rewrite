@@ -16,6 +16,12 @@ public abstract class StateModule extends Module
         setEnabled(getClass().getAnnotation(ModuleData.class).enabled());
     }
 
+    public StateModule(ModuleData data)
+    {
+        super(data);
+        setEnabled(data.enabled());
+    }
+
     public final void toggle()
     {
         setEnabled(!isEnabled());
