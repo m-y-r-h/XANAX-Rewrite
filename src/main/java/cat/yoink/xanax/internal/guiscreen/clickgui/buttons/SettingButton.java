@@ -15,7 +15,7 @@ public abstract class SettingButton implements IGui
     protected int x;
     protected int y;
 
-    public SettingButton(Module module, int x, int y, int w, int h)
+    protected SettingButton(Module module, int x, int y, int w, int h)
     {
         this.module = module;
         this.x = x;
