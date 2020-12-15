@@ -10,10 +10,26 @@ import cat.yoink.xanax.internal.util.ChatUtil;
  */
 public abstract class Command implements Nameable, Runnable, Minecraft
 {
-    protected final String name = getClass().getAnnotation(CommandData.class).name();
-    protected final String[] aliases = getClass().getAnnotation(CommandData.class).aliases();
-    protected final String usage = getClass().getAnnotation(CommandData.class).usage();
-    protected final String description = getClass().getAnnotation(CommandData.class).description();
+    protected final String name;
+    protected final String[] aliases;
+    protected final String usage;
+    protected final String description;
+
+    public Command()
+    {
+        name = getClass().getAnnotation(CommandData.class).name();
+        aliases = getClass().getAnnotation(CommandData.class).aliases();
+        usage = getClass().getAnnotation(CommandData.class).usage();
+        description = getClass().getAnnotation(CommandData.class).description();
+    }
+
+    public Command(CommandData data)
+    {
+        name = data.name();
+        aliases = data.aliases();
+        usage = data.usage();
+        description = data.description();
+    }
 
     protected final boolean printUsage()
     {

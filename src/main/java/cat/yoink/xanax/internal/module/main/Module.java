@@ -13,12 +13,32 @@ import java.util.List;
  */
 public abstract class Module implements Minecraft, Nameable, IModule
 {
-    protected final String name = getClass().getAnnotation(ModuleData.class).name();
-    protected final ModuleCategory category = getClass().getAnnotation(ModuleData.class).category();
-    protected final String description = getClass().getAnnotation(ModuleData.class).description();
-    protected final boolean hidden = getClass().getAnnotation(ModuleData.class).hidden();
-    protected int bind = getClass().getAnnotation(ModuleData.class).defaultBind();
-    protected final List<Setting<?>> settings = new ArrayList<>();
+    protected final String name;
+    protected final ModuleCategory category;
+    protected final String description;
+    protected final boolean hidden;
+    protected int bind;
+    protected final List<Setting<?>> settings;
+
+    public Module()
+    {
+        name = getClass().getAnnotation(ModuleData.class).name();
+        category = getClass().getAnnotation(ModuleData.class).category();
+        description = getClass().getAnnotation(ModuleData.class).description();
+        hidden = getClass().getAnnotation(ModuleData.class).hidden();
+        bind = getClass().getAnnotation(ModuleData.class).defaultBind();
+        settings = new ArrayList<>();
+    }
+
+    public Module(ModuleData data)
+    {
+        name = data.name();
+        category = data.category();
+        description = data.description();
+        hidden = data.hidden();
+        bind = data.defaultBind();
+        settings = new ArrayList<>();
+    }
 
     protected final boolean isSafe()
     {
