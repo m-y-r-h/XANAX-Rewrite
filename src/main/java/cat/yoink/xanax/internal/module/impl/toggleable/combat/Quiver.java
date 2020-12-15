@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author yoink
@@ -34,7 +35,10 @@ public final class Quiver extends StateModule
     {
         if (isSafe())
         {
-            if (release.getValue() && mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > shootDelay.getValue())
+            boolean hasSpeed = mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1))) != null;
+            boolean hasStrength = mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(5))) != null;
+
+            if (release.getValue() && (!hasSpeed || !hasStrength)  && mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > shootDelay.getValue())
             {
                 mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.rotationYaw, -90, mc.player.onGround));
                 mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, mc.player.getHorizontalFacing()));
@@ -44,9 +48,6 @@ public final class Quiver extends StateModule
 
             if (arrange.getValue())
             {
-                boolean hasSpeed = mc.player.getActivePotionEffect(Potion.getPotionById(1)) != null;
-                boolean hasStrength = mc.player.getActivePotionEffect(Potion.getPotionById(5)) != null;
-
                 List<Integer> arrowSlots = InventoryUtil.getInventorySlots(Items.TIPPED_ARROW);
 
                 int speedSlot = -1;
