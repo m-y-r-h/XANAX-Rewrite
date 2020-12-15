@@ -66,7 +66,7 @@ public enum ModuleManager implements Configurable, Minecraft
                 else if (setting instanceof ListSetting) settings.addProperty(setting.getName(), ((ListSetting) setting).getValue());
             });
 
-            mod.addProperty("state", !(module instanceof StateModule) || ((StateModule) module).isEnabled());
+            mod.addProperty("state", !(module instanceof StateModule) || ((StateModule) module).getState());
             mod.add("settings", settings);
 
             config.add(module.getName(), mod);
@@ -83,7 +83,7 @@ public enum ModuleManager implements Configurable, Minecraft
         allModules.forEach(module -> {
             JsonObject jsonModule = json.get(module.getName()).getAsJsonObject();
 
-            if (module instanceof StateModule) ((StateModule) module).setEnabled(jsonModule.get("state").getAsBoolean());
+            if (module instanceof StateModule) ((StateModule) module).setState(jsonModule.get("state").getAsBoolean());
 
             JsonObject settings = jsonModule.get("settings").getAsJsonObject();
 

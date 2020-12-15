@@ -2,39 +2,43 @@ package cat.yoink.xanax.internal.module.state;
 
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.module.main.ModuleData;
+import cat.yoink.xanax.internal.traits.Toggleable;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
  * @author yoink
  */
-public abstract class StateModule extends Module
+public abstract class StateModule extends Module implements Toggleable, IState
 {
-    protected boolean enabled;
+    protected boolean state;
 
     public StateModule()
     {
-        setEnabled(getClass().getAnnotation(ModuleData.class).enabled());
+        setState(getClass().getAnnotation(ModuleData.class).enabled());
     }
 
     public StateModule(ModuleData data)
     {
         super(data);
-        setEnabled(data.enabled());
+        setState(data.enabled());
     }
 
+    @Override
     public final void toggle()
     {
-        setEnabled(!isEnabled());
+        setState(!getState());
     }
 
-    public final boolean isEnabled()
+    @Override
+    public final boolean getState()
     {
-        return enabled;
+        return state;
     }
 
-    public final void setEnabled(boolean enabled)
+    @Override
+    public final void setState(boolean state)
     {
-        if (enabled)
+        if (state)
         {
             if (isSafe()) onEnable();
             MinecraftForge.EVENT_BUS.register(this);
@@ -44,9 +48,6 @@ public abstract class StateModule extends Module
             if (isSafe()) onDisable();
             MinecraftForge.EVENT_BUS.unregister(this);
         }
-        this.enabled = enabled;
+        this.state = state;
     }
-
-    public void onEnable() { }
-    public void onDisable() { }
 }

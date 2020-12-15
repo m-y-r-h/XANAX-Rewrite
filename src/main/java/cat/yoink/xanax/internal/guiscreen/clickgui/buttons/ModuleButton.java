@@ -85,7 +85,7 @@ public final class ModuleButton implements IGui
                 GuiUtil.drawSmoothRect(x, y, w, h + 3, 2, new Color(34, 34, 34).getRGB());
             }
 
-            CFontRenderer.TEXT.drawCenteredString(binding ? "Bind..." : module.getName(), x + w / 2f, y + 3, module instanceof StateModule ? (((StateModule) module).isEnabled() ? -1 : new Color(150, 150, 150).getRGB()) : -1);
+            CFontRenderer.TEXT.drawCenteredString(binding ? "Bind..." : module.getName(), x + w / 2f, y + 3, module instanceof StateModule ? (((StateModule) module).getState() ? -1 : new Color(150, 150, 150).getRGB()) : -1);
         }
 
         if (selected)

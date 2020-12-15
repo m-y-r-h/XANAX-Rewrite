@@ -139,7 +139,7 @@ public final class ClickGUI extends GuiScreen
     @Override
     public void onGuiClosed()
     {
-        ((StateModule) ModuleManager.INSTANCE.getModule(GuiModule.class)).setEnabled(false);
+        ((StateModule) ModuleManager.INSTANCE.getModule(GuiModule.class)).setState(false);
         dragging = false;
 
         buttons.forEach(CategoryButton::onGuiClosed);
