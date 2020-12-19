@@ -30,7 +30,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @ModuleData(name = "PacketMine", category = ModuleCategory.WORLD, description = "Mine blocks with packets")
 public final class PacketMine extends StateModule
 {
-
     @Name("Render") @List({"Specific", "Full", "Off"}) public String render;
     @Name("Color") @Color(-16776961) public java.awt.Color color;
     @Name("Box") @Boolean(true) public boolean box;
