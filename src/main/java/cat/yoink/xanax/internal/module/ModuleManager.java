@@ -92,9 +92,9 @@ public enum ModuleManager implements Configurable, Minecraft
             module.getSettings().forEach(setting -> {
                 JsonElement element = settings.get(setting.getName());
 
-                if (setting instanceof StateSetting) ((StateSetting) setting).setValue(element.getAsBoolean());
-                else if (setting instanceof NumberSetting) ((NumberSetting) setting).setValue(element.getAsDouble());
-                else if (setting instanceof ListSetting) ((ListSetting) setting).setValue(element.getAsString());
+                if (setting instanceof StateSetting) ((StateSetting) setting).setValue(module, element.getAsBoolean());
+                else if (setting instanceof NumberSetting) ((NumberSetting) setting).setValue(module, element.getAsDouble());
+                else if (setting instanceof ListSetting) ((ListSetting) setting).setValue(module, element.getAsString());
             });
         });
     }

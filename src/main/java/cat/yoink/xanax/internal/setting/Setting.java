@@ -1,8 +1,11 @@
 package cat.yoink.xanax.internal.setting;
 
+import cat.yoink.xanax.internal.module.main.Module;
+import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.traits.Nameable;
 
-import java.util.function.Predicate;
+import java.lang.reflect.Field;
 
 /**
  * @author yoink
@@ -10,29 +13,36 @@ import java.util.function.Predicate;
 public abstract class Setting<T> implements Nameable, ISetting<T>
 {
     private final String name;
-    private final Predicate<Setting<T>> visible;
+    private final Module module;
+    private final Field field;
 
-    protected Setting(String name)
+    public Setting(Module module, Field field)
     {
-        this.name = name;
-        this.visible = null;
-    }
-
-    protected Setting(String name, Predicate<Setting<T>> visible)
-    {
-        this.name = name;
-        this.visible = visible;
-    }
-
-    public final boolean isVisible()
-    {
-        if (visible == null) return true;
-        return visible.test(this);
+        this.name = field.getAnnotation(Name.class).value();
+        this.field = field;
+        this.module = module;
     }
 
     @Override
     public final String getName()
     {
         return name;
+    }
+
+    @Override
+    public Field getField()
+    {
+        return field;
+    }
+
+    @Override
+    public Module getModule()
+    {
+        return module;
+    }
+
+    protected void update()
+    {
+        Reflection.INSTANCE.setValue(module, this, getValue());
     }
 }

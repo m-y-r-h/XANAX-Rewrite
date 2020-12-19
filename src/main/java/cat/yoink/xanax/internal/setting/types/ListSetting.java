@@ -1,10 +1,11 @@
 package cat.yoink.xanax.internal.setting.types;
 
+import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.setting.Setting;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * @author yoink
@@ -14,18 +15,11 @@ public final class ListSetting extends Setting<String>
     private final List<String> values;
     private int index;
 
-    public ListSetting(String name, String defaultValue, String... values)
+    public ListSetting(Field field, Module module, String... values)
     {
-        super(name);
+        super(module, field);
         this.values = Arrays.asList(values);
-        this.index = this.values.indexOf(defaultValue);
-    }
-
-    public ListSetting(String name, Predicate<Setting<String>> visible, String defaultValue, String... values)
-    {
-        super(name, visible);
-        this.values = Arrays.asList(values);
-        this.index = this.values.indexOf(defaultValue);
+        setValue(module, this.values.get(0));
     }
 
     @Override
@@ -35,9 +29,10 @@ public final class ListSetting extends Setting<String>
     }
 
     @Override
-    public void setValue(String value)
+    public void setValue(Module module, String value)
     {
         index = values.indexOf(value);
+        update();
     }
 
     public void cycleForward()

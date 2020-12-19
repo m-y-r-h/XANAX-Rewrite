@@ -68,9 +68,9 @@ public final class ColorButton extends SettingButton
         if (dragging)
         {
             if (sliderWidth == 0 && mouseX > x + 94f / 2) sliderWidth = 94;
-            if (diff == 0) setting.setValue(Color.getHSBColor(0, 1, 1));
-            else if (diff == 94f) setting.setValue(new Color(255, 0, 0));
-            else setting.setValue(Color.getHSBColor((float) (diff / 94f), 1, 1));
+            if (diff == 0) setting.setValue(module, Color.getHSBColor(0, 1, 1));
+            else if (diff == 94f) setting.setValue(module, new Color(255, 0, 0));
+            else setting.setValue(module, Color.getHSBColor((float) (diff / 94f), 1, 1));
         }
     }
 

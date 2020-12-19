@@ -2,6 +2,7 @@ package cat.yoink.xanax.internal.module.main;
 
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.traits.Minecraft;
 import cat.yoink.xanax.internal.traits.Nameable;
 
@@ -28,6 +29,7 @@ public abstract class Module implements Minecraft, Nameable, IModule
         hidden = getClass().getAnnotation(ModuleData.class).hidden();
         bind = getClass().getAnnotation(ModuleData.class).defaultBind();
         settings = new ArrayList<>();
+        settings.addAll(Reflection.INSTANCE.getSettings(this));
     }
 
     public Module(ModuleData data)
@@ -38,6 +40,7 @@ public abstract class Module implements Minecraft, Nameable, IModule
         hidden = data.hidden();
         bind = data.defaultBind();
         settings = new ArrayList<>();
+        settings.addAll(Reflection.INSTANCE.getSettings(this));
     }
 
     protected final boolean isSafe()
@@ -45,7 +48,7 @@ public abstract class Module implements Minecraft, Nameable, IModule
         return mc.player != null && mc.world != null;
     }
 
-    protected final <T extends Setting<?>> T addSetting(T setting)
+    public final <T extends Setting<?>> T addSetting(T setting)
     {
         settings.add(setting);
         return setting;

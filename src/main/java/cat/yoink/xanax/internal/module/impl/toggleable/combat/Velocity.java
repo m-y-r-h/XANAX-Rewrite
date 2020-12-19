@@ -6,8 +6,9 @@ import cat.yoink.xanax.internal.event.impl.WaterPushEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.types.NumberSetting;
-import cat.yoink.xanax.internal.setting.types.StateSetting;
+import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
+import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
@@ -21,17 +22,17 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @ModuleData(name = "Velocity", category = ModuleCategory.COMBAT, description = "Anti knockback")
 public final class Velocity extends StateModule
 {
-    private final StateSetting velocity = addSetting(new StateSetting("Velocity", true));
-    private final StateSetting explosions = addSetting(new StateSetting("Explosions", true));
-    private final NumberSetting horizontal = addSetting(new NumberSetting("Horizontal", v -> velocity.getValue() || explosions.getValue(), 0, 0, 100, 1));
-    private final NumberSetting vertical = addSetting(new NumberSetting("Vertical", v -> velocity.getValue() || explosions.getValue(), 0, 0, 100, 1));
-    private final StateSetting fishable = addSetting(new StateSetting("Fishable", false));
-    private final StateSetting noPush = addSetting(new StateSetting("NoPush", true));
+    @Name("Velocity") @Boolean(true) public boolean velocity;
+    @Name("Explosions") @Boolean(true) public boolean explosions;
+    @Name("Horizontal") @Number(value = 0, maximum = 100) public double horizontal;
+    @Name("Vertical") @Number(value = 0, maximum = 100) public double vertical;
+    @Name("Fishable") @Boolean(false) public boolean fishable;
+    @Name("NoPush") @Boolean(true) public boolean noPush;
 
     @SubscribeEvent
     public void onPlayerSPPushOutOfBlocks(PlayerSPPushOutOfBlocksEvent event)
     {
-        if (noPush.getValue() && event.getEntity().equals(mc.player)) event.setCanceled(true);
+        if (noPush && event.getEntity().equals(mc.player)) event.setCanceled(true);
     }
 
     @SubscribeEvent
@@ -39,27 +40,27 @@ public final class Velocity extends StateModule
     {
         if (isSafe())
         {
-            if (event.getPacket() instanceof SPacketEntityStatus && !fishable.getValue() && ((SPacketEntityStatus) event.getPacket()).getOpCode() == 31 && ((SPacketEntityStatus) event.getPacket()).getEntity(mc.world) instanceof EntityFishHook && ((EntityFishHook) ((SPacketEntityStatus) event.getPacket()).getEntity(mc.world)).caughtEntity.equals(mc.player))
+            if (event.getPacket() instanceof SPacketEntityStatus && !fishable && ((SPacketEntityStatus) event.getPacket()).getOpCode() == 31 && ((SPacketEntityStatus) event.getPacket()).getEntity(mc.world) instanceof EntityFishHook && ((EntityFishHook) ((SPacketEntityStatus) event.getPacket()).getEntity(mc.world)).caughtEntity.equals(mc.player))
             {
                 event.setCanceled(true);
             }
 
-            if (event.getPacket() instanceof SPacketEntityVelocity && velocity.getValue() && ((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId())
+            if (event.getPacket() instanceof SPacketEntityVelocity && velocity && ((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId())
             {
                 SPacketEntityVelocity packet = (SPacketEntityVelocity) event.getPacket();
 
-                packet.motionX = packet.motionX / 100 * horizontal.getValue().intValue();
-                packet.motionY = packet.motionY / 100 * vertical.getValue().intValue();
-                packet.motionZ = packet.motionZ / 100 * horizontal.getValue().intValue();
+                packet.motionX = packet.motionX / 100 * (int) horizontal;
+                packet.motionY = packet.motionY / 100 * (int) vertical;
+                packet.motionZ = packet.motionZ / 100 * (int) horizontal;
             }
 
-            if (event.getPacket() instanceof SPacketExplosion && explosions.getValue())
+            if (event.getPacket() instanceof SPacketExplosion && explosions)
             {
                 SPacketExplosion packet = ((SPacketExplosion) event.getPacket());
 
-                packet.motionX = packet.motionX / 100 * horizontal.getValue().intValue();
-                packet.motionY = packet.motionY / 100 * vertical.getValue().intValue();
-                packet.motionZ = packet.motionZ / 100 * horizontal.getValue().intValue();
+                packet.motionX = packet.motionX / 100 * (int) horizontal;
+                packet.motionY = packet.motionY / 100 * (int) vertical;
+                packet.motionZ = packet.motionZ / 100 * (int) horizontal;
             }
         }
     }
@@ -67,12 +68,12 @@ public final class Velocity extends StateModule
     @SubscribeEvent
     public void onWaterPush(WaterPushEvent event)
     {
-        if (noPush.getValue()) event.setCanceled(true);
+        if (noPush) event.setCanceled(true);
     }
 
     @SubscribeEvent
     public void onCollision(CollisionEvent event)
     {
-        if (noPush.getValue()) event.setCanceled(true);
+        if (noPush) event.setCanceled(true);
     }
 }

@@ -38,6 +38,7 @@ public abstract class StateModule extends Module implements Toggleable, IState
     @Override
     public final void setState(boolean state)
     {
+        this.state = state;
         if (state)
         {
             if (isSafe()) onEnable();
@@ -48,6 +49,6 @@ public abstract class StateModule extends Module implements Toggleable, IState
             if (isSafe()) onDisable();
             MinecraftForge.EVENT_BUS.unregister(this);
         }
-        this.state = state;
+
     }
 }

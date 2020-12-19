@@ -3,8 +3,9 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.types.NumberSetting;
-import cat.yoink.xanax.internal.setting.types.StateSetting;
+import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
+import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBow;
@@ -26,9 +27,9 @@ import java.util.Objects;
 @ModuleData(name = "Quiver", category = ModuleCategory.COMBAT)
 public final class Quiver extends StateModule
 {
-    private final StateSetting release = addSetting(new StateSetting("Release", true));
-    private final StateSetting arrange = addSetting(new StateSetting("Arrange", true));
-    private final NumberSetting shootDelay = addSetting(new NumberSetting("Delay", v -> release.getValue(), 3, 2, 10, 1));
+    @Name("Release") @Boolean(true) public boolean release;
+    @Name("Arrange") @Boolean(true) public boolean arrange;
+    @Name("Delay") @Number(value = 3, minimum = 2) public double delay;
 
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)
@@ -38,7 +39,7 @@ public final class Quiver extends StateModule
             boolean hasSpeed = mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1))) != null;
             boolean hasStrength = mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(5))) != null;
 
-            if (release.getValue() && (!hasSpeed || !hasStrength)  && mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > shootDelay.getValue())
+            if (release && (!hasSpeed || !hasStrength)  && mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > delay)
             {
                 mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.rotationYaw, -90, mc.player.onGround));
                 mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, mc.player.getHorizontalFacing()));
@@ -46,7 +47,7 @@ public final class Quiver extends StateModule
                 mc.player.stopActiveHand();
             }
 
-            if (arrange.getValue())
+            if (arrange)
             {
                 List<Integer> arrowSlots = InventoryUtil.getInventorySlots(Items.TIPPED_ARROW);
 

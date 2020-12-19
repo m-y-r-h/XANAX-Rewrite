@@ -72,9 +72,9 @@ public final class NumberButton extends SettingButton
 
         if (dragging)
         {
-            if (diff == 0) setting.setValue(minimum);
-            else if (diff == 94) setting.setValue(maximum);
-            else setting.setValue(diff / 94f * (maximum - minimum) + minimum);
+            if (diff == 0) setting.setValue(module, minimum);
+            else if (diff == 94) setting.setValue(module, maximum);
+            else setting.setValue(module, diff / 94f * (maximum - minimum) + minimum);
         }
     }
 

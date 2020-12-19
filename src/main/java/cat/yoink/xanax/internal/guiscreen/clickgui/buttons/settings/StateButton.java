@@ -41,7 +41,7 @@ public final class StateButton extends SettingButton
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton, boolean self)
     {
-        if (GuiUtil.isHover(x, y, w, h - 1, mouseX, mouseY)) setting.setValue(!setting.getValue());
+        if (GuiUtil.isHover(x, y, w, h - 1, mouseX, mouseY)) setting.setValue(module, !setting.getValue());
     }
 
     @Override

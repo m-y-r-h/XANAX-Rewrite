@@ -4,9 +4,11 @@ import cat.yoink.xanax.internal.event.impl.DamageBlockEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.types.ListSetting;
-import cat.yoink.xanax.internal.setting.types.NumberSetting;
-import cat.yoink.xanax.internal.setting.types.StateSetting;
+import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
+import cat.yoink.xanax.internal.setting.annotation.setting.Color;
+import cat.yoink.xanax.internal.setting.annotation.setting.List;
+import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import cat.yoink.xanax.internal.util.RenderUtil;
 import cat.yoink.xanax.internal.util.Timer;
@@ -22,27 +24,24 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import java.awt.*;
-
 /**
  * @author yoink
  */
 @ModuleData(name = "PacketMine", category = ModuleCategory.WORLD, description = "Mine blocks with packets")
 public final class PacketMine extends StateModule
 {
-    private final ListSetting render = addSetting(new ListSetting("Render", "Specific", "Off", "Full", "Specific"));
-    private final NumberSetting red = addSetting(new NumberSetting("Red", v -> !render.getValue().equals("Off"), 200, 0, 255, 1));
-    private final NumberSetting green = addSetting(new NumberSetting("Green", v -> !render.getValue().equals("Off"), 10, 0, 255, 1));
-    private final StateSetting box = addSetting(new StateSetting("Box", v -> !render.getValue().equals("Off"), true));
-    private final NumberSetting blue = addSetting(new NumberSetting("Blue", v -> !render.getValue().equals("Off"), 10, 0, 255, 1));
-    private final StateSetting outline = addSetting(new StateSetting("Outline", v -> !render.getValue().equals("Off"), true));
-    private final NumberSetting alpha = addSetting(new NumberSetting("Alpha", v -> !render.getValue().equals("Off"), 100, 0, 255, 1));
-    private final StateSetting change = addSetting(new StateSetting("Change", v -> !render.getValue().equals("Off"), false));
-    private final StateSetting noBreak = addSetting(new StateSetting("NoBreak", false));
-    private final StateSetting swing = addSetting(new StateSetting("Swing", false));
-    private final StateSetting silent = addSetting(new StateSetting("Silent", false));
-    private final NumberSetting time = addSetting(new NumberSetting("Time", v -> !render.getValue().equals("Off"), 300, 100, 1000, 10));
-    private final StateSetting cancel = addSetting(new StateSetting("CancelClick", v -> silent.getValue(), true));
+
+    @Name("Render") @List({"Specific", "Full", "Off"}) public String render;
+    @Name("Color") @Color(-16776961) public java.awt.Color color;
+    @Name("Box") @Boolean(true) public boolean box;
+    @Name("Alpha") @Number(value = 100, maximum = 255) public double alpha;
+    @Name("Outline") @Boolean(true) public boolean outline;
+    @Name("Change") @Boolean(false) public boolean change;
+    @Name("NoBreak") @Boolean(false) public boolean noBreak;
+    @Name("Swing") @Boolean(true) public boolean swing;
+    @Name("Silent") @Boolean(false) public boolean silent;
+    @Name("Time") @Number(value = 300, minimum = 100, maximum = 1000, increment = 10) public double time;
+    @Name("CancelClick") @Boolean(true) public boolean cancel;
     private BlockPos breakBlock;
     private final Timer timer = new Timer();
 
@@ -51,12 +50,12 @@ public final class PacketMine extends StateModule
     {
         if (isSafe())
         {
-            if (swing.getValue()) mc.player.swingArm(EnumHand.MAIN_HAND);
+            if (swing) mc.player.swingArm(EnumHand.MAIN_HAND);
             mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, event.getPos(), event.getFace()));
             mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), event.getFace()));
 
-            if (render.getValue().equals("Full") || render.getValue().equals("Specific")) breakBlock = event.getPos();
-            if (noBreak.getValue()) event.setCanceled(true);
+            if (render.equals("Full") || render.equals("Specific")) breakBlock = event.getPos();
+            if (noBreak) event.setCanceled(true);
         }
     }
 
@@ -65,18 +64,18 @@ public final class PacketMine extends StateModule
     {
         if (isSafe())
         {
-            if (silent.getValue() && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
+            if (silent && breakBlock != null && !(mc.player.inventory.getItemStack().getItem() instanceof ItemPickaxe))
             {
                 int slot = InventoryUtil.getHotbarSlot(Items.DIAMOND_PICKAXE);
                 if (slot != -1) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
             }
             if (breakBlock != null) timer.tick();
-            if (breakBlock != null && timer.hasPassed(time.getValue().intValue()))
+            if (breakBlock != null && timer.hasPassed((int) time))
             {
                 timer.reset();
                 breakBlock = null;
 
-                if (silent.getValue()) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
+                if (silent) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
             }
         }
     }
@@ -90,16 +89,16 @@ public final class PacketMine extends StateModule
             {
                 breakBlock = null;
                 timer.reset();
-                if (silent.getValue()) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
+                if (silent) mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
             }
             else if (breakBlock != null && timer.getTicks() != 0)
             {
-                Color c;
-                if (change.getValue()) c = !timer.hasPassed(50) ? new Color(200, 10, 10, 150) : new Color(10, 200, 10, 150);
-                else c = new Color(red.getValue().intValue() / 255f, green.getValue().intValue() / 255f, blue.getValue().intValue() / 255f, alpha.getValue().intValue() / 255f);
+                java.awt.Color c;
+                if (change) c = !timer.hasPassed(50) ? new java.awt.Color(200, 10, 10, 150) : new java.awt.Color(10, 200, 10, 150);
+                else c = new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue(), (int) alpha);
 
-                if (render.getValue().equals("Specific")) RenderUtil.drawBox(RenderUtil.convertBox(mc.world.getBlockState(breakBlock).getBoundingBox(mc.world, breakBlock).offset(breakBlock)), c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha(), box.getValue(), outline.getValue());
-                else RenderUtil.drawBox(breakBlock, c, box.getValue(), outline.getValue());
+                if (render.equals("Specific")) RenderUtil.drawBox(RenderUtil.convertBox(mc.world.getBlockState(breakBlock).getBoundingBox(mc.world, breakBlock).offset(breakBlock)), c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha(), box, outline);
+                else RenderUtil.drawBox(breakBlock, c, box, outline);
             }
         }
     }
@@ -107,7 +106,7 @@ public final class PacketMine extends StateModule
     @SubscribeEvent
     public void onInputMouseInput(InputEvent.MouseInputEvent event)
     {
-        if (isSafe() && cancel.getValue())
+        if (isSafe() && cancel)
         {
             mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
         }

@@ -3,8 +3,9 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.types.ListSetting;
-import cat.yoink.xanax.internal.setting.types.NumberSetting;
+import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.setting.List;
+import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import cat.yoink.xanax.internal.util.WorldUtil;
 import net.minecraft.init.Blocks;
@@ -22,9 +23,10 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @ModuleData(name = "AutoCreeper", category = ModuleCategory.COMBAT, description = "wtf is this please help")
 public final class AutoCreeper extends StateModule
 {
-    private final ListSetting mode = addSetting(new ListSetting("Mode", "Hole", "Hole", "Always"));
-    private final NumberSetting distance = addSetting(new NumberSetting("Distance", 4, 2, 7, 0.1));
-    private final NumberSetting delay = addSetting(new NumberSetting("Delay", 3, 1, 20, 1));
+    @Name("Mode") @List({"Hole", "Always"}) public String mode;
+    @Name("Distance") @Number(value = 4, minimum = 2, maximum = 7, increment = 0.1) public double distance;
+    @Name("Delay") @Number(value = 3, minimum = 1, maximum = 20) public double delay;
+
     private int oldSlot;
 
     @Override
@@ -43,12 +45,12 @@ public final class AutoCreeper extends StateModule
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)
     {
-        if (isSafe() && mc.player.ticksExisted % delay.getValue() == 0)
+        if (isSafe() && mc.player.ticksExisted % delay == 0)
         {
             mc.world.playerEntities.stream()
-                    .filter(player -> mc.player.getDistance(player) <= distance.getValue())
+                    .filter(player -> mc.player.getDistance(player) <= distance)
                     .filter(player -> !player.equals(mc.player))
-                    .filter(player -> mode.getValue().equals("Always") || WorldUtil.isInHole(player))
+                    .filter(player -> mode.equals("Always") || WorldUtil.isInHole(player))
                     .forEach(player -> {
                         BlockPos blockPos = new BlockPos(player.posX, player.posY - 1, player.posZ);
                         if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR))return;

@@ -1,8 +1,9 @@
 package cat.yoink.xanax.internal.setting.types;
 
+import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.setting.Setting;
 
-import java.util.function.Predicate;
+import java.lang.reflect.Field;
 
 /**
  * @author yoink
@@ -11,16 +12,10 @@ public final class StateSetting extends Setting<Boolean>
 {
     private boolean value;
 
-    public StateSetting(String name, boolean value)
+    public StateSetting(Field field, Module module, boolean value)
     {
-        super(name);
-        this.value = value;
-    }
-
-    public StateSetting(String name, Predicate<Setting<Boolean>> visible, boolean value)
-    {
-        super(name, visible);
-        this.value = value;
+        super(module, field);
+        setValue(module, value);
     }
 
     @Override
@@ -30,8 +25,9 @@ public final class StateSetting extends Setting<Boolean>
     }
 
     @Override
-    public void setValue(Boolean value)
+    public void setValue(Module module, Boolean value)
     {
         this.value = value;
+        update();
     }
 }
