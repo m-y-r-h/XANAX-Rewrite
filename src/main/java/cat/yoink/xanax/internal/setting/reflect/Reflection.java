@@ -30,7 +30,7 @@ public enum Reflection
                 .forEach(field -> {
                     if (field.isAnnotationPresent(Boolean.class)) settings.add(new StateSetting(field, instance, field.getAnnotation(Boolean.class).value()));
                     else if (field.isAnnotationPresent(List.class)) settings.add(new ListSetting(field, instance, field.getAnnotation(List.class).value()));
-                    else if (field.isAnnotationPresent(Number.class)) settings.add(new NumberSetting(field, instance, field.getAnnotation(Number.class).value(), field.getAnnotation(Number.class).minimum(), field.getAnnotation(Number.class).maximum(), field.getAnnotation(Number.class).increment()));
+                    else if (field.isAnnotationPresent(Number.class)) settings.add(new NumberSetting(field, instance, field.getAnnotation(Number.class).value(), field.getAnnotation(Number.class).min(), field.getAnnotation(Number.class).max(), field.getAnnotation(Number.class).increment()));
                     else if (field.isAnnotationPresent(Color.class)) settings.add(new ColorSetting(field, instance, new java.awt.Color(field.getAnnotation(Color.class).value())));
                 });
 

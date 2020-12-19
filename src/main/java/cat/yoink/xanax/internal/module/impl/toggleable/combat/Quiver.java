@@ -29,7 +29,7 @@ public final class Quiver extends StateModule
 {
     @Name("Release") @Boolean(true) public boolean release;
     @Name("Arrange") @Boolean(true) public boolean arrange;
-    @Name("Delay") @Number(value = 3, minimum = 2) public double delay;
+    @Name("Delay") @Number(value = 3, min = 2) public double delay;
 
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)

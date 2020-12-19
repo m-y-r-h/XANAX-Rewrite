@@ -23,19 +23,19 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public final class ViewModel extends StateModule
 {
     @Name("ArmPitch") @Boolean(false) public boolean armPitch;
-    @Name("ArmPitchValue") @Number(value = 90, minimum = -750, maximum = 750, increment = 10) public double armPitchValue;
+    @Name("ArmPitchValue") @Number(value = 90, min = -750, max = 750, increment = 10) public double armPitchValue;
     @Name("Swing") @Boolean(false) public boolean swing;
-    @Name("SwingValue") @Number(value = 0.86, minimum = 0, maximum = 1, increment = 0.01) public double swingValue;
+    @Name("SwingValue") @Number(value = 0.86, min = 0, max = 1, increment = 0.01) public double swingValue;
     @Name("FOV") @Boolean(false) public boolean fov;
     @Name("FovMode") @List({"Hard", "Soft"}) public String fovMode;
-    @Name("FovValue") @Number(value = 120, minimum = 80, maximum = 180) public double fovValue;
+    @Name("FovValue") @Number(value = 120, min = 80, max = 180) public double fovValue;
     @Name("MoveHand") @Boolean(false) public boolean moveHand;
-    @Name("MainX") @Number(value = 0, minimum = -1, maximum = 1, increment = 0.01) public double mainX;
-    @Name("MainY") @Number(value = 0, minimum = -1, maximum = 1, increment = 0.01) public double mainY;
-    @Name("MainZ") @Number(value = 0, minimum = -1, maximum = 1, increment = 0.01) public double mainZ;
-    @Name("OffX") @Number(value = 0, minimum = -1, maximum = 1, increment = 0.01) public double offX;
-    @Name("OffY") @Number(value = 0, minimum = -1, maximum = 1, increment = 0.01) public double offY;
-    @Name("OffZ") @Number(value = 0, minimum = -1, maximum = 1, increment = 0.01) public double offZ;
+    @Name("MainX") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainX;
+    @Name("MainY") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainY;
+    @Name("MainZ") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainZ;
+    @Name("OffX") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offX;
+    @Name("OffY") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offY;
+    @Name("OffZ") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offZ;
     @Name("Animations") @Boolean(false) public boolean animations;
     private float oldFOV;
 

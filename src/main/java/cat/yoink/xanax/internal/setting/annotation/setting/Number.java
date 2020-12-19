@@ -12,9 +12,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Number
 {
-    double minimum() default 0;
+    double min() default 0;
 
-    double maximum() default 10;
+    double max() default 10;
 
     double increment() default 1;
 

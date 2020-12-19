@@ -34,13 +34,13 @@ public final class PacketMine extends StateModule
     @Name("Render") @List({"Specific", "Full", "Off"}) public String render;
     @Name("Color") @Color(-16776961) public java.awt.Color color;
     @Name("Box") @Boolean(true) public boolean box;
-    @Name("Alpha") @Number(value = 100, maximum = 255) public double alpha;
+    @Name("Alpha") @Number(value = 100, max = 255) public double alpha;
     @Name("Outline") @Boolean(true) public boolean outline;
     @Name("Change") @Boolean(false) public boolean change;
     @Name("NoBreak") @Boolean(false) public boolean noBreak;
     @Name("Swing") @Boolean(true) public boolean swing;
     @Name("Silent") @Boolean(false) public boolean silent;
-    @Name("Time") @Number(value = 300, minimum = 100, maximum = 1000, increment = 10) public double time;
+    @Name("Time") @Number(value = 300, min = 100, max = 1000, increment = 10) public double time;
     @Name("CancelClick") @Boolean(true) public boolean cancel;
     private BlockPos breakBlock;
     private final Timer timer = new Timer();

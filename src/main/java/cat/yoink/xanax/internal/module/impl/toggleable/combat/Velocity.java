@@ -24,8 +24,8 @@ public final class Velocity extends StateModule
 {
     @Name("Velocity") @Boolean(true) public boolean velocity;
     @Name("Explosions") @Boolean(true) public boolean explosions;
-    @Name("Horizontal") @Number(value = 0, maximum = 100) public double horizontal;
-    @Name("Vertical") @Number(value = 0, maximum = 100) public double vertical;
+    @Name("Horizontal") @Number(value = 0, max = 100) public double horizontal;
+    @Name("Vertical") @Number(value = 0, max = 100) public double vertical;
     @Name("Fishable") @Boolean(false) public boolean fishable;
     @Name("NoPush") @Boolean(true) public boolean noPush;
 
