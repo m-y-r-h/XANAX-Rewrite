@@ -3,6 +3,7 @@ package cat.yoink.xanax.internal.module.main;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.setting.Setting;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
+import cat.yoink.xanax.internal.traits.Describable;
 import cat.yoink.xanax.internal.traits.Minecraft;
 import cat.yoink.xanax.internal.traits.Nameable;
 
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * @author yoink
  */
-public abstract class Module implements Minecraft, Nameable, IModule
+public abstract class Module implements Minecraft, Describable, Nameable, IModule
 {
     protected final String name;
     protected final ModuleCategory category;

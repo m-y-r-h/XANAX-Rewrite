@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal.command.main;
 
+import cat.yoink.xanax.internal.traits.Describable;
 import cat.yoink.xanax.internal.traits.Minecraft;
 import cat.yoink.xanax.internal.traits.Nameable;
 import cat.yoink.xanax.internal.traits.Runnable;
@@ -8,7 +9,7 @@ import cat.yoink.xanax.internal.util.ChatUtil;
 /**
  * @author yoink
  */
-public abstract class Command implements Nameable, Runnable, Minecraft
+public abstract class Command implements Nameable, Describable, Runnable, Minecraft
 {
     protected final String name;
     protected final String[] aliases;
@@ -53,6 +54,7 @@ public abstract class Command implements Nameable, Runnable, Minecraft
         return usage;
     }
 
+    @Override
     public final String getDescription()
     {
         return description;

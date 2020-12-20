@@ -2,6 +2,7 @@ package cat.yoink.xanax.internal.setting;
 
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
+import cat.yoink.xanax.internal.traits.Describable;
 import cat.yoink.xanax.internal.traits.Nameable;
 
 import java.lang.reflect.Field;
@@ -9,7 +10,7 @@ import java.lang.reflect.Field;
 /**
  * @author yoink
  */
-public abstract class Setting<T> implements Nameable, ISetting<T>
+public abstract class Setting<T> implements Nameable, Describable, ISetting<T>
 {
     private final String name;
     private final String description;
@@ -40,6 +41,12 @@ public abstract class Setting<T> implements Nameable, ISetting<T>
     public Module getModule()
     {
         return module;
+    }
+
+    @Override
+    public String getDescription()
+    {
+        return description;
     }
 
     protected void update()

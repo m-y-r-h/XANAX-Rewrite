@@ -12,8 +12,6 @@ public interface IModule
 {
     ModuleCategory getCategory();
 
-    String getDescription();
-
     int getBind();
 
     void setBind(int bind);
