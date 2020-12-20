@@ -24,16 +24,26 @@ import java.util.List;
 @ModuleData(name = "HoleESP", category = ModuleCategory.RENDER, description = "Highlights nearby holes")
 public final class HoleESP extends StateModule
 {
-    @Setting(name = "Bedrock", description = "Bedrock hole color") public Color bedrockColor = new Color(255, 0, 0);
-    @Setting(name = "Obsidian", description = "Obsidian hole color") public Color obsidianColor = new Color(0, 255, 0);
-    @Setting(name = "BedrockAlpha", description = "Bedrock hole alpha", number = @Number(max = 255)) public double bedrockAlpha = 150;
-    @Setting(name = "ObsidianAlpha",description = "Obsidian hole alpha", number = @Number(max = 255)) public double obsidianAlpha = 150;
-    @Setting(name = "Height", description = "Height of the esp", number = @Number(min = -1, max = 1, increment = 0.1)) public double height = 0.1;
-    @Setting(name = "Range", description = "Distance it should show holes as", number = @Number(min = 2, max = 20)) public double range = 8;
-    @Setting(name = "Performance", description = "Scan delay", number = @Number(min = 1, max = 20)) public double performance = 5;
-    @Setting(name = "Box", description = "ESP box") public boolean box = true;
-    @Setting(name = "Outline", description = "ESP outline") public boolean outline = true;
-    @Setting(name = "Wide", description = "2 block holes") public boolean wide = true;
+    @Setting(name = "Bedrock", description = "Bedrock hole color")
+    public Color bedrockColor = new Color(255, 0, 0);
+    @Setting(name = "Obsidian", description = "Obsidian hole color")
+    public Color obsidianColor = new Color(0, 255, 0);
+    @Setting(name = "BedrockAlpha", description = "Bedrock hole alpha", number = @Number(max = 255))
+    public double bedrockAlpha = 150;
+    @Setting(name = "ObsidianAlpha", description = "Obsidian hole alpha", number = @Number(max = 255))
+    public double obsidianAlpha = 150;
+    @Setting(name = "Height", description = "Height of the esp", number = @Number(min = -1, max = 1, increment = 0.1))
+    public double height = 0.1;
+    @Setting(name = "Range", description = "Distance it should show holes as", number = @Number(min = 2, max = 20))
+    public double range = 8;
+    @Setting(name = "Performance", description = "Scan delay", number = @Number(min = 1, max = 20))
+    public double performance = 5;
+    @Setting(name = "Box", description = "ESP box")
+    public boolean box = true;
+    @Setting(name = "Outline", description = "ESP outline")
+    public boolean outline = true;
+    @Setting(name = "Wide", description = "2 block holes")
+    public boolean wide = true;
 
     private final List<BlockPos> bedrockHoles = new ArrayList<>();
     private final List<BlockPos> obsidianHoles = new ArrayList<>();

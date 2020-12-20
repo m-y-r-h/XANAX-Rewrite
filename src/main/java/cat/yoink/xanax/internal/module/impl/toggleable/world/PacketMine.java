@@ -30,17 +30,29 @@ import java.awt.*;
 @ModuleData(name = "PacketMine", category = ModuleCategory.WORLD, description = "Mine blocks with packets")
 public final class PacketMine extends StateModule
 {
-    @Setting(name = "Render", description = "Render the mine blockI") @List({"Specific", "Full", "Off"}) public String render;
-    @Setting(name = "Color", description = "Color for rendering") public Color color = new Color(0, 0, 255);
-    @Setting(name = "Box", description = "Box for rendering") public boolean box = true;
-    @Setting(name = "Alpha", description = "Alpha for rendering", number = @Number(max = 255)) public double alpha = 100;
-    @Setting(name = "Outline", description = "Outline for rendering") public boolean outline = true;
-    @Setting(name = "Change", description = "Change color based on break progress") public boolean change = false;
-    @Setting(name = "NoBreak", description = "Stops you from mining the block") public boolean noBreak = false;
-    @Setting(name = "Swing", description = "Swing when mining multiple blocks") public boolean swing = true;
-    @Setting(name = "Silent", description = "Mine without holding a pickaxe") public boolean silent = false;
-    @Setting(name = "Time", description = "Max time before stopping", number = @Number(min = 100, max = 1000, increment = 10)) public double time = 300;
-    @Setting(name = "CancelClick", description = "Cancels other actions while ghost mining") public boolean cancel = true;
+    @Setting(name = "Render", description = "Render the mine block", list = @List({"Specific", "Full", "Off"}))
+    public String render;
+    @Setting(name = "Color", description = "Color for rendering")
+    public Color color = new Color(0, 0, 255);
+    @Setting(name = "Box", description = "Box for rendering")
+    public boolean box = true;
+    @Setting(name = "Alpha", description = "Alpha for rendering", number = @Number(max = 255))
+    public double alpha = 100;
+    @Setting(name = "Outline", description = "Outline for rendering")
+    public boolean outline = true;
+    @Setting(name = "Change", description = "Change color based on break progress")
+    public boolean change = false;
+    @Setting(name = "NoBreak", description = "Stops you from mining the block")
+    public boolean noBreak = false;
+    @Setting(name = "Swing", description = "Swing when mining multiple blocks")
+    public boolean swing = true;
+    @Setting(name = "Silent", description = "Mine without holding a pickaxe")
+    public boolean silent = false;
+    @Setting(name = "Time", description = "Max time before stopping", number = @Number(min = 100, max = 1000, increment = 10))
+    public double time = 300;
+    @Setting(name = "CancelClick", description = "Cancels other actions while ghost mining")
+    public boolean cancel = true;
+
     private BlockPos breakBlock;
     private final Timer timer = new Timer();
 
@@ -93,10 +105,12 @@ public final class PacketMine extends StateModule
             else if (breakBlock != null && timer.getTicks() != 0)
             {
                 java.awt.Color c;
-                if (change) c = !timer.hasPassed(50) ? new java.awt.Color(200, 10, 10, 150) : new java.awt.Color(10, 200, 10, 150);
+                if (change)
+                    c = !timer.hasPassed(50) ? new java.awt.Color(200, 10, 10, 150) : new java.awt.Color(10, 200, 10, 150);
                 else c = new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue(), (int) alpha);
 
-                if (render.equals("Specific")) RenderUtil.drawBox(RenderUtil.convertBox(mc.world.getBlockState(breakBlock).getBoundingBox(mc.world, breakBlock).offset(breakBlock)), c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha(), box, outline);
+                if (render.equals("Specific"))
+                    RenderUtil.drawBox(RenderUtil.convertBox(mc.world.getBlockState(breakBlock).getBoundingBox(mc.world, breakBlock).offset(breakBlock)), c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha(), box, outline);
                 else RenderUtil.drawBox(breakBlock, c, box, outline);
             }
         }

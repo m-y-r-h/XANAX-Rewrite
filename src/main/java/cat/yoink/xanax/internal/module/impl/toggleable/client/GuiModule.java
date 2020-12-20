@@ -14,8 +14,10 @@ import org.lwjgl.input.Keyboard;
 @ModuleData(name = "ClickGUI", category = ModuleCategory.CLIENT, defaultBind = Keyboard.KEY_RSHIFT, description = "Toggle modules and settings in a gui")
 public final class GuiModule extends StateModule
 {
-    @Setting(name = "Outline", description = "Adds an outline to the elements") public boolean outline = false;
-    @Setting(name = "Closing", description = "Changes how the gui closes", list = @List({"Keyboard", "Button", "Both"})) public String closing = "Keyboard";
+    @Setting(name = "Outline", description = "Adds an outline to the elements")
+    public boolean outline = false;
+    @Setting(name = "Closing", description = "Changes how the gui closes", list = @List({"Keyboard", "Button", "Both"}))
+    public String closing = "Keyboard";
 
     @Override
     public void onEnable()

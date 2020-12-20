@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @ModuleData(name = "MainMenu", category = ModuleCategory.CLIENT, description = "Custom main menu", enabled = true)
 public final class MainMenu extends StateModule
 {
-    @Setting(name = "Mode", description = "Choose which background to use", list = @List({"Minecraft", "Color"})) public String mode = "Minecraft";
-
+    @Setting(name = "Mode", description = "Choose which background to use", list = @List({"Minecraft", "Color"}))
+    public String mode = "Minecraft";
     @SubscribeEvent
     public void onGuiOpen(GuiOpenEvent event)
     {

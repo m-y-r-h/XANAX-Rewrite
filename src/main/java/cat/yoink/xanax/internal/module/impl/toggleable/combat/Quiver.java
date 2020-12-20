@@ -26,9 +26,12 @@ import java.util.Objects;
 @ModuleData(name = "Quiver", category = ModuleCategory.COMBAT)
 public final class Quiver extends StateModule
 {
-    @Setting(name = "Release", description = "Automatically releases the bow") public boolean release = true;
-    @Setting(name = "Arrange", description = "Arranges the items in your inventory") public boolean arrange = true;
-    @Setting(name = "Delay", description = "Bow pull delay", number = @Number(min = 2)) public double delay = 3;
+    @Setting(name = "Release", description = "Automatically releases the bow")
+    public boolean release = true;
+    @Setting(name = "Arrange", description = "Arranges the items in your inventory")
+    public boolean arrange = true;
+    @Setting(name = "Delay", description = "Bow pull delay", number = @Number(min = 2))
+    public double delay = 3;
 
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)

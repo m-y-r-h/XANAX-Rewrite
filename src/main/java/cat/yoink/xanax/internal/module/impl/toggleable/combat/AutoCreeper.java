@@ -25,9 +25,10 @@ public final class AutoCreeper extends StateModule
 {
     @Setting(name = "Mode", description = "Choose when it should spawn", list = @List({"Hole", "Always"}))
     public String mode = "Always";
-
-    @Setting(name = "Distance", description = "Enemy maximum distance", number = @Number(min = 2, max = 7, increment = 0.1)) public double distance = 4;
-    @Setting(name = "Delay", description = "Spawn delay", number = @Number(min = 1, max = 20)) public double delay = 4;
+    @Setting(name = "Distance", description = "Enemy maximum distance", number = @Number(min = 2, max = 7, increment = 0.1))
+    public double distance = 4;
+    @Setting(name = "Delay", description = "Spawn delay", number = @Number(min = 1, max = 20))
+    public double delay = 4;
 
     private int oldSlot;
 
