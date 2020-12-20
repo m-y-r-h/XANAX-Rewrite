@@ -3,9 +3,9 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.List;
+import cat.yoink.xanax.internal.setting.annotation.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.List;
-import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import cat.yoink.xanax.internal.util.WorldUtil;
 import net.minecraft.init.Blocks;
@@ -23,9 +23,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @ModuleData(name = "AutoCreeper", category = ModuleCategory.COMBAT, description = "wtf is this please help")
 public final class AutoCreeper extends StateModule
 {
-    @Setting(name = "Mode", description = "Choose when it should spawn") @List({"Hole", "Always"}) public String mode;
-    @Setting(name = "Distance", description = "Enemy maximum distance") @Number(value = 4, min = 2, max = 7, increment = 0.1) public double distance;
-    @Setting(name = "Delay", description = "Spawn delay") @Number(value = 3, min = 1, max = 20) public double delay;
+    @Setting(name = "Mode", description = "Choose when it should spawn", list = @List({"Hole", "Always"}))
+    public String mode = "Always";
+
+    @Setting(name = "Distance", description = "Enemy maximum distance", number = @Number(min = 2, max = 7, increment = 0.1)) public double distance = 4;
+    @Setting(name = "Delay", description = "Spawn delay", number = @Number(min = 1, max = 20)) public double delay = 4;
 
     private int oldSlot;
 

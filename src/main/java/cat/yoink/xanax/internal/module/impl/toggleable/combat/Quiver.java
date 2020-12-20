@@ -3,9 +3,8 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
-import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBow;
@@ -27,9 +26,9 @@ import java.util.Objects;
 @ModuleData(name = "Quiver", category = ModuleCategory.COMBAT)
 public final class Quiver extends StateModule
 {
-    @Setting(name = "Release", description = "Automatically releases the bow") @Boolean(true) public boolean release;
-    @Setting(name = "Arrange", description = "Arranges the items in your inventory") @Boolean(true) public boolean arrange;
-    @Setting(name = "Delay", description = "Bow pull delay") @Number(value = 3, min = 2) public double delay;
+    @Setting(name = "Release", description = "Automatically releases the bow") public boolean release = true;
+    @Setting(name = "Arrange", description = "Arranges the items in your inventory") public boolean arrange = true;
+    @Setting(name = "Delay", description = "Bow pull delay", number = @Number(min = 2)) public double delay = 3;
 
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)

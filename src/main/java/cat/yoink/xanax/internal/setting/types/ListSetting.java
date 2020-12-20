@@ -15,11 +15,16 @@ public final class ListSetting extends Setting<String>
     private final List<String> values;
     private int index;
 
-    public ListSetting(Field field, Module module, String... values)
+    public ListSetting(Field field, Module module, String sDefault, String... values)
     {
         super(module, field);
         this.values = Arrays.asList(values);
-        setValue(module, this.values.get(0));
+        System.out.println(module.getName());
+        System.out.println(Arrays.toString(values));
+        System.out.println(sDefault);
+//        if (!this.values.contains(sDefault)) this.values.add(sDefault);
+        System.out.println("Set index for " + module.getName() + /*", " + ((Setting<?>) field.get(module)).getName() +*/ " to " + this.values.indexOf(sDefault));
+        index = this.values.indexOf(sDefault);
     }
 
     @Override

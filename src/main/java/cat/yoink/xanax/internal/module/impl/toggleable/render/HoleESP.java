@@ -3,10 +3,8 @@ package cat.yoink.xanax.internal.module.impl.toggleable.render;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
-import cat.yoink.xanax.internal.setting.annotation.setting.Color;
-import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.RenderUtil;
 import cat.yoink.xanax.internal.util.WorldUtil;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -16,6 +14,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,16 +24,16 @@ import java.util.List;
 @ModuleData(name = "HoleESP", category = ModuleCategory.RENDER, description = "Highlights nearby holes")
 public final class HoleESP extends StateModule
 {
-    @Setting(name = "Bedrock", description = "Bedrock hole color") @Color(-65536) public java.awt.Color bedrockColor;
-    @Setting(name = "Obsidian", description = "Obsidian hole color") @Color(-16711936) public java.awt.Color obsidianColor;
-    @Setting(name = "BedrockAlpha", description = "Bedrock hole alpha") @Number(value = 150, max = 255) public double bedrockAlpha;
-    @Setting(name = "ObsidianAlpha",description = "Obsidian hole alpha") @Number(value = 150, max = 255) public double obsidianAlpha;
-    @Setting(name = "Height", description = "Height of the esp") @Number(value = 0.1, min = -1, max = 1, increment = 0.1) public double height;
-    @Setting(name = "Range", description = "Distance it should show holes as") @Number(value = 8, min = 2, max = 20) public double range;
-    @Setting(name = "Performance", description = "Scan delay") @Number(value = 5, min = 1, max = 20) public double performance;
-    @Setting(name = "Box", description = "ESP box") @Boolean(true) public boolean box;
-    @Setting(name = "Outline", description = "ESP outline") @Boolean(true) public boolean outline;
-    @Setting(name = "Wide", description = "2 block holes") @Boolean(true) public boolean wide;
+    @Setting(name = "Bedrock", description = "Bedrock hole color") public Color bedrockColor = new Color(255, 0, 0);
+    @Setting(name = "Obsidian", description = "Obsidian hole color") public Color obsidianColor = new Color(0, 255, 0);
+    @Setting(name = "BedrockAlpha", description = "Bedrock hole alpha", number = @Number(max = 255)) public double bedrockAlpha = 150;
+    @Setting(name = "ObsidianAlpha",description = "Obsidian hole alpha", number = @Number(max = 255)) public double obsidianAlpha = 150;
+    @Setting(name = "Height", description = "Height of the esp", number = @Number(min = -1, max = 1, increment = 0.1)) public double height = 0.1;
+    @Setting(name = "Range", description = "Distance it should show holes as", number = @Number(min = 2, max = 20)) public double range = 8;
+    @Setting(name = "Performance", description = "Scan delay", number = @Number(min = 1, max = 20)) public double performance = 5;
+    @Setting(name = "Box", description = "ESP box") public boolean box = true;
+    @Setting(name = "Outline", description = "ESP outline") public boolean outline = true;
+    @Setting(name = "Wide", description = "2 block holes") public boolean wide = true;
 
     private final List<BlockPos> bedrockHoles = new ArrayList<>();
     private final List<BlockPos> obsidianHoles = new ArrayList<>();

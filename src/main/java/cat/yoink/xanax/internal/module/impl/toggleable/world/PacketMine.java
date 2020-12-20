@@ -4,11 +4,9 @@ import cat.yoink.xanax.internal.event.impl.DamageBlockEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.List;
+import cat.yoink.xanax.internal.setting.annotation.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
-import cat.yoink.xanax.internal.setting.annotation.setting.Color;
-import cat.yoink.xanax.internal.setting.annotation.setting.List;
-import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import cat.yoink.xanax.internal.util.RenderUtil;
 import cat.yoink.xanax.internal.util.Timer;
@@ -24,6 +22,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+import java.awt.*;
+
 /**
  * @author yoink
  */
@@ -31,16 +31,16 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public final class PacketMine extends StateModule
 {
     @Setting(name = "Render", description = "Render the mine blockI") @List({"Specific", "Full", "Off"}) public String render;
-    @Setting(name = "Color", description = "Color for rendering") @Color(-16776961) public java.awt.Color color;
-    @Setting(name = "Box", description = "Box for rendering") @Boolean(true) public boolean box;
-    @Setting(name = "Alpha", description = "Alpha for rendering") @Number(value = 100, max = 255) public double alpha;
-    @Setting(name = "Outline", description = "Outline for rendering") @Boolean(true) public boolean outline;
-    @Setting(name = "Change", description = "Change color based on break progress") @Boolean(false) public boolean change;
-    @Setting(name = "NoBreak", description = "Stops you from mining the block") @Boolean(false) public boolean noBreak;
-    @Setting(name = "Swing", description = "Swing when mining multiple blocks") @Boolean(true) public boolean swing;
-    @Setting(name = "Silent", description = "Mine without holding a pickaxe") @Boolean(false) public boolean silent;
-    @Setting(name = "Time", description = "Max time before stopping") @Number(value = 300, min = 100, max = 1000, increment = 10) public double time;
-    @Setting(name = "CancelClick", description = "Cancels other actions while ghost mining") @Boolean(true) public boolean cancel;
+    @Setting(name = "Color", description = "Color for rendering") public Color color = new Color(0, 0, 255);
+    @Setting(name = "Box", description = "Box for rendering") public boolean box = true;
+    @Setting(name = "Alpha", description = "Alpha for rendering", number = @Number(max = 255)) public double alpha = 100;
+    @Setting(name = "Outline", description = "Outline for rendering") public boolean outline = true;
+    @Setting(name = "Change", description = "Change color based on break progress") public boolean change = false;
+    @Setting(name = "NoBreak", description = "Stops you from mining the block") public boolean noBreak = false;
+    @Setting(name = "Swing", description = "Swing when mining multiple blocks") public boolean swing = true;
+    @Setting(name = "Silent", description = "Mine without holding a pickaxe") public boolean silent = false;
+    @Setting(name = "Time", description = "Max time before stopping", number = @Number(min = 100, max = 1000, increment = 10)) public double time = 300;
+    @Setting(name = "CancelClick", description = "Cancels other actions while ghost mining") public boolean cancel = true;
     private BlockPos breakBlock;
     private final Timer timer = new Timer();
 

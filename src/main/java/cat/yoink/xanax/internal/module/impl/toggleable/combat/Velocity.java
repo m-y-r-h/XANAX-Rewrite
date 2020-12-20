@@ -6,9 +6,8 @@ import cat.yoink.xanax.internal.event.impl.WaterPushEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
-import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraft.network.play.server.SPacketEntityVelocity;
@@ -22,12 +21,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @ModuleData(name = "Velocity", category = ModuleCategory.COMBAT, description = "Anti knockback")
 public final class Velocity extends StateModule
 {
-    @Setting(name = "Velocity", description = "Knockback") @Boolean(true) public boolean velocity;
-    @Setting(name = "Explosions", description = "Explosion knockback") @Boolean(true) public boolean explosions;
-    @Setting(name = "Horizontal", description = "Horizontal velocity") @Number(value = 0, max = 100) public double horizontal;
-    @Setting(name = "Vertical", description = "Vertical velocity") @Number(value = 0, max = 100) public double vertical;
-    @Setting(name = "Fishable", description = "Allow yourself to take knockback from fish rod pulls") @Boolean(false) public boolean fishable;
-    @Setting(name = "NoPush", description = "Pushed by other players or blocks") @Boolean(true) public boolean noPush;
+    @Setting(name = "Velocity", description = "Knockback") public boolean velocity = true;
+    @Setting(name = "Explosions", description = "Explosion knockback") public boolean explosions = true;
+    @Setting(name = "Horizontal", description = "Horizontal velocity", number = @Number(max = 100) ) public double horizontal = 0;
+    @Setting(name = "Vertical", description = "Vertical velocity", number = @Number(max = 100)) public double vertical = 0;
+    @Setting(name = "Fishable", description = "Allow yourself to take knockback from fish rod pulls") public boolean fishable = false;
+    @Setting(name = "NoPush", description = "Pushed by other players or blocks") public boolean noPush = true;
 
     @SubscribeEvent
     public void onPlayerSPPushOutOfBlocks(PlayerSPPushOutOfBlocksEvent event)

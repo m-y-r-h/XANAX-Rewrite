@@ -16,7 +16,7 @@ public final class ColorSetting extends Setting<Color>
     public ColorSetting(Field field, Module module, Color value)
     {
         super(module, field);
-        setValue(module, value);
+        this.value = value;
     }
 
     @Override

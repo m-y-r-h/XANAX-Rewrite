@@ -2,17 +2,14 @@ package cat.yoink.xanax.internal.setting.reflect;
 
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
-import cat.yoink.xanax.internal.setting.annotation.setting.Color;
-import cat.yoink.xanax.internal.setting.annotation.setting.List;
-import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.setting.types.ColorSetting;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
 
+import java.awt.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author yoink
@@ -24,14 +21,26 @@ public enum Reflection
     public java.util.List<cat.yoink.xanax.internal.setting.Setting<?>> getSettings(Module instance)
     {
         java.util.List<cat.yoink.xanax.internal.setting.Setting<?>> settings = new ArrayList<>();
-        Arrays.stream(instance.getClass().getDeclaredFields())
-                .filter(field -> field.isAnnotationPresent(Setting.class))
-                .forEach(field -> {
-                    if (field.isAnnotationPresent(Boolean.class)) settings.add(new StateSetting(field, instance, field.getAnnotation(Boolean.class).value()));
-                    else if (field.isAnnotationPresent(List.class)) settings.add(new ListSetting(field, instance, field.getAnnotation(List.class).value()));
-                    else if (field.isAnnotationPresent(Number.class)) settings.add(new NumberSetting(field, instance, field.getAnnotation(Number.class).value(), field.getAnnotation(Number.class).min(), field.getAnnotation(Number.class).max(), field.getAnnotation(Number.class).increment()));
-                    else if (field.isAnnotationPresent(Color.class)) settings.add(new ColorSetting(field, instance, new java.awt.Color(field.getAnnotation(Color.class).value())));
-                });
+        for (Field field : instance.getClass().getDeclaredFields())
+        {
+            if (field.isAnnotationPresent(Setting.class))
+            {
+                try
+                {
+                    Setting setting = field.getAnnotation(Setting.class);
+                    Object value = field.get(instance);
+
+                    if (value instanceof Boolean) settings.add(new StateSetting(field, instance, (Boolean) value));
+                    else if (value instanceof String) settings.add(new ListSetting(field, instance, (String) value, setting.list().value()));
+                    else if (value instanceof Double) settings.add(new NumberSetting(field, instance, (Double) value, setting.number().min(), setting.number().max(), setting.number().increment()));
+                    else if (value instanceof Color) settings.add(new ColorSetting(field, instance, (Color) value));
+                }
+                catch (IllegalAccessException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         return settings;
     }

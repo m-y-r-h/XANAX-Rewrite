@@ -15,7 +15,7 @@ public final class StateSetting extends Setting<Boolean>
     public StateSetting(Field field, Module module, boolean value)
     {
         super(module, field);
-        setValue(module, value);
+        this.value = value;
     }
 
     @Override

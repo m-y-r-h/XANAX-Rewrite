@@ -12,6 +12,7 @@ import cat.yoink.xanax.internal.module.impl.toggleable.render.ViewModel;
 import cat.yoink.xanax.internal.module.impl.toggleable.world.PacketMine;
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
@@ -108,6 +109,11 @@ public enum ModuleManager implements Configurable, Minecraft
 
             allModules.add(module);
         }
+
+        allModules.forEach(module -> {
+            module.getSettings().clear();
+            module.getSettings().addAll(Reflection.INSTANCE.getSettings(module));
+        });
 
         getAllModules().sort(Comparator.comparing(module -> -mc.fontRenderer.getStringWidth(module.getName())));
     }

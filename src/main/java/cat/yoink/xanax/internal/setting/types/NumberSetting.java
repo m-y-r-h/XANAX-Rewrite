@@ -21,7 +21,7 @@ public final class NumberSetting extends Setting<Double>
         this.minimum = minimum;
         this.maximum = maximum;
         this.increment = increment;
-        setValue(module, value);
+        this.value = value;
     }
 
     @Override

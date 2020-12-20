@@ -15,4 +15,8 @@ public @interface Setting
     String name();
 
     String description() default "Descriptionless";
+
+    Number number() default @Number;
+
+    List list() default @List;
 }

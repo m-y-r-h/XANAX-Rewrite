@@ -4,9 +4,8 @@ import cat.yoink.xanax.internal.guiscreen.clickgui.ClickGUI;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.List;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
-import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
-import cat.yoink.xanax.internal.setting.annotation.setting.List;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -15,8 +14,8 @@ import org.lwjgl.input.Keyboard;
 @ModuleData(name = "ClickGUI", category = ModuleCategory.CLIENT, defaultBind = Keyboard.KEY_RSHIFT, description = "Toggle modules and settings in a gui")
 public final class GuiModule extends StateModule
 {
-    @Setting(name = "Outline", description = "Adds an outline to the elements") @Boolean(false) public boolean outline;
-    @Setting(name = "Closing", description = "Changes how the gui closes") @List({"Keyboard", "Button", "Both"}) public String closing;
+    @Setting(name = "Outline", description = "Adds an outline to the elements") public boolean outline = false;
+    @Setting(name = "Closing", description = "Changes how the gui closes", list = @List({"Keyboard", "Button", "Both"})) public String closing = "Keyboard";
 
     @Override
     public void onEnable()
