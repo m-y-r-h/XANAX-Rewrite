@@ -9,7 +9,7 @@ import cat.yoink.xanax.internal.util.ChatUtil;
 /**
  * @author yoink
  */
-public abstract class Command implements Nameable, Describable, Runnable, Minecraft
+public abstract class Command implements Nameable, Describable, Runnable, Minecraft, ICommand
 {
     protected final String name;
     protected final String[] aliases;
@@ -44,11 +44,13 @@ public abstract class Command implements Nameable, Describable, Runnable, Minecr
         return name;
     }
 
+    @Override
     public final String[] getAliases()
     {
         return aliases;
     }
 
+    @Override
     public final String getUsage()
     {
         return usage;
