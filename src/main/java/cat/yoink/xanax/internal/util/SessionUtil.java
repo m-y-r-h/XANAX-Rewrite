@@ -7,7 +7,6 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 import net.minecraft.util.Session;
 
-import java.lang.reflect.Field;
 import java.net.Proxy;
 
 public final class SessionUtil implements Minecraft
@@ -29,24 +28,6 @@ public final class SessionUtil implements Minecraft
         catch (AuthenticationException e)
         {
             return null;
-        }
-    }
-
-    public static boolean setSession(Session session)
-    {
-        try
-        {
-            if (session == null) return false;
-
-            Field session1 = net.minecraft.client.Minecraft.class.getDeclaredField("session");
-            session1.setAccessible(true);
-            session1.set(mc, session);
-            return true;
-        }
-        catch (IllegalAccessException | NoSuchFieldException e)
-        {
-            e.printStackTrace();
-            return false;
         }
     }
 }
