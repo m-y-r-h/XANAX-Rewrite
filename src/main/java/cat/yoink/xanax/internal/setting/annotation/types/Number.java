@@ -1,5 +1,8 @@
-package cat.yoink.xanax.internal.setting.annotation;
+package cat.yoink.xanax.internal.setting.annotation.types;
 
+/**
+ * @author yoink
+ */
 public @interface Number
 {
     double min() default 0;

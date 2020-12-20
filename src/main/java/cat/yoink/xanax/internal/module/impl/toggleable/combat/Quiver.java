@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.Number;
+import cat.yoink.xanax.internal.setting.annotation.types.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import net.minecraft.init.Items;

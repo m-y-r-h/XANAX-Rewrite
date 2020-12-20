@@ -6,7 +6,7 @@ import cat.yoink.xanax.internal.event.impl.WaterPushEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.Number;
+import cat.yoink.xanax.internal.setting.annotation.types.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.network.play.server.SPacketEntityStatus;

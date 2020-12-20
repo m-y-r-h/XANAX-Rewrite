@@ -1,5 +1,8 @@
 package cat.yoink.xanax.internal.setting.annotation;
 
+import cat.yoink.xanax.internal.setting.annotation.types.List;
+import cat.yoink.xanax.internal.setting.annotation.types.Number;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

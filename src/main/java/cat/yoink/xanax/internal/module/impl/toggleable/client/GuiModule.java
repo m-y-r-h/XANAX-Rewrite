@@ -4,7 +4,7 @@ import cat.yoink.xanax.internal.guiscreen.clickgui.ClickGUI;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.List;
+import cat.yoink.xanax.internal.setting.annotation.types.List;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
 import org.lwjgl.input.Keyboard;
 

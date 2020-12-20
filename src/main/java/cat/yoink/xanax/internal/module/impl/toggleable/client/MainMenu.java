@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.module.impl.toggleable.client;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.List;
+import cat.yoink.xanax.internal.setting.annotation.types.List;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraftforge.client.event.GuiOpenEvent;
