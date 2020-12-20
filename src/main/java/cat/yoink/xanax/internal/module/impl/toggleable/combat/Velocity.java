@@ -6,7 +6,7 @@ import cat.yoink.xanax.internal.event.impl.WaterPushEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
 import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import net.minecraft.entity.projectile.EntityFishHook;
@@ -22,12 +22,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @ModuleData(name = "Velocity", category = ModuleCategory.COMBAT, description = "Anti knockback")
 public final class Velocity extends StateModule
 {
-    @Name("Velocity") @Boolean(true) public boolean velocity;
-    @Name("Explosions") @Boolean(true) public boolean explosions;
-    @Name("Horizontal") @Number(value = 0, max = 100) public double horizontal;
-    @Name("Vertical") @Number(value = 0, max = 100) public double vertical;
-    @Name("Fishable") @Boolean(false) public boolean fishable;
-    @Name("NoPush") @Boolean(true) public boolean noPush;
+    @Setting(name = "Velocity") @Boolean(true) public boolean velocity;
+    @Setting(name = "Explosions") @Boolean(true) public boolean explosions;
+    @Setting(name = "Horizontal") @Number(value = 0, max = 100) public double horizontal;
+    @Setting(name = "Vertical") @Number(value = 0, max = 100) public double vertical;
+    @Setting(name = "Fishable") @Boolean(false) public boolean fishable;
+    @Setting(name = "NoPush") @Boolean(true) public boolean noPush;
 
     @SubscribeEvent
     public void onPlayerSPPushOutOfBlocks(PlayerSPPushOutOfBlocksEvent event)

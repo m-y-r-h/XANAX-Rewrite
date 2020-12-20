@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.module.impl.toggleable.render;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
 import cat.yoink.xanax.internal.setting.annotation.setting.Color;
 import cat.yoink.xanax.internal.setting.annotation.setting.Number;
@@ -25,16 +25,16 @@ import java.util.List;
 @ModuleData(name = "HoleESP", category = ModuleCategory.RENDER, description = "Highlights nearby holes")
 public final class HoleESP extends StateModule
 {
-    @Name("Bedrock") @Color(-65536) public java.awt.Color bedrockColor;
-    @Name("Obsidian") @Color(-16711936) public java.awt.Color obsidianColor;
-    @Name("BedrockAlpha") @Number(value = 150, max = 255) public double bedrockAlpha;
-    @Name("ObsidianAlpha") @Number(value = 150, max = 255) public double obsidianAlpha;
-    @Name("Height") @Number(value = 0.1, min = -1, max = 1, increment = 0.1) public double height;
-    @Name("Range") @Number(value = 8, min = 2, max = 20) public double range;
-    @Name("Performance") @Number(value = 5, min = 1, max = 20) public double performance;
-    @Name("Box") @Boolean(true) public boolean box;
-    @Name("Outline") @Boolean(true) public boolean outline;
-    @Name("Wide") @Boolean(true) public boolean wide;
+    @Setting(name = "Bedrock") @Color(-65536) public java.awt.Color bedrockColor;
+    @Setting(name = "Obsidian") @Color(-16711936) public java.awt.Color obsidianColor;
+    @Setting(name = "BedrockAlpha") @Number(value = 150, max = 255) public double bedrockAlpha;
+    @Setting(name = "ObsidianAlpha") @Number(value = 150, max = 255) public double obsidianAlpha;
+    @Setting(name = "Height") @Number(value = 0.1, min = -1, max = 1, increment = 0.1) public double height;
+    @Setting(name = "Range") @Number(value = 8, min = 2, max = 20) public double range;
+    @Setting(name = "Performance") @Number(value = 5, min = 1, max = 20) public double performance;
+    @Setting(name = "Box") @Boolean(true) public boolean box;
+    @Setting(name = "Outline") @Boolean(true) public boolean outline;
+    @Setting(name = "Wide") @Boolean(true) public boolean wide;
 
     private final List<BlockPos> bedrockHoles = new ArrayList<>();
     private final List<BlockPos> obsidianHoles = new ArrayList<>();

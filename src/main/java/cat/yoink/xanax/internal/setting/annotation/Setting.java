@@ -10,7 +10,9 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Name
+public @interface Setting
 {
-    String value();
+    String name();
+
+    String description() default "Descriptionless";
 }

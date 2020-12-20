@@ -1,8 +1,7 @@
 package cat.yoink.xanax.internal.setting.reflect;
 
 import cat.yoink.xanax.internal.module.main.Module;
-import cat.yoink.xanax.internal.setting.Setting;
-import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
 import cat.yoink.xanax.internal.setting.annotation.setting.Color;
 import cat.yoink.xanax.internal.setting.annotation.setting.List;
@@ -22,11 +21,11 @@ public enum Reflection
 {
     INSTANCE;
 
-    public java.util.List<Setting<?>> getSettings(Module instance)
+    public java.util.List<cat.yoink.xanax.internal.setting.Setting<?>> getSettings(Module instance)
     {
-        java.util.List<Setting<?>> settings = new ArrayList<>();
+        java.util.List<cat.yoink.xanax.internal.setting.Setting<?>> settings = new ArrayList<>();
         Arrays.stream(instance.getClass().getDeclaredFields())
-                .filter(field -> field.isAnnotationPresent(Name.class))
+                .filter(field -> field.isAnnotationPresent(Setting.class))
                 .forEach(field -> {
                     if (field.isAnnotationPresent(Boolean.class)) settings.add(new StateSetting(field, instance, field.getAnnotation(Boolean.class).value()));
                     else if (field.isAnnotationPresent(List.class)) settings.add(new ListSetting(field, instance, field.getAnnotation(List.class).value()));
@@ -37,7 +36,7 @@ public enum Reflection
         return settings;
     }
 
-    public void setValue(Module instance, Setting<?> setting, Object value)
+    public void setValue(Module instance, cat.yoink.xanax.internal.setting.Setting<?> setting, Object value)
     {
         try
         {

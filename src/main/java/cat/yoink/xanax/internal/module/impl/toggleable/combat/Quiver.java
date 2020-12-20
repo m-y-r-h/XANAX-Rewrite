@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.Name;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.setting.annotation.setting.Boolean;
 import cat.yoink.xanax.internal.setting.annotation.setting.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
@@ -27,9 +27,9 @@ import java.util.Objects;
 @ModuleData(name = "Quiver", category = ModuleCategory.COMBAT)
 public final class Quiver extends StateModule
 {
-    @Name("Release") @Boolean(true) public boolean release;
-    @Name("Arrange") @Boolean(true) public boolean arrange;
-    @Name("Delay") @Number(value = 3, min = 2) public double delay;
+    @Setting(name = "Release") @Boolean(true) public boolean release;
+    @Setting(name = "Arrange") @Boolean(true) public boolean arrange;
+    @Setting(name = "Delay") @Number(value = 3, min = 2) public double delay;
 
     @SubscribeEvent
     public void onTickClientTick(TickEvent.ClientTickEvent event)
@@ -55,8 +55,8 @@ public final class Quiver extends StateModule
                 int strengthSlot = -1;
                 for (Integer slot : arrowSlots)
                 {
-                    if (PotionUtils.getPotionFromItem(mc.player.inventory.getStackInSlot(slot)).getRegistryName().getPath().contains("swiftness")) speedSlot = slot;
-                    else if (PotionUtils.getPotionFromItem(mc.player.inventory.getStackInSlot(slot)).getRegistryName().getPath().contains("strength")) strengthSlot = slot;
+                    if (Objects.requireNonNull(PotionUtils.getPotionFromItem(mc.player.inventory.getStackInSlot(slot)).getRegistryName()).getPath().contains("swiftness")) speedSlot = slot;
+                    else if (Objects.requireNonNull(PotionUtils.getPotionFromItem(mc.player.inventory.getStackInSlot(slot)).getRegistryName()).getPath().contains("strength")) strengthSlot = slot;
                 }
 
                 if (strengthSlot == -1 || speedSlot == -1 || hasSpeed && hasStrength) return;
