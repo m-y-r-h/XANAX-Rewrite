@@ -25,16 +25,16 @@ import java.util.List;
 @ModuleData(name = "HoleESP", category = ModuleCategory.RENDER, description = "Highlights nearby holes")
 public final class HoleESP extends StateModule
 {
-    @Setting(name = "Bedrock") @Color(-65536) public java.awt.Color bedrockColor;
-    @Setting(name = "Obsidian") @Color(-16711936) public java.awt.Color obsidianColor;
-    @Setting(name = "BedrockAlpha") @Number(value = 150, max = 255) public double bedrockAlpha;
-    @Setting(name = "ObsidianAlpha") @Number(value = 150, max = 255) public double obsidianAlpha;
-    @Setting(name = "Height") @Number(value = 0.1, min = -1, max = 1, increment = 0.1) public double height;
-    @Setting(name = "Range") @Number(value = 8, min = 2, max = 20) public double range;
-    @Setting(name = "Performance") @Number(value = 5, min = 1, max = 20) public double performance;
-    @Setting(name = "Box") @Boolean(true) public boolean box;
-    @Setting(name = "Outline") @Boolean(true) public boolean outline;
-    @Setting(name = "Wide") @Boolean(true) public boolean wide;
+    @Setting(name = "Bedrock", description = "Bedrock hole color") @Color(-65536) public java.awt.Color bedrockColor;
+    @Setting(name = "Obsidian", description = "Obsidian hole color") @Color(-16711936) public java.awt.Color obsidianColor;
+    @Setting(name = "BedrockAlpha", description = "Bedrock hole alpha") @Number(value = 150, max = 255) public double bedrockAlpha;
+    @Setting(name = "ObsidianAlpha",description = "Obsidian hole alpha") @Number(value = 150, max = 255) public double obsidianAlpha;
+    @Setting(name = "Height", description = "Height of the esp") @Number(value = 0.1, min = -1, max = 1, increment = 0.1) public double height;
+    @Setting(name = "Range", description = "Distance it should show holes as") @Number(value = 8, min = 2, max = 20) public double range;
+    @Setting(name = "Performance", description = "Scan delay") @Number(value = 5, min = 1, max = 20) public double performance;
+    @Setting(name = "Box", description = "ESP box") @Boolean(true) public boolean box;
+    @Setting(name = "Outline", description = "ESP outline") @Boolean(true) public boolean outline;
+    @Setting(name = "Wide", description = "2 block holes") @Boolean(true) public boolean wide;
 
     private final List<BlockPos> bedrockHoles = new ArrayList<>();
     private final List<BlockPos> obsidianHoles = new ArrayList<>();

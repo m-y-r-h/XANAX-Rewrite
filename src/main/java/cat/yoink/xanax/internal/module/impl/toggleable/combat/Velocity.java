@@ -22,12 +22,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @ModuleData(name = "Velocity", category = ModuleCategory.COMBAT, description = "Anti knockback")
 public final class Velocity extends StateModule
 {
-    @Setting(name = "Velocity") @Boolean(true) public boolean velocity;
-    @Setting(name = "Explosions") @Boolean(true) public boolean explosions;
-    @Setting(name = "Horizontal") @Number(value = 0, max = 100) public double horizontal;
-    @Setting(name = "Vertical") @Number(value = 0, max = 100) public double vertical;
-    @Setting(name = "Fishable") @Boolean(false) public boolean fishable;
-    @Setting(name = "NoPush") @Boolean(true) public boolean noPush;
+    @Setting(name = "Velocity", description = "Knockback") @Boolean(true) public boolean velocity;
+    @Setting(name = "Explosions", description = "Explosion knockback") @Boolean(true) public boolean explosions;
+    @Setting(name = "Horizontal", description = "Horizontal velocity") @Number(value = 0, max = 100) public double horizontal;
+    @Setting(name = "Vertical", description = "Vertical velocity") @Number(value = 0, max = 100) public double vertical;
+    @Setting(name = "Fishable", description = "Allow yourself to take knockback from fish rod pulls") @Boolean(false) public boolean fishable;
+    @Setting(name = "NoPush", description = "Pushed by other players or blocks") @Boolean(true) public boolean noPush;
 
     @SubscribeEvent
     public void onPlayerSPPushOutOfBlocks(PlayerSPPushOutOfBlocksEvent event)

@@ -30,17 +30,17 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @ModuleData(name = "PacketMine", category = ModuleCategory.WORLD, description = "Mine blocks with packets")
 public final class PacketMine extends StateModule
 {
-    @Setting(name = "Render") @List({"Specific", "Full", "Off"}) public String render;
-    @Setting(name = "Color") @Color(-16776961) public java.awt.Color color;
-    @Setting(name = "Box") @Boolean(true) public boolean box;
-    @Setting(name = "Alpha") @Number(value = 100, max = 255) public double alpha;
-    @Setting(name = "Outline") @Boolean(true) public boolean outline;
-    @Setting(name = "Change") @Boolean(false) public boolean change;
-    @Setting(name = "NoBreak") @Boolean(false) public boolean noBreak;
-    @Setting(name = "Swing") @Boolean(true) public boolean swing;
-    @Setting(name = "Silent") @Boolean(false) public boolean silent;
-    @Setting(name = "Time") @Number(value = 300, min = 100, max = 1000, increment = 10) public double time;
-    @Setting(name = "CancelClick") @Boolean(true) public boolean cancel;
+    @Setting(name = "Render", description = "Render the mine blockI") @List({"Specific", "Full", "Off"}) public String render;
+    @Setting(name = "Color", description = "Color for rendering") @Color(-16776961) public java.awt.Color color;
+    @Setting(name = "Box", description = "Box for rendering") @Boolean(true) public boolean box;
+    @Setting(name = "Alpha", description = "Alpha for rendering") @Number(value = 100, max = 255) public double alpha;
+    @Setting(name = "Outline", description = "Outline for rendering") @Boolean(true) public boolean outline;
+    @Setting(name = "Change", description = "Change color based on break progress") @Boolean(false) public boolean change;
+    @Setting(name = "NoBreak", description = "Stops you from mining the block") @Boolean(false) public boolean noBreak;
+    @Setting(name = "Swing", description = "Swing when mining multiple blocks") @Boolean(true) public boolean swing;
+    @Setting(name = "Silent", description = "Mine without holding a pickaxe") @Boolean(false) public boolean silent;
+    @Setting(name = "Time", description = "Max time before stopping") @Number(value = 300, min = 100, max = 1000, increment = 10) public double time;
+    @Setting(name = "CancelClick", description = "Cancels other actions while ghost mining") @Boolean(true) public boolean cancel;
     private BlockPos breakBlock;
     private final Timer timer = new Timer();
 

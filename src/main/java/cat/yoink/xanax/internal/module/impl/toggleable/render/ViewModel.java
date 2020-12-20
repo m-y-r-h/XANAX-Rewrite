@@ -22,21 +22,21 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @ModuleData(name = "ViewModel", category = ModuleCategory.RENDER, description = "Changes your view model")
 public final class ViewModel extends StateModule
 {
-    @Setting(name = "ArmPitch") @Boolean(false) public boolean armPitch;
-    @Setting(name = "ArmPitchValue") @Number(value = 90, min = -750, max = 750, increment = 10) public double armPitchValue;
-    @Setting(name = "Swing") @Boolean(false) public boolean swing;
-    @Setting(name = "SwingValue") @Number(value = 0.86, max = 1, increment = 0.01) public double swingValue;
-    @Setting(name = "FOV") @Boolean(false) public boolean fov;
-    @Setting(name = "FovMode") @List({"Hard", "Soft"}) public String fovMode;
-    @Setting(name = "FovValue") @Number(value = 120, min = 80, max = 180) public double fovValue;
-    @Setting(name = "MoveHand") @Boolean(false) public boolean moveHand;
-    @Setting(name = "MainX") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainX;
-    @Setting(name = "MainY") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainY;
-    @Setting(name = "MainZ") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainZ;
-    @Setting(name = "OffX") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offX;
-    @Setting(name = "OffY") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offY;
-    @Setting(name = "OffZ") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offZ;
-    @Setting(name = "Animations") @Boolean(false) public boolean animations;
+    @Setting(name = "ArmPitch", description = "Pitch of your arm") @Boolean(false) public boolean armPitch;
+    @Setting(name = "ArmPitchValue", description = "Amount of pitch") @Number(value = 90, min = -750, max = 750, increment = 10) public double armPitchValue;
+    @Setting(name = "Swing", description = "Keep your hand swinging") @Boolean(false) public boolean swing;
+    @Setting(name = "SwingValue", description = "Amount your hand should be swinging at") @Number(value = 0.86, max = 1, increment = 0.01) public double swingValue;
+    @Setting(name = "FOV", description = "Change your field of view") @Boolean(false) public boolean fov;
+    @Setting(name = "FovMode", description = "Field of view mode") @List({"Hard", "Soft"}) public String fovMode;
+    @Setting(name = "FovValue", description = "Field of view") @Number(value = 120, min = 80, max = 180) public double fovValue;
+    @Setting(name = "MoveHand", description = "Change position of your hands") @Boolean(false) public boolean moveHand;
+    @Setting(name = "MainX", description = "MainHand X position") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainX;
+    @Setting(name = "MainY", description = "MainHand Y position") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainY;
+    @Setting(name = "MainZ", description = "MainHand Z position") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double mainZ;
+    @Setting(name = "OffX", description = "OffHand X position") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offX;
+    @Setting(name = "OffY", description = "OffHand Y position") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offY;
+    @Setting(name = "OffZ", description = "OffHand Z position") @Number(value = 0, min = -1, max = 1, increment = 0.01) public double offZ;
+    @Setting(name = "Animations", description = "Old 1.8 animations") @Boolean(false) public boolean animations;
     private float oldFOV;
 
     @Override

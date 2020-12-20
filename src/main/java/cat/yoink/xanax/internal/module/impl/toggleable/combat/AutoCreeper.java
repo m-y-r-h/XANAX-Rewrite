@@ -23,9 +23,9 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 @ModuleData(name = "AutoCreeper", category = ModuleCategory.COMBAT, description = "wtf is this please help")
 public final class AutoCreeper extends StateModule
 {
-    @Setting(name = "Mode") @List({"Hole", "Always"}) public String mode;
-    @Setting(name = "Distance") @Number(value = 4, min = 2, max = 7, increment = 0.1) public double distance;
-    @Setting(name = "Delay") @Number(value = 3, min = 1, max = 20) public double delay;
+    @Setting(name = "Mode", description = "Choose when it should spawn") @List({"Hole", "Always"}) public String mode;
+    @Setting(name = "Distance", description = "Enemy maximum distance") @Number(value = 4, min = 2, max = 7, increment = 0.1) public double distance;
+    @Setting(name = "Delay", description = "Spawn delay") @Number(value = 3, min = 1, max = 20) public double delay;
 
     private int oldSlot;
 
