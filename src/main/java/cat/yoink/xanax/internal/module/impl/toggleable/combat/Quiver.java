@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * @author yoink
  */
-@ModuleData(name = "Quiver", aliases = {"Quiver", "AutoBow", "Bow"}, category = ModuleCategory.COMBAT)
+@ModuleData(name = "Quiver", aliases = {"Quiver", "AutoBow", "Bow"}, category = ModuleCategory.COMBAT, description = "Automatically shoots arrows at you")
 public final class Quiver extends StateModule
 {
     @Setting(name = "Release", description = "Automatically releases the bow")
