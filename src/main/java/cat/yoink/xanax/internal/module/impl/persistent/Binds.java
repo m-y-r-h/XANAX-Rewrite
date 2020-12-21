@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 /**
  * @author yoink
  */
-@ModuleData(name = "Binds", category = ModuleCategory.CLIENT, hidden = true)
+@ModuleData(name = "Binds", aliases = {"Binds", "Keybinds"}, category = ModuleCategory.CLIENT, hidden = true, description = "Binds for all the modules")
 public final class Binds extends Module
 {
     @SubscribeEvent

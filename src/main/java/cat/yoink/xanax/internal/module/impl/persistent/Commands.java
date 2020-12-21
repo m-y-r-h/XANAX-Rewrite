@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * @author yoink
  */
-@ModuleData(name = "Commands", category = ModuleCategory.CLIENT, hidden = true)
+@ModuleData(name = "Commands", aliases = {"Commands", "Command"}, category = ModuleCategory.CLIENT, hidden = true, description = "Allows commands to work")
 public final class Commands extends Module
 {
     @SubscribeEvent
