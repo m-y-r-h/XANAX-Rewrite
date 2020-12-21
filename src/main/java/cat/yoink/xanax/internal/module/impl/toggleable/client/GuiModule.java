@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 /**
  * @author yoink
  */
-@ModuleData(name = "ClickGUI", category = ModuleCategory.CLIENT, defaultBind = Keyboard.KEY_RSHIFT, description = "Toggle modules and settings in a gui")
+@ModuleData(name = "ClickGUI", aliases = {"ClickGUI", "GUI", "Menu"}, category = ModuleCategory.CLIENT, defaultBind = Keyboard.KEY_RSHIFT, description = "Toggle modules and settings in a gui")
 public final class GuiModule extends StateModule
 {
     @Setting(name = "Outline", description = "Adds an outline to the elements")

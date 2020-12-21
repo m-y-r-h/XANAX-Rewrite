@@ -27,7 +27,7 @@ import java.awt.*;
 /**
  * @author yoink
  */
-@ModuleData(name = "PacketMine", category = ModuleCategory.WORLD, description = "Mine blocks with packets")
+@ModuleData(name = "PacketMine", aliases = {"PacketMine", "SpeedMine", "GhostMine"}, category = ModuleCategory.WORLD, description = "Mine blocks with packets")
 public final class PacketMine extends StateModule
 {
     @Setting(name = "Render", description = "Render the mine block", list = @List({"Specific", "Full", "Off"}))

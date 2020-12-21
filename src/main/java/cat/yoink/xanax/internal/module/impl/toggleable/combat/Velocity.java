@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * @author yoink
  */
-@ModuleData(name = "Velocity", category = ModuleCategory.COMBAT, description = "Anti knockback")
+@ModuleData(name = "Velocity", aliases = {"Velocity", "AntiKB", "AntiKnockback"}, category = ModuleCategory.COMBAT, description = "Anti knockback")
 public final class Velocity extends StateModule
 {
     @Setting(name = "Velocity", description = "Knockback")

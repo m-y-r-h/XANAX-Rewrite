@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 /**
  * @author yoink
  */
-@ModuleData(name = "MainMenu", category = ModuleCategory.CLIENT, description = "Custom main menu", enabled = true)
+@ModuleData(name = "MainMenu", aliases = {"MainMenu", "Main", "Screen"}, category = ModuleCategory.CLIENT, description = "Custom main menu", enabled = true)
 public final class MainMenu extends StateModule
 {
     @Setting(name = "Mode", description = "Choose which background to use", list = @List({"Minecraft", "Color"}))
