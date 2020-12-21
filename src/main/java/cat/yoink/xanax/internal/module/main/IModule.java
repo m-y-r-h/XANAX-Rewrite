@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface IModule
 {
+    String[] getAliases();
+
     ModuleCategory getCategory();
 
     int getBind();

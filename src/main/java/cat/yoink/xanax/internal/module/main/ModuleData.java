@@ -17,6 +17,8 @@ public @interface ModuleData
 {
     String name();
 
+    String[] aliases() default {};
+
     ModuleCategory category();
 
     String description() default "Descriptionless";

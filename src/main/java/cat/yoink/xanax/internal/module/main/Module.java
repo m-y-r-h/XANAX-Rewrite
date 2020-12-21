@@ -16,6 +16,7 @@ import java.util.List;
 public abstract class Module implements Minecraft, Describable, Nameable, IModule
 {
     protected final String name;
+    protected final String[] aliases;
     protected final ModuleCategory category;
     protected final String description;
     protected final boolean hidden;
@@ -25,6 +26,7 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
     protected Module()
     {
         name = getClass().getAnnotation(ModuleData.class).name();
+        aliases = getClass().getAnnotation(ModuleData.class).aliases();
         category = getClass().getAnnotation(ModuleData.class).category();
         description = getClass().getAnnotation(ModuleData.class).description();
         hidden = getClass().getAnnotation(ModuleData.class).hidden();
@@ -36,6 +38,7 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
     public Module(ModuleData data)
     {
         name = data.name();
+        aliases = data.aliases();
         category = data.category();
         description = data.description();
         hidden = data.hidden();
@@ -63,6 +66,12 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
     public final String getName()
     {
         return name;
+    }
+
+    @Override
+    public String[] getAliases()
+    {
+        return aliases;
     }
 
     @Override
