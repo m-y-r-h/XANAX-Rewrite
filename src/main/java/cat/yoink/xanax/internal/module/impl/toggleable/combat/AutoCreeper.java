@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 /**
  * @author yoink
  */
-@ModuleData(name = "AutoCreeper", aliases = {"AutoCreeper", "Creeper", "AutoSpawn", "Spawner"}, category = ModuleCategory.COMBAT, description = "wtf is this please help")
+@ModuleData(name = "AutoCreeper", aliases = {"AutoCreeper", "Creeper", "AutoSpawn", "Spawner"}, category = ModuleCategory.COMBAT, description = "Automatically spawns creepers inside someone")
 public final class AutoCreeper extends StateModule
 {
     @Setting(name = "Mode", description = "Choose when it should spawn", list = @List({"Hole", "Always"}))
