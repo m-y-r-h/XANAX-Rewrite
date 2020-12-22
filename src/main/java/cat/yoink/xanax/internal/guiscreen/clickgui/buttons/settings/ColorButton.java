@@ -19,6 +19,7 @@ public final class ColorButton extends SettingButton
     private final ColorSetting setting;
     private int sliderWidth;
     private boolean dragging;
+    private boolean left;
 
     public ColorButton(Module module, int x, int y, int w, int h, ColorSetting setting)
     {
@@ -26,11 +27,10 @@ public final class ColorButton extends SettingButton
         this.setting = setting;
     }
 
-
     @Override
     public void drawScreen(int mouseX, int mouseY, int windowX, int windowY, boolean self)
     {
-        if (dragging) updateSlider(mouseX);
+        updateSlider(mouseX);
         boolean outline = ((StateSetting) ModuleManager.INSTANCE.getModule(GuiModule.class).getSetting("Outline")).getValue();
         float[] hue = new float[]{(float) (System.currentTimeMillis() % 11520L) / 11520.0f};
         Color c = new Color(Color.HSBtoRGB(hue[0], 1.0f, 1.0f));
@@ -51,6 +51,7 @@ public final class ColorButton extends SettingButton
     public void mouseReleased(int mouseX, int mouseY, int state)
     {
         dragging = false;
+        left = mouseX < x + w / 2;
     }
 
     @Override
@@ -64,13 +65,14 @@ public final class ColorButton extends SettingButton
         double diff = Math.min(94, Math.max(0, mouseX - x - 8));
 
         sliderWidth = (int) (94f * (Color.RGBtoHSB(setting.getValue().getRed(), setting.getValue().getGreen(), setting.getValue().getBlue(), null)[0]));
+        if (!dragging && sliderWidth == 0 && !left) sliderWidth = 94;
 
         if (dragging)
         {
             if (sliderWidth == 0 && mouseX > x + 94f / 2) sliderWidth = 94;
             if (diff == 0) setting.setValue(module, Color.getHSBColor(0, 1, 1));
             else if (diff == 94f) setting.setValue(module, new Color(255, 0, 0));
-            else setting.setValue(module, Color.getHSBColor((float) (diff / 94f), 1, 1));
+            else setting.setValue(module, Color.getHSBColor((float) (diff / 94), 1, 1));
         }
     }
 
