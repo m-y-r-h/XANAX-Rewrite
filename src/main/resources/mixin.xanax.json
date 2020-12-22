@@ -10,6 +10,7 @@
     "EntityPlayerPatch",
     "ItemRendererPatch",
     "NetworkManagerPatch",
-    "PlayerControllerMPPatch"
+    "PlayerControllerMPPatch",
+    "RenderLivingBasePatch"
   ]
 }
