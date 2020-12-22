@@ -7,6 +7,9 @@ import cat.yoink.xanax.internal.util.ChatUtil;
 
 import java.util.Arrays;
 
+/**
+ * @author yoink
+ */
 @CommandData(name = "Toggle", aliases = {"toggle", "t"}, usage = "toggle <Module>")
 public final class Toggle extends Command
 {
