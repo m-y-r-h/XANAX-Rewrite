@@ -8,7 +8,7 @@ import cat.yoink.xanax.internal.util.ChatUtil;
 import java.util.Arrays;
 
 @CommandData(name = "Toggle", aliases = {"toggle", "t"}, usage = "toggle <Module>")
-public class Toggle extends Command
+public final class Toggle extends Command
 {
     @Override
     public void run(String... arguments)
