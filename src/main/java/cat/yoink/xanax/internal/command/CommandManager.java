@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal.command;
 
+import cat.yoink.xanax.internal.XANAX;
 import cat.yoink.xanax.internal.command.impl.Login;
 import cat.yoink.xanax.internal.command.impl.Prefix;
 import cat.yoink.xanax.internal.command.impl.Toggle;
@@ -48,7 +49,7 @@ public enum CommandManager implements Configurable, Minecraft
     {
         JsonObject config = new JsonObject();
         config.addProperty("Prefix", prefix);
-        FileUtil.saveFile(new File(directory.getAbsolutePath(), "Prefix.json"), config.toString());
+        FileUtil.saveFile(new File(directory.getAbsolutePath(), "Prefix.json"), XANAX.INSTANCE.gson.toJson(config));
     }
 
     @Override

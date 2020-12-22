@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal.module;
 
+import cat.yoink.xanax.internal.XANAX;
 import cat.yoink.xanax.internal.module.impl.persistent.Binds;
 import cat.yoink.xanax.internal.module.impl.persistent.Commands;
 import cat.yoink.xanax.internal.module.impl.toggleable.client.GuiModule;
@@ -75,7 +76,7 @@ public enum ModuleManager implements Configurable, Minecraft
             config.add(module.getName(), mod);
         });
 
-        FileUtil.saveFile(new File(directory.getAbsolutePath(), "Modules.json"), config.toString());
+        FileUtil.saveFile(new File(directory.getAbsolutePath(), "Modules.json"), XANAX.INSTANCE.gson.toJson(config));
     }
 
     @Override
