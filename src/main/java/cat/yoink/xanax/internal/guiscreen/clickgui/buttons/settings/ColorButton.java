@@ -50,8 +50,8 @@ public final class ColorButton extends SettingButton
     @Override
     public void mouseReleased(int mouseX, int mouseY, int state)
     {
+        if (dragging) left = mouseX < x + w / 2;
         dragging = false;
-        left = mouseX < x + w / 2;
     }
 
     @Override
