@@ -9,6 +9,9 @@ import net.minecraft.item.ItemBlock;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author yoink
+ */
 public final class InventoryUtil implements Minecraft
 {
     public static int getHotbarSlot(Item item)

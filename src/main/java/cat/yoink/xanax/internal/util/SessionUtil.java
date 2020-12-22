@@ -9,6 +9,9 @@ import net.minecraft.util.Session;
 
 import java.net.Proxy;
 
+/**
+ * @author yoink
+ */
 public final class SessionUtil implements Minecraft
 {
     public static Session getSession(String username, String password)

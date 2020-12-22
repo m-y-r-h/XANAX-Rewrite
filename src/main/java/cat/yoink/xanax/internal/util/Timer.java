@@ -1,5 +1,8 @@
 package cat.yoink.xanax.internal.util;
 
+/**
+ * @author yoink
+ */
 public final class Timer
 {
     private int ticks;

@@ -10,6 +10,9 @@ import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
+/**
+ * @author yoink
+ */
 public final class RenderUtil implements Minecraft
 {
     public static AxisAlignedBB convertBox(AxisAlignedBB box)
@@ -25,20 +28,13 @@ public final class RenderUtil implements Minecraft
 
     public static void drawBox(AxisAlignedBB bb, int red, int green, int blue, int alpha, boolean box, boolean outline)
     {
-        try
-        {
-            glSetup();
-            if (box) RenderGlobal.renderFilledBox(bb, red / 255f, green / 255f, blue / 255f, alpha / 255f);
-            if (outline) RenderGlobal.drawSelectionBoundingBox(bb, red / 255f, green / 255f, blue / 255f, (alpha / 255f) * 1.5F);
-            glCleanup();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        glStart();
+        if (box) RenderGlobal.renderFilledBox(bb, red / 255f, green / 255f, blue / 255f, alpha / 255f);
+        if (outline) RenderGlobal.drawSelectionBoundingBox(bb, red / 255f, green / 255f, blue / 255f, (alpha / 255f) * 1.5F);
+        glStop();
     }
 
-    public static void glSetup()
+    public static void glStart()
     {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
@@ -51,7 +47,7 @@ public final class RenderUtil implements Minecraft
         glLineWidth(1.5f);
     }
 
-    public static void glCleanup()
+    public static void glStop()
     {
         glDisable(GL_LINE_SMOOTH);
         GlStateManager.depthMask(true);
