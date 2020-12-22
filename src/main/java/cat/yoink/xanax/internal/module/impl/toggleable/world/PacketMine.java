@@ -31,7 +31,7 @@ import java.awt.*;
 public final class PacketMine extends StateModule
 {
     @Setting(name = "Render", description = "Render the mine block", list = @List({"Specific", "Full", "Off"}))
-    public String render;
+    public String render = "Specific";
     @Setting(name = "Color", description = "Color for rendering")
     public Color color = new Color(0, 0, 255);
     @Setting(name = "Box", description = "Box for rendering")
