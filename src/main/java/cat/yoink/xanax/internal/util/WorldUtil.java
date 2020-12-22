@@ -22,6 +22,11 @@ public final class WorldUtil implements Minecraft
         return isHole(new BlockPos(entity.posX, entity.posY, entity.posZ));
     }
 
+    public static void setTPS(double tps)
+    {
+        mc.timer.tickLength = (float) (1000 / tps);
+    }
+
     public static boolean isObsidianHole(final BlockPos blockPos)
     {
         if (!mc.world.getBlockState(blockPos).getBlock().equals(Blocks.AIR) || !mc.world.getBlockState(blockPos.add(0, 1, 0)).getBlock().equals(Blocks.AIR) || !mc.world.getBlockState(blockPos.add(0, 2, 0)).getBlock().equals(Blocks.AIR) || !mc.world.getBlockState(blockPos.add(0, 3, 0)).getBlock().equals(Blocks.AIR))
