@@ -39,7 +39,7 @@ public enum CommandManager implements Configurable, Minecraft
         ChatUtil.addSendMessage(event.getMessage());
 
         String[] split = event.getMessage().split(" ");
-        commands.stream().filter(c -> Arrays.stream(c.getAliases()).anyMatch(s -> s.equalsIgnoreCase(split[0].substring(1))))
+        commands.stream().filter(c -> Arrays.stream(c.getAliases()).anyMatch(s -> s.equalsIgnoreCase(split[0].substring(prefix.length()))))
                 .forEach(c -> c.run(Arrays.copyOfRange(split, 1, split.length)));
     }
 

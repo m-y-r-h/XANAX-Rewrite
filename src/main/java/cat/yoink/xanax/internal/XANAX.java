@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal;
 
+import cat.yoink.xanax.internal.command.CommandManager;
 import cat.yoink.xanax.internal.module.ModuleManager;
 import cat.yoink.xanax.internal.traits.Configurable;
 import cat.yoink.xanax.internal.traits.Nameable;
@@ -23,6 +24,7 @@ public enum XANAX implements Configurable, Runnable, Nameable
         if (!directory.exists() && !directory.mkdirs()) return;
 
         ModuleManager.INSTANCE.save();
+        CommandManager.INSTANCE.save();
     }
 
     @Override
@@ -31,6 +33,7 @@ public enum XANAX implements Configurable, Runnable, Nameable
         if (!directory.exists() && !directory.mkdirs()) return;
 
         ModuleManager.INSTANCE.load();
+        CommandManager.INSTANCE.load();
     }
 
     @Override
