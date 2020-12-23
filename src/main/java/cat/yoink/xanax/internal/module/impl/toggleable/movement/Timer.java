@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.module.impl.toggleable.move;
+package cat.yoink.xanax.internal.module.impl.toggleable.movement;
 
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
