@@ -14,6 +14,7 @@ import java.util.Map;
  * @author yoink
  */
 @Mod(modid = "xanax", name = "XANAX")
+@IFMLLoadingPlugin.MCVersion("1.12.2")
 public final class EntryPoint implements IFMLLoadingPlugin
 {
     @Mod.EventHandler
