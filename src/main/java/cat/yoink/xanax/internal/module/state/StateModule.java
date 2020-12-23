@@ -38,6 +38,7 @@ public abstract class StateModule extends Module implements Toggleable, IState
     @Override
     public final void setState(boolean state)
     {
+        if (this.state == state) return;
         this.state = state;
         if (state)
         {
