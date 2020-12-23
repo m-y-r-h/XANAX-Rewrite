@@ -29,12 +29,8 @@ public final class Config extends Command
             if (XANAX.INSTANCE.save(arguments[1])) ChatUtil.sendPrivateMessage("Saved config.");
             else ChatUtil.sendPrivateMessage("Failed to save config.");
         else if (type.equalsIgnoreCase("delete"))
-        {
-            System.out.println(Configurable.directory.getAbsolutePath());
-            if (FileUtil.deleteFolder(new File(Configurable.directory.getAbsolutePath() + File.separator + arguments[1])))
-                ChatUtil.sendPrivateMessage("Deleted config.");
+            if (FileUtil.deleteFolder(new File(Configurable.directory.getAbsolutePath() + File.separator + arguments[1]))) ChatUtil.sendPrivateMessage("Deleted config.");
             else ChatUtil.sendPrivateMessage("Failed to delete config");
-        }
         else printUsage();
     }
 }
