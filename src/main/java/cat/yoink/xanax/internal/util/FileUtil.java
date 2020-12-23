@@ -1,6 +1,8 @@
 package cat.yoink.xanax.internal.util;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * @author yoink
@@ -42,6 +44,19 @@ public final class FileUtil
         catch (Exception e)
         {
             return "";
+        }
+    }
+
+    public static boolean deleteFolder(File folder)
+    {
+        try
+        {
+            Files.walk(folder.toPath()).map(Path::toFile).forEach(File::delete);
+            return folder.delete();
+        }
+        catch (Exception ignored)
+        {
+            return false;
         }
     }
 }
