@@ -1,5 +1,7 @@
 <h1 align="center">XANAX</h1>
 
+<p align="center">Strongest cheat. Original version is posted <a href="https://github.com/Katatje/XANAX">here</a></p>
+
 ## Building
 
 1. Clone the source 
