@@ -40,11 +40,13 @@ public final class ListSetting extends Setting<String>
     {
         if (index < values.size() - 1) index++;
         else index = 0;
+        update();
     }
 
     public void cycleBackward()
     {
         if (index > 0) index--;
         else index = values.size() - 1;
+        update();
     }
 }
