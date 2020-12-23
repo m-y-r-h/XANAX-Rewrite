@@ -30,7 +30,7 @@ public final class Config extends Command
             else ChatUtil.sendPrivateMessage("Failed to save config.");
         else if (type.equalsIgnoreCase("delete"))
             if (FileUtil.deleteFolder(new File(Configurable.directory.getAbsolutePath() + File.separator + arguments[1]))) ChatUtil.sendPrivateMessage("Deleted config.");
-            else ChatUtil.sendPrivateMessage("Failed to delete config");
+            else ChatUtil.sendPrivateMessage("Failed to delete config.");
         else printUsage();
     }
 }
