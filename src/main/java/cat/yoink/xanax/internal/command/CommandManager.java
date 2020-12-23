@@ -1,6 +1,7 @@
 package cat.yoink.xanax.internal.command;
 
 import cat.yoink.xanax.internal.XANAX;
+import cat.yoink.xanax.internal.command.impl.Config;
 import cat.yoink.xanax.internal.command.impl.Login;
 import cat.yoink.xanax.internal.command.impl.Prefix;
 import cat.yoink.xanax.internal.command.impl.Toggle;
@@ -30,7 +31,8 @@ public enum CommandManager implements Configurable, Minecraft
 
     CommandManager()
     {
-        addCommands(new Prefix(), new Login(), new Toggle());
+        addCommands(new Prefix(), new Login(), new Toggle(),
+                new Config());
     }
 
     public void parseCommand(ClientChatEvent event)
@@ -45,18 +47,21 @@ public enum CommandManager implements Configurable, Minecraft
     }
 
     @Override
-    public void save()
+    public boolean save(String name)
     {
         JsonObject config = new JsonObject();
         config.addProperty("Prefix", prefix);
-        FileUtil.saveFile(new File(directory.getAbsolutePath(), "Prefix.json"), XANAX.INSTANCE.gson.toJson(config));
+        return FileUtil.saveFile(new File(directory.getAbsolutePath() + File.separator + name, "Prefix.json"), XANAX.INSTANCE.gson.toJson(config));
     }
 
     @Override
-    public void load()
+    public boolean load(String name)
     {
-        JsonObject parser = new JsonParser().parse(FileUtil.getContents(new File(directory.getAbsolutePath(), "Prefix.json"))).getAsJsonObject();
+        String contents = FileUtil.getContents(new File(directory.getAbsolutePath() + File.separator + name, "Prefix.json"));
+        if (contents.equals("")) return false;
+        JsonObject parser = new JsonParser().parse(contents).getAsJsonObject();
         prefix = parser.get("Prefix").getAsString();
+        return true;
     }
 
     private void addCommands(Command... commands)

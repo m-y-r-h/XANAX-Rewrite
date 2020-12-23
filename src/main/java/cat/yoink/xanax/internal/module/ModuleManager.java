@@ -54,7 +54,7 @@ public enum ModuleManager implements Configurable, Minecraft
     }
 
     @Override
-    public void save()
+    public boolean save(String name)
     {
         JsonObject config = new JsonObject();
 
@@ -75,13 +75,15 @@ public enum ModuleManager implements Configurable, Minecraft
             config.add(module.getName(), mod);
         });
 
-        FileUtil.saveFile(new File(directory.getAbsolutePath(), "Modules.json"), XANAX.INSTANCE.gson.toJson(config));
+        return FileUtil.saveFile(new File(directory.getAbsolutePath() + File.separator + name, "Modules.json"), XANAX.INSTANCE.gson.toJson(config));
     }
 
     @Override
-    public void load()
+    public boolean load(String name)
     {
-        JsonObject json = new JsonParser().parse(FileUtil.getContents(new File(directory.getAbsolutePath(), "Modules.json"))).getAsJsonObject();
+        String contents = FileUtil.getContents(new File(directory.getAbsolutePath() + File.separator + name, "Modules.json"));
+        if (contents.equals("")) return false;
+        JsonObject json = new JsonParser().parse(contents).getAsJsonObject();
 
         allModules.forEach(module -> {
             JsonObject jsonModule = json.get(module.getName()).getAsJsonObject();
@@ -98,6 +100,7 @@ public enum ModuleManager implements Configurable, Minecraft
                 else if (setting instanceof ListSetting) ((ListSetting) setting).setValue(module, element.getAsString());
             });
         });
+        return true;
     }
 
     private void addModules(Module... modules)

@@ -7,6 +7,8 @@ import cat.yoink.xanax.internal.traits.Nameable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
+
 /**
  * @author yoink
  */
@@ -18,26 +20,25 @@ public enum XANAX implements Configurable, Runnable, Nameable
 
     public void run()
     {
-        try { load(); } catch (Exception ignored) { }
-        Runtime.getRuntime().addShutdownHook(new Thread(this::save));
+        try { load("main"); } catch (Exception ignored) { }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> save("main")));
     }
 
     @Override
-    public void save()
+    public boolean save(String name)
     {
-        if (!directory.exists() && !directory.mkdirs()) return;
+        File dir = new File(directory + File.separator + name);
+        if (!dir.exists() && !dir.mkdirs()) return false;
 
-        ModuleManager.INSTANCE.save();
-        CommandManager.INSTANCE.save();
+        return ModuleManager.INSTANCE.save(name) && CommandManager.INSTANCE.save(name);
     }
 
     @Override
-    public void load()
+    public boolean load(String name)
     {
-        if (!directory.exists() && !directory.mkdirs()) return;
+        if (!new File(directory + File.separator + name).exists()) return false;
 
-        ModuleManager.INSTANCE.load();
-        CommandManager.INSTANCE.load();
+        return ModuleManager.INSTANCE.load(name) && CommandManager.INSTANCE.load(name);
     }
 
     @Override

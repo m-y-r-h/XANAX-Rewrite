@@ -11,7 +11,7 @@ public interface Configurable
 {
     File directory = new File(Minecraft.mc.gameDir + File.separator + XANAX.INSTANCE.getName());
 
-    void save();
+    boolean save(String name);
 
-    void load();
+    boolean load(String name);
 }
