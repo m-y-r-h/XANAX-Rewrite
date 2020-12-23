@@ -1,7 +1,5 @@
 <h1 align="center">XANAX</h1>
 
-<p align="center"><a href="https://github.com/Katatje/XANAX">Original</a></p>
-
 ## Building
 
 1. Clone the source 
