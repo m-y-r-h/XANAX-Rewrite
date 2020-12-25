@@ -3,6 +3,9 @@ package cat.yoink.xanax.internal.util;
 import cat.yoink.xanax.internal.traits.Minecraft;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
@@ -21,6 +24,38 @@ public final class WorldUtil implements Minecraft
     public static boolean isBreakable(BlockPos pos)
     {
         return mc.world.getBlockState(pos).getBlock().getBlockHardness(mc.world.getBlockState(pos), mc.world, pos) != -1;
+    }
+
+    public static boolean placeBlock(BlockPos pos, int slot, boolean swapBack)
+    {
+        int old = mc.player.inventory.currentItem;
+        mc.player.inventory.currentItem = slot;
+        boolean b = placeBlock(pos);
+        if (swapBack) mc.player.inventory.currentItem = old;
+        return b;
+    }
+
+    public static boolean placeBlock(BlockPos pos, int slot)
+    {
+        return placeBlock(pos, slot, true);
+    }
+
+    public static EntityPlayer getClosestPlayer()
+    {
+        double distance = 9999;
+        EntityPlayer player = null;
+
+        for (EntityPlayer entity : mc.world.playerEntities)
+        {
+            float d = mc.player.getDistance(entity);
+            if (d < distance && entity != mc.player)
+            {
+                distance = d;
+                player = entity;
+            }
+        }
+
+        return player;
     }
 
     public static boolean placeBlock(BlockPos pos)
@@ -46,10 +81,12 @@ public final class WorldUtil implements Minecraft
         return false;
     }
 
-    public static boolean isIntercepted(final BlockPos pos)
+    public static boolean isIntercepted(BlockPos pos)
     {
-        for (final Entity entity : mc.world.loadedEntityList) if (new AxisAlignedBB(pos).intersects(entity.getEntityBoundingBox())) return true;
-        return false;
+        return mc.world.loadedEntityList.stream()
+                .filter(entity -> !(entity instanceof EntityItem))
+                .filter(entity -> !(entity instanceof EntityXPOrb))
+                .anyMatch(entity -> new AxisAlignedBB(pos).intersects(entity.getEntityBoundingBox()));
     }
 
     public static boolean isInHole(final Entity entity)
