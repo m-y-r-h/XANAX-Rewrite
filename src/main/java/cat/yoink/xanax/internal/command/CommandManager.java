@@ -1,10 +1,7 @@
 package cat.yoink.xanax.internal.command;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.command.impl.Config;
-import cat.yoink.xanax.internal.command.impl.Login;
-import cat.yoink.xanax.internal.command.impl.Prefix;
-import cat.yoink.xanax.internal.command.impl.Toggle;
+import cat.yoink.xanax.internal.command.impl.*;
 import cat.yoink.xanax.internal.command.main.Command;
 import cat.yoink.xanax.internal.traits.Configurable;
 import cat.yoink.xanax.internal.traits.Minecraft;
@@ -32,7 +29,7 @@ public enum CommandManager implements Configurable, Minecraft
     CommandManager()
     {
         addCommands(new Prefix(), new Login(), new Toggle(),
-                new Config());
+                new Config(), new Bind());
     }
 
     public void parseCommand(ClientChatEvent event)
