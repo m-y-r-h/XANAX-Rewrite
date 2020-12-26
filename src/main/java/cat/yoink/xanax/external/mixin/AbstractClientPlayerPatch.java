@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @author yoink
  */
 @Mixin(AbstractClientPlayer.class)
-public final class AbstractClientPlayerPatch
+public abstract class AbstractClientPlayerPatch
 {
     private final ResourceLocation cape = new ResourceLocation("cape.png");
 

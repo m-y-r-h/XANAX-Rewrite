@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * @author yoink
  */
 @Mixin(EntityPlayer.class)
-public final class EntityPlayerPatch
+public abstract class EntityPlayerPatch
 {
     @Inject(method = "applyEntityCollision", at = @At("HEAD"), cancellable = true)
     private void applyEntityCollision(Entity entity, CallbackInfo ci)

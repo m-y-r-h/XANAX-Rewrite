@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * @author yoink
  */
 @Mixin(PlayerControllerMP.class)
-public final class PlayerControllerMPPatch
+public class PlayerControllerMPPatch
 {
     @Inject(method = "onPlayerDamageBlock", at = @At("INVOKE"), cancellable = true)
     private void onPlayerDamageBlock(BlockPos posBlock, EnumFacing directionFacing, CallbackInfoReturnable<Boolean> cir)

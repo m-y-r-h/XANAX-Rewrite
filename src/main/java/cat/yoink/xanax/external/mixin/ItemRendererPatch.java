@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * @author yoink
  */
 @Mixin(ItemRenderer.class)
-public final class ItemRendererPatch
+public class ItemRendererPatch
 {
     @Inject(method = "transformSideFirstPerson", at = @At("HEAD"))
     private void transformSideFirstPerson(EnumHandSide hand, float p_187459_2_, CallbackInfo ci)
