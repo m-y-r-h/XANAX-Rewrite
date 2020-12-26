@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * @author yoink
  */
-@ModuleData(name = "CrystalPiston", aliases = {"CrystalPiston", "AutoPiston", "PistonAura"}, category = ModuleCategory.COMBAT, description = "Automatically pushes crystals into holes with pistons")
+@ModuleData(name = "CrystalPiston", aliases = {"CrystalPiston", "AutoPiston", "PistonAura"}, category = ModuleCategory.COMBAT, description = "Automatically pushes crystals into holes with pistons", noSave = true)
 public final class CrystalPiston extends StateModule
 {
     @Setting(name = "Distance", description = "Enemy distance", number = @Number(min = 1, max = 6, increment = 0.1))

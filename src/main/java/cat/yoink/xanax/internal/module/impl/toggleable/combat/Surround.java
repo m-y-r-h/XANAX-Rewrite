@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.Arrays;
 
-@ModuleData(name = "Surround", aliases = {"Surround", "AutoFeetPlace", "AutoObsidian", "AutoPlace"}, category = ModuleCategory.COMBAT, description = "Automatically places obsidian around you")
+@ModuleData(name = "Surround", aliases = {"Surround", "AutoFeetPlace", "AutoObsidian", "AutoPlace"}, category = ModuleCategory.COMBAT, description = "Automatically places obsidian around you", noSave = true)
 public final class Surround extends StateModule
 {
     private final java.util.List<Vec3d> positions = Arrays.asList(new Vec3d(1, -1, 0), new Vec3d(-1, -1, 0), new Vec3d(0, -1, 1), new Vec3d(0, -1, -1), new Vec3d(1, 0, 0), new Vec3d(-1, 0, 0), new Vec3d(0, 0, 1), new Vec3d(0, 0, -1));

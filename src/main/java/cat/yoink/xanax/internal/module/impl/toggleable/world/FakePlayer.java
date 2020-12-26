@@ -8,7 +8,7 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
 
 import java.util.UUID;
 
-@ModuleData(name = "FakePlayer", aliases = {"FakePlayer", "Player"}, category = ModuleCategory.WORLD, description = "Spawns a fake player")
+@ModuleData(name = "FakePlayer", aliases = {"FakePlayer", "Player"}, category = ModuleCategory.WORLD, description = "Spawns a fake player", noSave = true)
 public final class FakePlayer extends StateModule
 {
     private int id;
