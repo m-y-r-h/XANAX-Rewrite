@@ -28,4 +28,6 @@ public @interface ModuleData
     boolean hidden() default false;
 
     boolean enabled() default false;
+
+    boolean noSave() default false;
 }
