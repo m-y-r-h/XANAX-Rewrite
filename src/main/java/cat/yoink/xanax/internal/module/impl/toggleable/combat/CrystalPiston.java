@@ -36,8 +36,7 @@ public final class CrystalPiston extends StateModule
         if (isSafe() && getState())
         {
             EntityPlayer target = WorldUtil.getClosestPlayer();
-            if (target == null || !WorldUtil.isInHole(target)) return;
-            if (mc.player.getDistance(target) > distance) return;
+            if (target == null || !WorldUtil.isInHole(target) || mc.player.getDistance(target) > distance) return;
             BlockPos targetPos = new BlockPos(target.posX, target.posY, target.posZ);
 
             int crystalSlot = InventoryUtil.getHotbarSlot(Items.END_CRYSTAL);
@@ -52,28 +51,27 @@ public final class CrystalPiston extends StateModule
                     WorldUtil.placeBlock(targetPos.add(2, 1, 0), pistonSlot, true);
                     mc.player.inventory.currentItem = crystalSlot;
                     break;
+
                 case 3:
-                    if (mc.world.getBlockState(targetPos.add(2, 1, 0)).getBlock().equals(Blocks.PISTON))
-                        Objects.requireNonNull(mc.getConnection()).sendPacket(new CPacketPlayerTryUseItemOnBlock(targetPos.add(1, 0, 0), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
+                    if (mc.world.getBlockState(targetPos.add(2, 1, 0)).getBlock().equals(Blocks.PISTON)) Objects.requireNonNull(mc.getConnection()).sendPacket(new CPacketPlayerTryUseItemOnBlock(targetPos.add(1, 0, 0), EnumFacing.UP, EnumHand.MAIN_HAND, 0, 0, 0));
                     else stage = -1;
                     break;
+
                 case 6:
-                    if (mc.world.getLoadedEntityList().stream().anyMatch(e -> new BlockPos(e.posX, e.posY, e.posZ).add(-1, -1, 0).equals(targetPos)))
-                        WorldUtil.placeBlock(targetPos.add(3, 1, 0), redstoneSlot, true);
+                    if (mc.world.getLoadedEntityList().stream().anyMatch(e -> new BlockPos(e.posX, e.posY, e.posZ).add(-1, -1, 0).equals(targetPos))) WorldUtil.placeBlock(targetPos.add(3, 1, 0), redstoneSlot, true);
                     else stage = 2;
                     break;
+
                 case 15:
                     Entity en = mc.world.getLoadedEntityList().stream().filter(e -> new BlockPos(e.posX, e.posY, e.posZ).down().equals(targetPos)).findAny().orElse(null);
                     if (en == null) stage = 5;
-                    else
-                    {
-                        mc.playerController.attackEntity(mc.player, en);
-                        mc.player.swingArm(EnumHand.OFF_HAND);
-                    }
+                    else WorldUtil.attack(en);
                     break;
+
                 case 18:
                     stage = -1;
                     break;
+
                 default:
                     break;
             }

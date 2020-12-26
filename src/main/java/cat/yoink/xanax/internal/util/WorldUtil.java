@@ -26,6 +26,12 @@ public final class WorldUtil implements Minecraft
         return mc.world.getBlockState(pos).getBlock().getBlockHardness(mc.world.getBlockState(pos), mc.world, pos) != -1;
     }
 
+    public static void attack(Entity entity)
+    {
+        mc.playerController.attackEntity(mc.player, entity);
+        mc.player.swingArm(EnumHand.MAIN_HAND);
+    }
+
     public static boolean placeBlock(BlockPos pos, int slot, boolean swapBack)
     {
         int old = mc.player.inventory.currentItem;
