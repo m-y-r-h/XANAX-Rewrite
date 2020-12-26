@@ -44,13 +44,6 @@ public final class ModuleManager extends Registry<Module> implements Configurabl
         {
             e.printStackTrace();
         }
-
-//        addModules(new Binds(), new GuiModule(), new Commands(),
-//                new Velocity(), new ViewModel(), new PacketMine(),
-//                new AutoCreeper(), new HoleESP(), new MainMenu(),
-//                new Quiver(), new Fullbright(), new Chams(),
-//                new FakePlayer(), new Timer(), new Surround(),
-//                new CrystalPiston());
     }
 
     @Override
