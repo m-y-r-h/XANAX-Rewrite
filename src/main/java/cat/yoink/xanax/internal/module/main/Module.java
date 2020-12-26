@@ -21,6 +21,7 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
     protected final String description;
     protected final boolean hidden;
     protected int bind;
+    protected boolean noSave;
     protected final List<Setting<?>> settings;
 
     protected Module()
@@ -31,6 +32,7 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
         description = getClass().getAnnotation(ModuleData.class).description();
         hidden = getClass().getAnnotation(ModuleData.class).hidden();
         bind = getClass().getAnnotation(ModuleData.class).defaultBind();
+        noSave = getClass().getAnnotation(ModuleData.class).noSave();
         settings = new ArrayList<>();
         settings.addAll(Reflection.INSTANCE.getSettings(this));
     }
@@ -43,6 +45,7 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
         description = data.description();
         hidden = data.hidden();
         bind = data.defaultBind();
+        noSave = data.noSave();
         settings = new ArrayList<>();
     }
 
