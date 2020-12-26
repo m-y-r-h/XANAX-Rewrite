@@ -86,8 +86,6 @@ public final class ModuleManager extends Registry<Module> implements Configurabl
         JsonObject json = new JsonParser().parse(contents).getAsJsonObject();
 
         getRegistry().forEach(module -> {
-            System.out.println(module.getName());
-            System.out.println(json.toString());
             JsonObject jsonModule = json.get(module.getName()).getAsJsonObject();
 
             if (module instanceof StateModule) ((StateModule) module).setState(jsonModule.get("state").getAsBoolean());
