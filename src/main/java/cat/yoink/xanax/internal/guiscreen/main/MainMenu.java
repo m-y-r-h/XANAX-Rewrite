@@ -30,7 +30,7 @@ public final class MainMenu extends GuiScreen
     private ResourceLocation backgroundTexture;
     private static final ResourceLocation[] TITLE_PANORAMA_PATHS;
 
-    public MainMenu()
+    private MainMenu()
     {
         buttons = new ArrayList<>();
         MINECRAFT_TITLE_TEXTURES = new ResourceLocation("textures/gui/title/minecraft.png");
