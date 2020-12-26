@@ -4,7 +4,7 @@ import cat.yoink.xanax.internal.XANAX;
 import cat.yoink.xanax.internal.command.main.Command;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
-import cat.yoink.xanax.internal.traits.manager.Register;
+import cat.yoink.xanax.internal.traits.manager.Registry;
 import cat.yoink.xanax.internal.util.ChatUtil;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.common.reflect.ClassPath;
@@ -18,7 +18,7 @@ import java.util.Arrays;
 /**
  * @author yoink
  */
-public final class CommandManager extends Register<Command> implements Configurable, Minecraft
+public final class CommandManager extends Registry<Command> implements Configurable, Minecraft
 {
     public static final CommandManager INSTANCE = new CommandManager();
 
