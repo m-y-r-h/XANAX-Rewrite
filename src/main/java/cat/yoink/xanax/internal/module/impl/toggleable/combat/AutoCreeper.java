@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 
+import cat.yoink.xanax.internal.friend.FriendManager;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
@@ -53,6 +54,7 @@ public final class AutoCreeper extends StateModule
             mc.world.playerEntities.stream()
                     .filter(player -> mc.player.getDistance(player) <= distance)
                     .filter(player -> !player.equals(mc.player))
+                    .filter(player -> !FriendManager.INSTANCE.isFriend(player.getName()))
                     .filter(player -> mode.equals("Always") || WorldUtil.isInHole(player))
                     .forEach(player -> {
                         BlockPos blockPos = new BlockPos(player.posX, player.posY - 1, player.posZ);
