@@ -19,6 +19,7 @@ public enum XANAX implements Configurable, Runnable, Nameable
 
     public final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    @Override
     public void run()
     {
         if (!load("main"))
