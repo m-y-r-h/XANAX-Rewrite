@@ -8,7 +8,11 @@ import cat.yoink.xanax.internal.util.ChatUtil;
 /**
  * @author yoink
  */
-@CommandData(name = "Friend", aliases = {"friend", "f"}, usage = "friend <add|del|list> <name>")
+@CommandData(
+        name = "Friend",
+        aliases = {"friend", "f"},
+        usage = "friend <add|del|list> <name>"
+)
 public final class Friend extends Command
 {
     @Override

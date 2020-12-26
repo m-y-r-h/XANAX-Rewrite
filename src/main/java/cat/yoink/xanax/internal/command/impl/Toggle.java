@@ -10,7 +10,11 @@ import java.util.Arrays;
 /**
  * @author yoink
  */
-@CommandData(name = "Toggle", aliases = {"toggle", "t"}, usage = "toggle <Module>")
+@CommandData(
+        name = "Toggle",
+        aliases = {"toggle", "t"},
+        usage = "toggle <Module>"
+)
 public final class Toggle extends Command
 {
     @Override

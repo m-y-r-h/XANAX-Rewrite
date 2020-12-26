@@ -12,7 +12,11 @@ import java.io.File;
 /**
  * @author yoink
  */
-@CommandData(name = "Config", aliases = "config", usage = "config <load|save|delete> <name>")
+@CommandData(
+        name = "Config",
+        aliases = "config",
+        usage = "config <load|save|delete> <name>"
+)
 public final class Config extends Command
 {
     @Override

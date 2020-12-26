@@ -9,7 +9,14 @@ import org.lwjgl.input.Keyboard;
 import java.util.Arrays;
 import java.util.Locale;
 
-@CommandData(name = "bind", aliases = {"bind", "b"}, usage = "bind <module> <key>")
+/**
+ * @author yoink
+ */
+@CommandData(
+        name = "bind",
+        aliases = {"bind", "b"},
+        usage = "bind <module> <key>"
+)
 public final class Bind extends Command
 {
     @Override

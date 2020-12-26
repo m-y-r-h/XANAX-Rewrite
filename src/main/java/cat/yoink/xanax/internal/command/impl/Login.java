@@ -7,7 +7,11 @@ import cat.yoink.xanax.internal.util.SessionUtil;
 /**
  * @author yoink
  */
-@CommandData(name = "Login", aliases = "login", usage = "login <email> <pass>")
+@CommandData(
+        name = "Login",
+        aliases = "login",
+        usage = "login <email> <pass>"
+)
 public final class Login extends Command
 {
     @Override

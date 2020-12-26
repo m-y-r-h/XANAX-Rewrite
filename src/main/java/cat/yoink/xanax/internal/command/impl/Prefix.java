@@ -8,7 +8,11 @@ import cat.yoink.xanax.internal.util.ChatUtil;
 /**
  * @author yoink
  */
-@CommandData(name = "Prefix", aliases = "prefix", usage = "prefix <char>")
+@CommandData(
+        name = "Prefix",
+        aliases = "prefix",
+        usage = "prefix <char>"
+)
 public final class Prefix extends Command
 {
     @Override
