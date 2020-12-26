@@ -3,8 +3,9 @@ package cat.yoink.xanax.internal.command;
 import cat.yoink.xanax.internal.XANAX;
 import cat.yoink.xanax.internal.command.impl.*;
 import cat.yoink.xanax.internal.command.main.Command;
-import cat.yoink.xanax.internal.traits.Configurable;
-import cat.yoink.xanax.internal.traits.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Configurable;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
+import cat.yoink.xanax.internal.traits.manager.Register;
 import cat.yoink.xanax.internal.util.ChatUtil;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.gson.JsonObject;
@@ -12,23 +13,20 @@ import com.google.gson.JsonParser;
 import net.minecraftforge.client.event.ClientChatEvent;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author yoink
  */
-public enum CommandManager implements Configurable, Minecraft
+public final class CommandManager extends Register<Command> implements Configurable, Minecraft
 {
-    INSTANCE;
+    public static final CommandManager INSTANCE = new CommandManager();
 
     private String prefix = ".";
-    private final List<Command> commands = new ArrayList<>();
 
-    CommandManager()
+    private CommandManager()
     {
-        addCommands(new Prefix(), new Login(), new Toggle(),
+        addAll(new Prefix(), new Login(), new Toggle(),
                 new Config(), new Bind());
     }
 
@@ -39,7 +37,7 @@ public enum CommandManager implements Configurable, Minecraft
         ChatUtil.addSendMessage(event.getMessage());
 
         String[] split = event.getMessage().split(" ");
-        commands.stream().filter(c -> Arrays.stream(c.getAliases()).anyMatch(s -> s.equalsIgnoreCase(split[0].substring(prefix.length()))))
+        getRegistry().stream().filter(c -> Arrays.stream(c.getAliases()).anyMatch(s -> s.equalsIgnoreCase(split[0].substring(prefix.length()))))
                 .forEach(c -> c.run(Arrays.copyOfRange(split, 1, split.length)));
     }
 
@@ -59,16 +57,6 @@ public enum CommandManager implements Configurable, Minecraft
         JsonObject parser = new JsonParser().parse(contents).getAsJsonObject();
         prefix = parser.get("Prefix").getAsString();
         return true;
-    }
-
-    private void addCommands(Command... commands)
-    {
-        this.commands.addAll(Arrays.asList(commands));
-    }
-
-    public List<Command> getCommands()
-    {
-        return commands;
     }
 
     public String getPrefix()

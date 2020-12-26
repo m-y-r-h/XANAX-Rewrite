@@ -2,8 +2,8 @@ package cat.yoink.xanax.internal;
 
 import cat.yoink.xanax.internal.command.CommandManager;
 import cat.yoink.xanax.internal.module.ModuleManager;
-import cat.yoink.xanax.internal.traits.Configurable;
-import cat.yoink.xanax.internal.traits.Nameable;
+import cat.yoink.xanax.internal.traits.interfaces.Configurable;
+import cat.yoink.xanax.internal.traits.interfaces.Nameable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

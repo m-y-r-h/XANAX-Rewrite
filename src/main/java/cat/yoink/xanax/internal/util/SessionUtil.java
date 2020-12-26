@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.util;
 
-import cat.yoink.xanax.internal.traits.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;

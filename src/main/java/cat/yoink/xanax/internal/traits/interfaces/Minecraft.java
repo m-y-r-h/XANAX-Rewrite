@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.traits;
+package cat.yoink.xanax.internal.traits.interfaces;
 
 /**
  * @author yoink

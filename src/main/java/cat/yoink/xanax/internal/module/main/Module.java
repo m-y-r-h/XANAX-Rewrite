@@ -3,9 +3,9 @@ package cat.yoink.xanax.internal.module.main;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.setting.Setting;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
-import cat.yoink.xanax.internal.traits.Describable;
-import cat.yoink.xanax.internal.traits.Minecraft;
-import cat.yoink.xanax.internal.traits.Nameable;
+import cat.yoink.xanax.internal.traits.interfaces.Describable;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Nameable;
 
 import java.util.ArrayList;
 import java.util.List;

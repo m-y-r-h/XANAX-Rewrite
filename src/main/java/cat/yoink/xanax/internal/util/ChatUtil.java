@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.util;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.traits.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import net.minecraft.util.text.TextComponentString;
 
 /**

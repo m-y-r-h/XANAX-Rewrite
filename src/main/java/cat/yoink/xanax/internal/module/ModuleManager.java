@@ -19,8 +19,9 @@ import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
-import cat.yoink.xanax.internal.traits.Configurable;
-import cat.yoink.xanax.internal.traits.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Configurable;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
+import cat.yoink.xanax.internal.traits.manager.Register;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -28,21 +29,18 @@ import com.google.gson.JsonParser;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author yoink
  */
-public enum ModuleManager implements Configurable, Minecraft
+public final class ModuleManager extends Register<Module> implements Configurable, Minecraft
 {
-    INSTANCE;
+    public static final ModuleManager INSTANCE = new ModuleManager();
 
-    private final List<Module> allModules = new ArrayList<>();
-    private final List<StateModule> modules = new ArrayList<>();
-
-    ModuleManager()
+    private ModuleManager()
     {
         addModules(new Binds(), new GuiModule(), new Commands(),
                 new Velocity(), new ViewModel(), new PacketMine(),
@@ -57,7 +55,7 @@ public enum ModuleManager implements Configurable, Minecraft
     {
         JsonObject config = new JsonObject();
 
-        allModules.forEach(module -> {
+        getRegistry().forEach(module -> {
             JsonObject mod = new JsonObject();
 
             JsonObject settings = new JsonObject();
@@ -84,7 +82,7 @@ public enum ModuleManager implements Configurable, Minecraft
         if (contents.equals("")) return false;
         JsonObject json = new JsonParser().parse(contents).getAsJsonObject();
 
-        allModules.forEach(module -> {
+        getRegistry().forEach(module -> {
             JsonObject jsonModule = json.get(module.getName()).getAsJsonObject();
 
             if (module instanceof StateModule) ((StateModule) module).setState(jsonModule.get("state").getAsBoolean());
@@ -106,37 +104,31 @@ public enum ModuleManager implements Configurable, Minecraft
     {
         for (Module module : modules)
         {
-            if (module instanceof StateModule) this.modules.add((StateModule) module);
-            else MinecraftForge.EVENT_BUS.register(module);
+            if (!(module instanceof StateModule)) MinecraftForge.EVENT_BUS.register(module);
 
-            allModules.add(module);
+            add(module);
         }
 
-        allModules.forEach(module -> {
+        getRegistry().forEach(module -> {
             module.getSettings().clear();
             module.getSettings().addAll(Reflection.INSTANCE.getSettings(module));
         });
 
-        getAllModules().sort(Comparator.comparing(module -> -mc.fontRenderer.getStringWidth(module.getName())));
+        getRegistry().sort(Comparator.comparing(module -> -mc.fontRenderer.getStringWidth(module.getName())));
     }
 
     public StateModule getStateModule(Class<? extends StateModule> name)
     {
-        return modules.stream().filter(module -> module.getClass().equals(name)).findAny().orElse(null);
+        return getFilteredRegistry().stream().filter(module -> module.getClass().equals(name)).findAny().orElse(null);
     }
 
     public Module getModule(Class<? extends Module> name)
     {
-        return allModules.stream().filter(module -> module.getClass().equals(name)).findAny().orElse(null);
+        return getFilteredRegistry().stream().filter(module -> module.getClass().equals(name)).findAny().orElse(null);
     }
 
-    public List<StateModule> getModules()
+    public List<StateModule> getFilteredRegistry()
     {
-        return modules;
-    }
-
-    public List<Module> getAllModules()
-    {
-        return allModules;
+        return getRegistry().stream().filter(m -> m instanceof StateModule).map(module -> (StateModule) module).collect(Collectors.toList());
     }
 }

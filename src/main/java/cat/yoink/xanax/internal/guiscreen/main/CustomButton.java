@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.guiscreen.main;
 
-import cat.yoink.xanax.internal.traits.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.util.GuiUtil;
 import net.minecraft.client.gui.Gui;
 

@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.util;
 
-import cat.yoink.xanax.internal.traits.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;

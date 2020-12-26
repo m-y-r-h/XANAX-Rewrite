@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.traits;
+package cat.yoink.xanax.internal.traits.interfaces;
 
 import cat.yoink.xanax.internal.XANAX;
 

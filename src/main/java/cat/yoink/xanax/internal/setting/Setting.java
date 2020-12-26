@@ -2,8 +2,8 @@ package cat.yoink.xanax.internal.setting;
 
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
-import cat.yoink.xanax.internal.traits.Describable;
-import cat.yoink.xanax.internal.traits.Nameable;
+import cat.yoink.xanax.internal.traits.interfaces.Describable;
+import cat.yoink.xanax.internal.traits.interfaces.Nameable;
 
 import java.lang.reflect.Field;
 

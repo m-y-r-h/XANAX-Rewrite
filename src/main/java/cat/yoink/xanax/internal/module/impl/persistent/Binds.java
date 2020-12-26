@@ -19,7 +19,7 @@ public final class Binds extends Module
     public void onInputKeyInput(InputEvent.KeyInputEvent event)
     {
         if (Keyboard.getEventKeyState() && Keyboard.getEventKey() != Keyboard.KEY_NONE)
-            ModuleManager.INSTANCE.getModules().stream()
+            ModuleManager.INSTANCE.getFilteredRegistry().stream()
                     .filter(module -> module.getBind() == Keyboard.getEventKey())
                     .forEach(StateModule::toggle);
     }

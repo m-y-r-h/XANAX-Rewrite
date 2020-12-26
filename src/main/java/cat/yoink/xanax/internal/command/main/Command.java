@@ -1,9 +1,9 @@
 package cat.yoink.xanax.internal.command.main;
 
-import cat.yoink.xanax.internal.traits.Describable;
-import cat.yoink.xanax.internal.traits.Minecraft;
-import cat.yoink.xanax.internal.traits.Nameable;
-import cat.yoink.xanax.internal.traits.Runnable;
+import cat.yoink.xanax.internal.traits.interfaces.Describable;
+import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
+import cat.yoink.xanax.internal.traits.interfaces.Nameable;
+import cat.yoink.xanax.internal.traits.interfaces.Runnable;
 import cat.yoink.xanax.internal.util.ChatUtil;
 
 /**

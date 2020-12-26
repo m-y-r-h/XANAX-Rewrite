@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.command.impl;
 import cat.yoink.xanax.internal.XANAX;
 import cat.yoink.xanax.internal.command.main.Command;
 import cat.yoink.xanax.internal.command.main.CommandData;
-import cat.yoink.xanax.internal.traits.Configurable;
+import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.util.ChatUtil;
 import cat.yoink.xanax.internal.util.FileUtil;
 

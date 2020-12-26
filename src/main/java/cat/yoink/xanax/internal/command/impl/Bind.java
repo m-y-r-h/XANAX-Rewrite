@@ -17,7 +17,7 @@ public final class Bind extends Command
     {
         if (arguments.length != 2 && printUsage()) return;
 
-        ModuleManager.INSTANCE.getModules().stream()
+        ModuleManager.INSTANCE.getFilteredRegistry().stream()
                 .filter(module -> Arrays.stream(module.getAliases()).anyMatch(arguments[0]::equalsIgnoreCase))
                 .forEach(module -> {
                     int key = Keyboard.getKeyIndex(arguments[1].toUpperCase(Locale.ROOT));
