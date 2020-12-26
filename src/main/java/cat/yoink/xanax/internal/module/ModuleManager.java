@@ -110,7 +110,6 @@ public final class ModuleManager extends Registry<Module> implements Configurabl
             if (!(module instanceof StateModule)) MinecraftForge.EVENT_BUS.register(module);
 
             add((Module) module);
-            System.out.println("added + " + ((Module) module).getName());
         }
 
         getRegistry().forEach(module -> {
