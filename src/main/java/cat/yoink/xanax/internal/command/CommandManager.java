@@ -1,13 +1,13 @@
 package cat.yoink.xanax.internal.command;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.command.impl.*;
 import cat.yoink.xanax.internal.command.main.Command;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.traits.manager.Register;
 import cat.yoink.xanax.internal.util.ChatUtil;
 import cat.yoink.xanax.internal.util.FileUtil;
+import com.google.common.reflect.ClassPath;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.minecraftforge.client.event.ClientChatEvent;
@@ -24,10 +24,19 @@ public final class CommandManager extends Register<Command> implements Configura
 
     private String prefix = ".";
 
+    @SuppressWarnings("all")
     private CommandManager()
     {
-        addAll(new Prefix(), new Login(), new Toggle(),
-                new Config(), new Bind(), new Friend());
+        try
+        {
+            ClassPath path = ClassPath.from(Thread.currentThread().getContextClassLoader());
+            for (ClassPath.ClassInfo info : path.getTopLevelClassesRecursive("cat.yoink.xanax.internal.command.impl"))
+            {
+                Class<?> cmd = info.load();
+                if (Command.class.isAssignableFrom(cmd)) add((Command) cmd.newInstance());
+            }
+        }
+        catch (Exception ignored) {}
     }
 
     public void parseCommand(ClientChatEvent event)
