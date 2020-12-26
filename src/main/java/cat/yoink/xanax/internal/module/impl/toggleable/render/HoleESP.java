@@ -21,7 +21,12 @@ import java.util.List;
 /**
  * @author yoink
  */
-@ModuleData(name = "HoleESP", aliases = {"HoleESP", "Holes", "HoleHighlight", "Hole"}, category = ModuleCategory.RENDER, description = "Highlights nearby holes")
+@ModuleData(
+        name = "HoleESP",
+        aliases = {"HoleESP", "Holes", "HoleHighlight", "Hole"},
+        category = ModuleCategory.RENDER,
+        description = "Highlights nearby holes"
+)
 public final class HoleESP extends StateModule
 {
     @Setting(name = "Bedrock", description = "Bedrock hole color")

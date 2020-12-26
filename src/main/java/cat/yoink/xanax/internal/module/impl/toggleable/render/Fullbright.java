@@ -7,7 +7,12 @@ import cat.yoink.xanax.internal.module.state.StateModule;
 /**
  * @author yoink
  */
-@ModuleData(name = "Fullbright", aliases = {"Fullbright", "Brightness", "Lights"}, category = ModuleCategory.RENDER, description = "Makes everything bright")
+@ModuleData(
+        name = "Fullbright",
+        aliases = {"Fullbright", "Brightness", "Lights"},
+        category = ModuleCategory.RENDER,
+        description = "Makes everything bright"
+)
 public final class Fullbright extends StateModule
 {
     private float old;

@@ -14,7 +14,12 @@ import java.awt.*;
 /**
  * @author yoink
  */
-@ModuleData(name = "Chams", aliases = "Chams", category = ModuleCategory.RENDER, description = "Changes how players render")
+@ModuleData(
+        name = "Chams",
+        aliases = "Chams",
+        category = ModuleCategory.RENDER,
+        description = "Changes how players render"
+)
 public final class Chams extends StateModule
 {
     @Setting(name = "Opacity", description = "Opacity of the player", number = @Number(max = 100))

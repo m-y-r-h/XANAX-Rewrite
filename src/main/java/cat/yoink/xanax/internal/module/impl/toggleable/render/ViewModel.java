@@ -18,7 +18,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  * @author yoink
  * @author neko
  */
-@ModuleData(name = "ViewModel", aliases = {"ViewModel", "ViewModelChanger", "VMC"}, category = ModuleCategory.RENDER, description = "Changes your view model")
+@ModuleData(
+        name = "ViewModel",
+        aliases = {"ViewModel", "ViewModelChanger", "VMC"},
+        category = ModuleCategory.RENDER,
+        description = "Changes your view model"
+)
 public final class ViewModel extends StateModule
 {
     @Setting(name = "ArmPitch", description = "Pitch of your arm")

@@ -14,7 +14,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  * @author yoink
  * @author TBM
  */
-@ModuleData(name = "Timer", aliases = {"Timer", "Time"}, category = ModuleCategory.MOVEMENT, description = "Change the client side tick rate", noSave = true)
+@ModuleData(
+        name = "Timer",
+        aliases = {"Timer", "Time"},
+        category = ModuleCategory.MOVEMENT,
+        description = "Change the client side tick rate",
+        noSave = true
+)
 public final class Timer extends StateModule
 {
     @Setting(name = "Mode", list = @List({"Normal", "Switch"}))
