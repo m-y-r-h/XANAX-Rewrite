@@ -109,6 +109,12 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
     }
 
     @Override
+    public boolean noSave()
+    {
+        return noSave;
+    }
+
+    @Override
     public final List<Setting<?>> getSettings()
     {
         return settings;

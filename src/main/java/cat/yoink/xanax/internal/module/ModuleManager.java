@@ -62,7 +62,9 @@ public final class ModuleManager extends Registry<Module> implements Configurabl
                 else if (setting instanceof ListSetting) settings.addProperty(setting.getName(), ((ListSetting) setting).getValue());
             });
 
-            mod.addProperty("state", !(module instanceof StateModule) || ((StateModule) module).getState());
+            boolean value = !(module instanceof StateModule) || ((StateModule) module).getState();
+            if (module.noSave()) value = false;
+            mod.addProperty("state", value);
             mod.add("settings", settings);
 
             config.add(module.getName(), mod);

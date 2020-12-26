@@ -20,5 +20,7 @@ public interface IModule
 
     boolean isHidden();
 
+    boolean noSave();
+
     List<Setting<?>> getSettings();
 }
