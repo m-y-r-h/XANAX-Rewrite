@@ -47,6 +47,7 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
         bind = data.defaultBind();
         noSave = data.noSave();
         settings = new ArrayList<>();
+        settings.addAll(Reflection.INSTANCE.getSettings(this));
     }
 
     protected final boolean isSafe()
