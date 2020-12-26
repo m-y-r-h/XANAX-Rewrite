@@ -27,7 +27,7 @@ public final class CommandManager extends Register<Command> implements Configura
     private CommandManager()
     {
         addAll(new Prefix(), new Login(), new Toggle(),
-                new Config(), new Bind());
+                new Config(), new Bind(), new Friend());
     }
 
     public void parseCommand(ClientChatEvent event)

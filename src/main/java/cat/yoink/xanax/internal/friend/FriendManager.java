@@ -17,9 +17,9 @@ public final class FriendManager extends Register<String> implements Configurabl
 
     private FriendManager() { }
 
-    public void addFriend(String name)
+    public boolean isFriend(String name)
     {
-        add(name);
+        return getRegistry().stream().anyMatch(name::equalsIgnoreCase);
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class FriendManager extends Register<String> implements Configurabl
     {
         JsonArray json = new JsonArray();
         getRegistry().forEach(json::add);
-        return FileUtil.saveFile(new File(directory.getAbsolutePath() + File.separator + name, "Friends.json"), json.toString());
+        return FileUtil.saveFile(new File(directory.getAbsolutePath() + File.separator + "main", "Friends.json"), json.toString());
     }
 
     @Override
     public boolean load(String name)
     {
-        String contents = FileUtil.getContents(new File(directory.getAbsolutePath() + File.separator + name, "Friends.json"));
+        String contents = FileUtil.getContents(new File(directory.getAbsolutePath() + File.separator + "main", "Friends.json"));
         if (contents.equals("")) return false;
         JsonArray json = new JsonParser().parse(contents).getAsJsonArray();
         json.forEach(friend -> add(friend.getAsString()));
