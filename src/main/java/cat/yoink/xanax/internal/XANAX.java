@@ -36,7 +36,8 @@ public enum XANAX implements Configurable, Runnable, Nameable
         File dir = new File(directory + File.separator + name);
         if (!dir.exists() && !dir.mkdirs()) return false;
 
-        return ModuleManager.INSTANCE.save(name) && CommandManager.INSTANCE.save(name) && FriendManager.INSTANCE.save(name);
+        try { return ModuleManager.INSTANCE.save(name) && CommandManager.INSTANCE.save(name) && FriendManager.INSTANCE.save(name); }
+        catch (Exception ignored) { return false; }
     }
 
     @Override
@@ -44,7 +45,8 @@ public enum XANAX implements Configurable, Runnable, Nameable
     {
         if (!new File(directory + File.separator + name).exists()) return false;
 
-        return ModuleManager.INSTANCE.load(name) && CommandManager.INSTANCE.load(name) && FriendManager.INSTANCE.load(name);
+        try { return ModuleManager.INSTANCE.load(name) && CommandManager.INSTANCE.load(name) && FriendManager.INSTANCE.load(name); }
+        catch (Exception ignored) { return false; }
     }
 
     @Override

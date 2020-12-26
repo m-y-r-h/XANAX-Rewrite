@@ -1,18 +1,6 @@
 package cat.yoink.xanax.internal.module;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.module.impl.persistent.Binds;
-import cat.yoink.xanax.internal.module.impl.persistent.Commands;
-import cat.yoink.xanax.internal.module.impl.toggleable.client.GuiModule;
-import cat.yoink.xanax.internal.module.impl.toggleable.client.MainMenu;
-import cat.yoink.xanax.internal.module.impl.toggleable.combat.*;
-import cat.yoink.xanax.internal.module.impl.toggleable.movement.Timer;
-import cat.yoink.xanax.internal.module.impl.toggleable.render.Chams;
-import cat.yoink.xanax.internal.module.impl.toggleable.render.Fullbright;
-import cat.yoink.xanax.internal.module.impl.toggleable.render.HoleESP;
-import cat.yoink.xanax.internal.module.impl.toggleable.render.ViewModel;
-import cat.yoink.xanax.internal.module.impl.toggleable.world.FakePlayer;
-import cat.yoink.xanax.internal.module.impl.toggleable.world.PacketMine;
 import cat.yoink.xanax.internal.module.main.Module;
 import cat.yoink.xanax.internal.module.state.StateModule;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
@@ -23,6 +11,7 @@ import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.traits.manager.Register;
 import cat.yoink.xanax.internal.util.FileUtil;
+import com.google.common.reflect.ClassPath;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -40,14 +29,28 @@ public final class ModuleManager extends Register<Module> implements Configurabl
 {
     public static final ModuleManager INSTANCE = new ModuleManager();
 
+    @SuppressWarnings("all")
     private ModuleManager()
     {
-        addModules(new Binds(), new GuiModule(), new Commands(),
-                new Velocity(), new ViewModel(), new PacketMine(),
-                new AutoCreeper(), new HoleESP(), new MainMenu(),
-                new Quiver(), new Fullbright(), new Chams(),
-                new FakePlayer(), new Timer(), new Surround(),
-                new CrystalPiston());
+        try
+        {
+            addModules(ClassPath.from(Thread.currentThread().getContextClassLoader()).getTopLevelClassesRecursive("cat.yoink.xanax.internal.module.impl").stream()
+                    .map(info -> info.load())
+                    .filter(clazz -> Module.class.isAssignableFrom(clazz))
+                    .map(clazz -> { try { return (Module) clazz.newInstance(); } catch (Exception ignored) { ignored.printStackTrace(); return null; } } )
+                    .toArray());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+//        addModules(new Binds(), new GuiModule(), new Commands(),
+//                new Velocity(), new ViewModel(), new PacketMine(),
+//                new AutoCreeper(), new HoleESP(), new MainMenu(),
+//                new Quiver(), new Fullbright(), new Chams(),
+//                new FakePlayer(), new Timer(), new Surround(),
+//                new CrystalPiston());
     }
 
     @Override
@@ -83,6 +86,8 @@ public final class ModuleManager extends Register<Module> implements Configurabl
         JsonObject json = new JsonParser().parse(contents).getAsJsonObject();
 
         getRegistry().forEach(module -> {
+            System.out.println(module.getName());
+            System.out.println(json.toString());
             JsonObject jsonModule = json.get(module.getName()).getAsJsonObject();
 
             if (module instanceof StateModule) ((StateModule) module).setState(jsonModule.get("state").getAsBoolean());
@@ -100,13 +105,14 @@ public final class ModuleManager extends Register<Module> implements Configurabl
         return true;
     }
 
-    private void addModules(Module... modules)
+    private void addModules(Object... modules)
     {
-        for (Module module : modules)
+        for (Object module : modules)
         {
             if (!(module instanceof StateModule)) MinecraftForge.EVENT_BUS.register(module);
 
-            add(module);
+            add((Module) module);
+            System.out.println("added + " + ((Module) module).getName());
         }
 
         getRegistry().forEach(module -> {
