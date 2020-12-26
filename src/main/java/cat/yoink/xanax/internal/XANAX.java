@@ -20,7 +20,12 @@ public enum XANAX implements Configurable, Runnable, Nameable
 
     public void run()
     {
-        try { load("main"); } catch (Exception ignored) { }
+        if (!load("main"))
+        {
+            save("main");
+            load("main");
+        }
+
         Runtime.getRuntime().addShutdownHook(new Thread(() -> save("main")));
     }
 
