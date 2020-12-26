@@ -1,5 +1,6 @@
 package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 
+import cat.yoink.xanax.internal.friend.FriendManager;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
@@ -36,7 +37,7 @@ public final class CrystalPiston extends StateModule
         if (isSafe() && getState())
         {
             EntityPlayer target = WorldUtil.getClosestPlayer();
-            if (target == null || !WorldUtil.isInHole(target) || mc.player.getDistance(target) > distance) return;
+            if (target == null || FriendManager.INSTANCE.isFriend(target.getName()) || !WorldUtil.isInHole(target) || mc.player.getDistance(target) > distance) return;
             BlockPos targetPos = new BlockPos(target.posX, target.posY, target.posZ);
 
             int crystalSlot = InventoryUtil.getHotbarSlot(Items.END_CRYSTAL);
