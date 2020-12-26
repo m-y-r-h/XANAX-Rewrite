@@ -31,7 +31,7 @@ public final class ClickGUI extends GuiScreen
     private int dragX, dragY;
     private boolean dragging;
 
-    public ClickGUI()
+    private ClickGUI()
     {
         ModuleCategory[] values = ModuleCategory.values();
         for (int i = 0; i < values.length; i++)
