@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.friend;
+package cat.yoink.xanax.internal.other;
 
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.manager.Registry;

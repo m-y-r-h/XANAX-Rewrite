@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 
-import cat.yoink.xanax.internal.friend.FriendManager;
+import cat.yoink.xanax.internal.other.FriendManager;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
