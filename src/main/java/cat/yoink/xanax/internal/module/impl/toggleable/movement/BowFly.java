@@ -13,7 +13,6 @@ import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Mouse;
@@ -73,17 +72,6 @@ public final class BowFly extends StateModule
                 packet.yaw = mc.player.rotationYaw;
                 packet.pitch = mc.player.rotationPitch;
             }
-        }
-    }
-
-    @SubscribeEvent
-    public void onDamage(LivingDamageEvent event)
-    {
-        if (isSafe() && event.getEntity().equals(mc.player))
-        {
-            mc.player.motionX = 0;
-            mc.player.motionY = 0.5;
-            mc.player.motionZ = 0;
         }
     }
 
