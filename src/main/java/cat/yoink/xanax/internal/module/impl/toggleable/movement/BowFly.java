@@ -30,6 +30,8 @@ public final class BowFly extends StateModule
     public double timer = 3;
     @Setting(name = "Motion", description = "Speed to move up at", number = @Number(min = 0.2, max = 2, increment = 0.01))
     public double motion = 0.6;
+    @Setting(name = "BowTicks", description = "Bow pull ticks", number = @Number(min = 1))
+    public double bowTicks = 2;
     private float prev;
 
     @SubscribeEvent
@@ -46,7 +48,7 @@ public final class BowFly extends StateModule
             if (mc.player.motionY < -0.08 &&  mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow)
             {
                 WorldUtil.setTPS(timer);
-                if (mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > 1) PlayerUtil.shootSelf();
+                if (mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > bowTicks) PlayerUtil.shootSelf();
             }
             else WorldUtil.setTPS(20);
             prev = mc.player.getHealth() + mc.player.getAbsorptionAmount();
