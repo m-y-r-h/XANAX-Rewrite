@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.other;
 
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
-import cat.yoink.xanax.internal.traits.manager.Registry;
+import cat.yoink.xanax.internal.traits.manager.ListRegistry;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -11,7 +11,7 @@ import java.io.File;
 /**
  * @author yoink
  */
-public final class FriendManager extends Registry<String> implements Configurable
+public final class FriendManager extends ListRegistry<String> implements Configurable
 {
     public static final FriendManager INSTANCE = new FriendManager();
 

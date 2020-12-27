@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author yoink
  */
-public abstract class Registry<E>
+public abstract class ListRegistry<E>
 {
     private final List<E> registry = new ArrayList<>();
 

@@ -9,7 +9,7 @@ import cat.yoink.xanax.internal.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
-import cat.yoink.xanax.internal.traits.manager.Registry;
+import cat.yoink.xanax.internal.traits.manager.ListRegistry;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.common.reflect.ClassPath;
 import com.google.gson.JsonElement;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
  * @author yoink
  */
-public final class ModuleManager extends Registry<Module> implements Configurable, Minecraft
+public final class ModuleManager extends ListRegistry<Module> implements Configurable, Minecraft
 {
     public static final ModuleManager INSTANCE = new ModuleManager();
 
