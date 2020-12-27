@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author 086
+ */
 public abstract class CFont extends ClassLoader
 {
     private final float imgSize = 512;

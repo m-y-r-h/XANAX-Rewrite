@@ -8,6 +8,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author 086
+ */
 public final class CFontRenderer extends CFont
 {
     public static final CFontRenderer TEXT = new CFontRenderer(new Font("Verdana", Font.PLAIN, 17), true, true);
