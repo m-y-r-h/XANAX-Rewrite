@@ -22,7 +22,7 @@ public final class WebUtil implements Minecraft
             while ((line = bufferedReader.readLine()) != null) content.append(line).append("\n");
             return content.toString();
         }
-        catch (Exception ignored) {  }
+        catch (Exception ignored) { }
         return "";
     }
 }
