@@ -20,6 +20,16 @@ public abstract class MapRegistry<K, V>
         registry.remove(k);
     }
 
+    public boolean contains(K k)
+    {
+        return registry.containsKey(k);
+    }
+
+    public V getValue(K k)
+    {
+        return registry.get(k);
+    }
+
     public Map<K, V> getRegistry()
     {
         return registry;
