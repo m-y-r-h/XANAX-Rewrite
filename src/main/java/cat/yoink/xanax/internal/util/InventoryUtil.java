@@ -64,6 +64,7 @@ public final class InventoryUtil implements Minecraft
 
     public static void swapSlots(int slot1, int slot2)
     {
+        if (slot1 == -1 || slot2 == -1) return;
         mc.playerController.windowClick(0, slot1, 0, ClickType.PICKUP, mc.player);
         mc.playerController.windowClick(0, slot2, 0, ClickType.PICKUP, mc.player);
         mc.playerController.windowClick(0, slot1, 0, ClickType.PICKUP, mc.player);
