@@ -14,6 +14,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
+/**
+ * @author yoink
+ */
 @ModuleData(
         name = "Burrow",
         aliases = {"Burrow", "SelfPlace"},
