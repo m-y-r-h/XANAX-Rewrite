@@ -31,6 +31,8 @@ public final class BowFly extends StateModule
 {
     @Setting(name = "Timer", description = "Down timer speed", number = @Number(min = 0.1, max = 5, increment = 0.1))
     public double timer = 3;
+    @Setting(name = "Motion", description = "Speed to move up at", number = @Number(min = 0.2, max = 2, increment = 0.01))
+    public double motion = 0.6;
     private float prev;
 
     @SubscribeEvent
@@ -41,7 +43,7 @@ public final class BowFly extends StateModule
             if (prev > mc.player.getHealth() + mc.player.getAbsorptionAmount())
             {
                 mc.player.motionX = 0;
-                mc.player.motionY = 0.6;
+                mc.player.motionY = motion;
                 mc.player.motionZ = 0;
             }
             if (mc.player.motionY < -0.08 &&  mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow)
