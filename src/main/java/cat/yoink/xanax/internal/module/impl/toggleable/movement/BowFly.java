@@ -4,6 +4,8 @@ import cat.yoink.xanax.internal.event.impl.PacketEvent;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
+import cat.yoink.xanax.internal.setting.annotation.types.Number;
 import cat.yoink.xanax.internal.util.WorldUtil;
 import net.minecraft.item.ItemBow;
 import net.minecraft.network.play.client.CPacketPlayer;
@@ -28,6 +30,8 @@ import org.lwjgl.input.Mouse;
 )
 public final class BowFly extends StateModule
 {
+    @Setting(name = "Timer", description = "Down timer speed", number = @Number(min = 0.1, max = 5, increment = 0.1))
+    public double timer = 3;
     private float prev;
 
     @SubscribeEvent
@@ -43,7 +47,7 @@ public final class BowFly extends StateModule
             }
             if (mc.player.motionY < -0.08 &&  mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow)
             {
-                WorldUtil.setTPS(3);
+                WorldUtil.setTPS(timer);
                 if (mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > 1)
                 {
                     mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.rotationYaw, -90, mc.player.onGround));
@@ -80,7 +84,6 @@ public final class BowFly extends StateModule
             mc.player.motionX = 0;
             mc.player.motionY = 0.5;
             mc.player.motionZ = 0;
-//            mc.player.posY = mc.player.posY + 2;
         }
     }
 
