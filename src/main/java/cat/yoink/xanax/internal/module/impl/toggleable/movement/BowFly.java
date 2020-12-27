@@ -6,13 +6,10 @@ import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.setting.annotation.types.Number;
+import cat.yoink.xanax.internal.util.PlayerUtil;
 import cat.yoink.xanax.internal.util.WorldUtil;
 import net.minecraft.item.ItemBow;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.client.CPacketPlayerDigging;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Mouse;
@@ -49,13 +46,7 @@ public final class BowFly extends StateModule
             if (mc.player.motionY < -0.08 &&  mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow)
             {
                 WorldUtil.setTPS(timer);
-                if (mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > 1)
-                {
-                    mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.rotationYaw, -90, mc.player.onGround));
-                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, mc.player.getHorizontalFacing()));
-                    mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(mc.player.getActiveHand()));
-                    mc.player.stopActiveHand();
-                }
+                if (mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > 1) PlayerUtil.shootSelf();
             }
             else WorldUtil.setTPS(20);
             prev = mc.player.getHealth() + mc.player.getAbsorptionAmount();

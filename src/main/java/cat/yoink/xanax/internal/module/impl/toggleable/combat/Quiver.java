@@ -3,17 +3,14 @@ package cat.yoink.xanax.internal.module.impl.toggleable.combat;
 import cat.yoink.xanax.internal.module.ModuleCategory;
 import cat.yoink.xanax.internal.module.main.ModuleData;
 import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.annotation.types.Number;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
+import cat.yoink.xanax.internal.setting.annotation.types.Number;
 import cat.yoink.xanax.internal.util.InventoryUtil;
+import cat.yoink.xanax.internal.util.PlayerUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBow;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.client.CPacketPlayerDigging;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -46,13 +43,7 @@ public final class Quiver extends StateModule
             boolean hasSpeed = mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1))) != null;
             boolean hasStrength = mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(5))) != null;
 
-            if (release && (!hasSpeed || !hasStrength)  && mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > delay)
-            {
-                mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.rotationYaw, -90, mc.player.onGround));
-                mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, mc.player.getHorizontalFacing()));
-                mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(mc.player.getActiveHand()));
-                mc.player.stopActiveHand();
-            }
+            if (release && (!hasSpeed || !hasStrength)  && mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() > delay) PlayerUtil.shootSelf();
 
             if (arrange)
             {
