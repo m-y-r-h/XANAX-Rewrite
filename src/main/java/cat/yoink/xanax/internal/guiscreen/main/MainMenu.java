@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.guiscreen.main;
 
-import cat.yoink.xanax.internal.module.ModuleManager;
+import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.util.GuiUtil;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -48,7 +48,7 @@ public final class MainMenu extends GuiScreen
 
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        if (ModuleManager.INSTANCE.getModule(cat.yoink.xanax.internal.module.impl.toggleable.client.MainMenu.class).getSetting("Mode").getValue().equals("Minecraft"))
+        if (ModuleManager.INSTANCE.getModule(cat.yoink.xanax.internal.feature.module.impl.toggleable.client.MainMenu.class).getSetting("Mode").getValue().equals("Minecraft"))
         {
             renderBackground(partialTicks);
         }

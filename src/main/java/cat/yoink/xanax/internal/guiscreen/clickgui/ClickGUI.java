@@ -3,12 +3,12 @@ package cat.yoink.xanax.internal.guiscreen.clickgui;
 import cat.yoink.xanax.internal.guiscreen.clickgui.buttons.CategoryButton;
 import cat.yoink.xanax.internal.guiscreen.clickgui.buttons.ModuleButton;
 import cat.yoink.xanax.internal.font.CFontRenderer;
-import cat.yoink.xanax.internal.module.ModuleCategory;
-import cat.yoink.xanax.internal.module.ModuleManager;
-import cat.yoink.xanax.internal.module.impl.toggleable.client.GuiModule;
-import cat.yoink.xanax.internal.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.types.ListSetting;
-import cat.yoink.xanax.internal.setting.types.StateSetting;
+import cat.yoink.xanax.internal.feature.module.ModuleCategory;
+import cat.yoink.xanax.internal.feature.module.ModuleManager;
+import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
+import cat.yoink.xanax.internal.feature.module.state.StateModule;
+import cat.yoink.xanax.internal.feature.setting.types.ListSetting;
+import cat.yoink.xanax.internal.feature.setting.types.StateSetting;
 import cat.yoink.xanax.internal.util.GuiUtil;
 import net.minecraft.client.gui.GuiScreen;
 

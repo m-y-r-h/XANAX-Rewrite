@@ -1,8 +1,8 @@
 package cat.yoink.xanax.internal.guiscreen.clickgui.buttons;
 
 import cat.yoink.xanax.internal.guiscreen.clickgui.IGui;
-import cat.yoink.xanax.internal.module.main.Module;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.setting.Setting;
 
 /**
  * @author yoink
