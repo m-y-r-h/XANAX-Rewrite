@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.feature.command;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.feature.command.main.Command;
+import cat.yoink.xanax.internal.feature.command.main.BasicCommand;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.traits.manager.impl.ListRegistry;
@@ -18,7 +18,7 @@ import java.util.Arrays;
 /**
  * @author yoink
  */
-public final class CommandManager extends ListRegistry<Command> implements Configurable, Minecraft
+public final class CommandManager extends ListRegistry<BasicCommand> implements Configurable, Minecraft
 {
     public static final CommandManager INSTANCE = new CommandManager();
 
@@ -33,7 +33,7 @@ public final class CommandManager extends ListRegistry<Command> implements Confi
             for (ClassPath.ClassInfo info : path.getTopLevelClassesRecursive("cat.yoink.xanax.internal.feature.command.impl"))
             {
                 Class<?> cmd = info.load();
-                if (Command.class.isAssignableFrom(cmd)) register((Command) cmd.newInstance());
+                if (BasicCommand.class.isAssignableFrom(cmd)) register((BasicCommand) cmd.newInstance());
             }
         }
         catch (Exception ignored) {}

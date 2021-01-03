@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.feature.command.impl;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.feature.command.main.Command;
+import cat.yoink.xanax.internal.feature.command.main.BasicCommand;
 import cat.yoink.xanax.internal.feature.command.main.CommandData;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.util.ChatUtil;
@@ -17,7 +17,7 @@ import java.io.File;
         aliases = "config",
         usage = "config <load|save|delete> <name>"
 )
-public final class Config extends Command
+public final class Config extends BasicCommand
 {
     @Override
     public void run(String... arguments)

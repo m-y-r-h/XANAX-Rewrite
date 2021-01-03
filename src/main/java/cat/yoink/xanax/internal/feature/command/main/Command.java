@@ -1,72 +1,15 @@
 package cat.yoink.xanax.internal.feature.command.main;
 
-import cat.yoink.xanax.internal.feature.Feature;
-import cat.yoink.xanax.internal.feature.command.CommandManager;
-import cat.yoink.xanax.internal.traits.interfaces.Describable;
-import cat.yoink.xanax.internal.traits.interfaces.Nameable;
-import cat.yoink.xanax.internal.traits.interfaces.Runnable;
-import cat.yoink.xanax.internal.traits.manager.Manager;
-import cat.yoink.xanax.internal.util.ChatUtil;
-
 /**
  * @author yoink
  */
-public abstract class Command implements Nameable, Describable, Runnable, Feature, ICommand
+public interface Command
 {
-    protected final String name;
-    protected final String[] aliases;
-    protected final String usage;
-    protected final String description;
+    String getName();
 
-    protected Command()
-    {
-        name = getClass().getAnnotation(CommandData.class).name();
-        aliases = getClass().getAnnotation(CommandData.class).aliases();
-        usage = getClass().getAnnotation(CommandData.class).usage();
-        description = getClass().getAnnotation(CommandData.class).description();
-    }
+    String[] getAliases();
 
-    public Command(CommandData data)
-    {
-        name = data.name();
-        aliases = data.aliases();
-        usage = data.usage();
-        description = data.description();
-    }
+    String getUsage();
 
-    protected final boolean printUsage()
-    {
-        ChatUtil.sendPrivateMessage("Usage: " + usage);
-        return true;
-    }
-
-    @Override
-    public Manager<?> getManager()
-    {
-        return CommandManager.INSTANCE;
-    }
-
-    @Override
-    public final String getName()
-    {
-        return name;
-    }
-
-    @Override
-    public final String[] getAliases()
-    {
-        return aliases;
-    }
-
-    @Override
-    public final String getUsage()
-    {
-        return usage;
-    }
-
-    @Override
-    public final String getDescription()
-    {
-        return description;
-    }
+    String getDescription();
 }

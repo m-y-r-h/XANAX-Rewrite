@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.feature.command.impl;
 
-import cat.yoink.xanax.internal.feature.command.main.Command;
+import cat.yoink.xanax.internal.feature.command.main.BasicCommand;
 import cat.yoink.xanax.internal.feature.command.main.CommandData;
 import cat.yoink.xanax.internal.feature.other.FriendManager;
 import cat.yoink.xanax.internal.util.ChatUtil;
@@ -13,7 +13,7 @@ import cat.yoink.xanax.internal.util.ChatUtil;
         aliases = {"friend", "f"},
         usage = "friend <add|del|list> <name>"
 )
-public final class Friend extends Command
+public final class Friend extends BasicCommand
 {
     @Override
     public void run(String... arguments)

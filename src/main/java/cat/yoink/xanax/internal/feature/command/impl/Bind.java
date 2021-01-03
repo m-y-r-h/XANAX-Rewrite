@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.feature.command.impl;
 
-import cat.yoink.xanax.internal.feature.command.main.Command;
+import cat.yoink.xanax.internal.feature.command.main.BasicCommand;
 import cat.yoink.xanax.internal.feature.command.main.CommandData;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.util.ChatUtil;
@@ -17,7 +17,7 @@ import java.util.Locale;
         aliases = {"bind", "b"},
         usage = "bind <module> <key>"
 )
-public final class Bind extends Command
+public final class Bind extends BasicCommand
 {
     @Override
     public void run(String... arguments)

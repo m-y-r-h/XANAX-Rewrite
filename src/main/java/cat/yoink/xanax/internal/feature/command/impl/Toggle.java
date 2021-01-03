@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.feature.command.impl;
 
-import cat.yoink.xanax.internal.feature.command.main.Command;
+import cat.yoink.xanax.internal.feature.command.main.BasicCommand;
 import cat.yoink.xanax.internal.feature.command.main.CommandData;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.util.ChatUtil;
@@ -15,7 +15,7 @@ import java.util.Arrays;
         aliases = {"toggle", "t"},
         usage = "toggle <Module>"
 )
-public final class Toggle extends Command
+public final class Toggle extends BasicCommand
 {
     @Override
     public void run(String... arguments)

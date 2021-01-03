@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.feature.command.impl;
 
 import cat.yoink.xanax.internal.feature.command.CommandManager;
-import cat.yoink.xanax.internal.feature.command.main.Command;
+import cat.yoink.xanax.internal.feature.command.main.BasicCommand;
 import cat.yoink.xanax.internal.feature.command.main.CommandData;
 import cat.yoink.xanax.internal.util.ChatUtil;
 
@@ -13,7 +13,7 @@ import cat.yoink.xanax.internal.util.ChatUtil;
         aliases = "prefix",
         usage = "prefix <char>"
 )
-public final class Prefix extends Command
+public final class Prefix extends BasicCommand
 {
     @Override
     public void run(String... args)
