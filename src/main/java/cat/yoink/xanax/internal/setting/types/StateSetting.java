@@ -1,14 +1,14 @@
 package cat.yoink.xanax.internal.setting.types;
 
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 
 import java.lang.reflect.Field;
 
 /**
  * @author yoink
  */
-public final class StateSetting extends Setting<Boolean>
+public final class StateSetting extends BasicSetting<Boolean>
 {
     private boolean value;
 

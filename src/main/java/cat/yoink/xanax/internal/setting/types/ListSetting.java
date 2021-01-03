@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.setting.types;
 
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author yoink
  */
-public final class ListSetting extends Setting<String>
+public final class ListSetting extends BasicSetting<String>
 {
     private final List<String> values;
     private int index;

@@ -1,14 +1,14 @@
 package cat.yoink.xanax.internal.setting.types;
 
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 
 import java.lang.reflect.Field;
 
 /**
  * @author yoink
  */
-public final class NumberSetting extends Setting<Double>
+public final class NumberSetting extends BasicSetting<Double>
 {
     private final double minimum;
     private final double maximum;

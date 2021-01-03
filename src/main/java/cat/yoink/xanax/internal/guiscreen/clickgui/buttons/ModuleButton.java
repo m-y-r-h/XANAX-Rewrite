@@ -10,7 +10,7 @@ import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.feature.module.state.StateModule;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 import cat.yoink.xanax.internal.setting.types.ColorSetting;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.NumberSetting;
@@ -49,10 +49,10 @@ public final class ModuleButton implements IGui
         this.parent = parent;
 
         int setI = 0;
-        List<Setting<?>> settings = module.getSettings();
+        List<BasicSetting<?>> settings = module.getSettings();
         for (int i = 0; i < settings.size(); i++)
         {
-            Setting<?> setting = settings.get(i);
+            BasicSetting<?> setting = settings.get(i);
             boolean left = i % 2 == 1;
 
             if (setting instanceof StateSetting)

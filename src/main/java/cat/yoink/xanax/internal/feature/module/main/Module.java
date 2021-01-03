@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.feature.module.main;
 
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 
 import java.util.List;
 
@@ -22,5 +22,5 @@ public interface Module
 
     boolean noSave();
 
-    List<Setting<?>> getSettings();
+    List<BasicSetting<?>> getSettings();
 }

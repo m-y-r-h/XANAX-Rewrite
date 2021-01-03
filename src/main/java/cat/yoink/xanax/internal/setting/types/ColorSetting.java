@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.setting.types;
 
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 
 import java.awt.*;
 import java.lang.reflect.Field;
@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 /**
  * @author yoink
  */
-public final class ColorSetting extends Setting<Color>
+public final class ColorSetting extends BasicSetting<Color>
 {
     private Color value;
 

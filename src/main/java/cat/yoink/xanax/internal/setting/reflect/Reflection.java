@@ -1,6 +1,7 @@
 package cat.yoink.xanax.internal.setting.reflect;
 
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 import cat.yoink.xanax.internal.setting.annotation.Setting;
 import cat.yoink.xanax.internal.setting.types.ColorSetting;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
@@ -18,9 +19,9 @@ public enum Reflection
 {
     INSTANCE;
 
-    public java.util.List<cat.yoink.xanax.internal.setting.Setting<?>> getSettings(BasicModule instance)
+    public java.util.List<BasicSetting<?>> getSettings(BasicModule instance)
     {
-        java.util.List<cat.yoink.xanax.internal.setting.Setting<?>> settings = new ArrayList<>();
+        java.util.List<BasicSetting<?>> settings = new ArrayList<>();
         for (Field field : instance.getClass().getDeclaredFields())
         {
             if (field.isAnnotationPresent(Setting.class))
@@ -45,7 +46,7 @@ public enum Reflection
         return settings;
     }
 
-    public void setValue(BasicModule instance, cat.yoink.xanax.internal.setting.Setting<?> setting, Object value)
+    public void setValue(BasicModule instance, BasicSetting<?> setting, Object value)
     {
         try
         {

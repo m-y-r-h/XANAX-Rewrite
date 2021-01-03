@@ -2,7 +2,7 @@ package cat.yoink.xanax.internal.guiscreen.clickgui.buttons;
 
 import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.guiscreen.clickgui.IGui;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 
 /**
  * @author yoink
@@ -54,5 +54,5 @@ public abstract class SettingButton implements IGui
 
     }
 
-    public abstract Setting<?> getSetting();
+    public abstract BasicSetting<?> getSetting();
 }

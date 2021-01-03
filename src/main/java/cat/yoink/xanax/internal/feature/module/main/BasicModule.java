@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.feature.module.main;
 import cat.yoink.xanax.internal.feature.Feature;
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
-import cat.yoink.xanax.internal.setting.Setting;
+import cat.yoink.xanax.internal.setting.BasicSetting;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.traits.interfaces.Describable;
 import cat.yoink.xanax.internal.traits.interfaces.Nameable;
@@ -24,7 +24,7 @@ public abstract class BasicModule implements Feature, Describable, Nameable, Mod
     protected final boolean hidden;
     protected int bind;
     protected boolean noSave;
-    protected final List<Setting<?>> settings;
+    protected final List<BasicSetting<?>> settings;
 
     protected BasicModule()
     {
@@ -57,13 +57,13 @@ public abstract class BasicModule implements Feature, Describable, Nameable, Mod
         return mc.player != null && mc.world != null;
     }
 
-    public final <T extends Setting<?>> T addSetting(T setting)
+    public final <T extends BasicSetting<?>> T addSetting(T setting)
     {
         settings.add(setting);
         return setting;
     }
 
-    public final Setting<?> getSetting(String name)
+    public final BasicSetting<?> getSetting(String name)
     {
         return settings.stream().filter(setting -> setting.getName().equalsIgnoreCase(name)).findAny().orElse(null);
     }
@@ -123,7 +123,7 @@ public abstract class BasicModule implements Feature, Describable, Nameable, Mod
     }
 
     @Override
-    public final List<Setting<?>> getSettings()
+    public final List<BasicSetting<?>> getSettings()
     {
         return settings;
     }
