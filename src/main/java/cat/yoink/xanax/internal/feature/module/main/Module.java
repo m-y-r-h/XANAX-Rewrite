@@ -10,17 +10,13 @@ import java.util.List;
  */
 public interface Module
 {
-    String[] getAliases();
+    String getName();
 
     ModuleCategory getCategory();
 
     int getBind();
 
     void setBind(int bind);
-
-    boolean isHidden();
-
-    boolean noSave();
 
     List<BasicSetting<?>> getSettings();
 }

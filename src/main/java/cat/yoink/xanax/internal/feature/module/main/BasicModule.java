@@ -57,12 +57,6 @@ public abstract class BasicModule implements Feature, Describable, Nameable, Mod
         return mc.player != null && mc.world != null;
     }
 
-    public final <T extends BasicSetting<?>> T addSetting(T setting)
-    {
-        settings.add(setting);
-        return setting;
-    }
-
     public final BasicSetting<?> getSetting(String name)
     {
         return settings.stream().filter(setting -> setting.getName().equalsIgnoreCase(name)).findAny().orElse(null);
@@ -80,7 +74,6 @@ public abstract class BasicModule implements Feature, Describable, Nameable, Mod
         return name;
     }
 
-    @Override
     public String[] getAliases()
     {
         return aliases;
@@ -110,14 +103,12 @@ public abstract class BasicModule implements Feature, Describable, Nameable, Mod
         this.bind = bind;
     }
 
-    @Override
     public final boolean isHidden()
     {
         return hidden;
     }
 
-    @Override
-    public boolean noSave()
+    public final boolean noSave()
     {
         return noSave;
     }
