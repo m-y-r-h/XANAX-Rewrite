@@ -7,8 +7,6 @@ public interface Command
 {
     String getName();
 
-    String[] getAliases();
-
     String getUsage();
 
     String getDescription();

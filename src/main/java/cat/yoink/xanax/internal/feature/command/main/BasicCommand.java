@@ -52,7 +52,6 @@ public abstract class BasicCommand implements Nameable, Describable, Runnable, F
         return name;
     }
 
-    @Override
     public final String[] getAliases()
     {
         return aliases;
