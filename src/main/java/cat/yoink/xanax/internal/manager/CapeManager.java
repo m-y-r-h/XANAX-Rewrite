@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.other;
+package cat.yoink.xanax.internal.manager;
 
 import cat.yoink.xanax.internal.traits.manager.MapRegistry;
 import cat.yoink.xanax.internal.util.WebUtil;

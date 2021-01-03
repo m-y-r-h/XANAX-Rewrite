@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal;
 
 import cat.yoink.xanax.internal.command.CommandManager;
-import cat.yoink.xanax.internal.other.FriendManager;
+import cat.yoink.xanax.internal.manager.FriendManager;
 import cat.yoink.xanax.internal.module.ModuleManager;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Nameable;
