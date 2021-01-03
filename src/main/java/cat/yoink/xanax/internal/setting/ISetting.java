@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.setting;
 
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 
 import java.lang.reflect.Field;
 
@@ -11,9 +11,9 @@ public interface ISetting<T>
 {
     T getValue();
 
-    void setValue(Module module, T value);
+    void setValue(BasicModule module, T value);
 
     Field getField();
 
-    Module getModule();
+    BasicModule getModule();
 }

@@ -6,7 +6,7 @@ import cat.yoink.xanax.internal.font.CFontRenderer;
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.util.GuiUtil;
@@ -39,7 +39,7 @@ public final class CategoryButton implements IGui, Minecraft
         this.w = w;
         this.h = h;
 
-        final List<Module> modules = ModuleManager.INSTANCE.getRegistry().stream()
+        final List<BasicModule> modules = ModuleManager.INSTANCE.getRegistry().stream()
                 .filter(m -> m.getCategory().equals(category) && !m.isHidden())
                 .collect(Collectors.toList());
         for (int i = 0; i < modules.size(); i++)

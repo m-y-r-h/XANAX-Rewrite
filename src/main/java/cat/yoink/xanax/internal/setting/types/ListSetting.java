@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.setting.types;
 
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.Setting;
 
 import java.lang.reflect.Field;
@@ -15,7 +15,7 @@ public final class ListSetting extends Setting<String>
     private final List<String> values;
     private int index;
 
-    public ListSetting(Field field, Module module, String sDefault, String... values)
+    public ListSetting(Field field, BasicModule module, String sDefault, String... values)
     {
         super(module, field);
         this.values = Arrays.asList(values);
@@ -30,7 +30,7 @@ public final class ListSetting extends Setting<String>
     }
 
     @Override
-    public void setValue(Module module, String value)
+    public void setValue(BasicModule module, String value)
     {
         index = values.indexOf(value);
         update();

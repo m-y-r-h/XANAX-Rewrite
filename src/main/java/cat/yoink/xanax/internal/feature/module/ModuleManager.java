@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.feature.module;
 
 import cat.yoink.xanax.internal.XANAX;
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.feature.module.state.StateModule;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
  * @author yoink
  */
-public final class ModuleManager extends ListRegistry<Module> implements Configurable, Minecraft
+public final class ModuleManager extends ListRegistry<BasicModule> implements Configurable, Minecraft
 {
     public static final ModuleManager INSTANCE = new ModuleManager();
 
@@ -36,8 +36,8 @@ public final class ModuleManager extends ListRegistry<Module> implements Configu
         {
             addModules(ClassPath.from(Thread.currentThread().getContextClassLoader()).getTopLevelClassesRecursive("cat.yoink.xanax.internal.feature.module.impl").stream()
                     .map(info -> info.load())
-                    .filter(clazz -> Module.class.isAssignableFrom(clazz))
-                    .map(clazz -> { try { return (Module) clazz.newInstance(); } catch (Exception ignored) { ignored.printStackTrace(); return null; } } )
+                    .filter(clazz -> BasicModule.class.isAssignableFrom(clazz))
+                    .map(clazz -> { try { return (BasicModule) clazz.newInstance(); } catch (Exception ignored) { ignored.printStackTrace(); return null; } } )
                     .toArray());
         }
         catch (Exception e)
@@ -104,7 +104,7 @@ public final class ModuleManager extends ListRegistry<Module> implements Configu
         {
             if (!(module instanceof StateModule)) MinecraftForge.EVENT_BUS.register(module);
 
-            register((Module) module);
+            register((BasicModule) module);
         }
 
         getRegistry().forEach(module -> {
@@ -120,7 +120,7 @@ public final class ModuleManager extends ListRegistry<Module> implements Configu
         return getFilteredRegistry().stream().filter(module -> module.getClass().equals(name)).findAny().orElse(null);
     }
 
-    public Module getModule(Class<? extends Module> name)
+    public BasicModule getModule(Class<? extends BasicModule> name)
     {
         return getFilteredRegistry().stream().filter(module -> module.getClass().equals(name)).findAny().orElse(null);
     }

@@ -8,7 +8,7 @@ import cat.yoink.xanax.internal.guiscreen.clickgui.buttons.settings.NumberButton
 import cat.yoink.xanax.internal.guiscreen.clickgui.buttons.settings.StateButton;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.feature.module.state.StateModule;
 import cat.yoink.xanax.internal.setting.Setting;
 import cat.yoink.xanax.internal.setting.types.ColorSetting;
@@ -29,7 +29,7 @@ import java.util.List;
 public final class ModuleButton implements IGui
 {
     private final List<SettingButton> buttons = new ArrayList<>();
-    private final Module module;
+    private final BasicModule module;
     private final CategoryButton parent;
     private final int w;
     private final int h;
@@ -39,7 +39,7 @@ public final class ModuleButton implements IGui
     private int scroll;
     private boolean binding;
 
-    public ModuleButton(Module module, int x, int y, int w, int h, CategoryButton parent, int windowX, int windowY)
+    public ModuleButton(BasicModule module, int x, int y, int w, int h, CategoryButton parent, int windowX, int windowY)
     {
         this.module = module;
         this.x = x;

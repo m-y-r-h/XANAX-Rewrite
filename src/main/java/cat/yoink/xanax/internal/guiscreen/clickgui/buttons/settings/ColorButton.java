@@ -4,7 +4,7 @@ import cat.yoink.xanax.internal.guiscreen.clickgui.buttons.SettingButton;
 import cat.yoink.xanax.internal.font.CFontRenderer;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.types.ColorSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
 import cat.yoink.xanax.internal.util.GuiUtil;
@@ -21,7 +21,7 @@ public final class ColorButton extends SettingButton
     private boolean dragging;
     private boolean left;
 
-    public ColorButton(Module module, int x, int y, int w, int h, ColorSetting setting)
+    public ColorButton(BasicModule module, int x, int y, int w, int h, ColorSetting setting)
     {
         super(module, x, y, w, h);
         this.setting = setting;

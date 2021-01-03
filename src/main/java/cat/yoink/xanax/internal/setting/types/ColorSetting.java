@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.setting.types;
 
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.Setting;
 
 import java.awt.*;
@@ -13,7 +13,7 @@ public final class ColorSetting extends Setting<Color>
 {
     private Color value;
 
-    public ColorSetting(Field field, Module module, Color value)
+    public ColorSetting(Field field, BasicModule module, Color value)
     {
         super(module, field);
         this.value = value;
@@ -26,7 +26,7 @@ public final class ColorSetting extends Setting<Color>
     }
 
     @Override
-    public void setValue(Module module, Color value)
+    public void setValue(BasicModule module, Color value)
     {
         this .value = value;
         update();

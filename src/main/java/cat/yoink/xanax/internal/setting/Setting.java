@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.setting;
 
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.traits.interfaces.Describable;
 import cat.yoink.xanax.internal.traits.interfaces.Nameable;
@@ -14,10 +14,10 @@ public abstract class Setting<T> implements Nameable, Describable, ISetting<T>
 {
     private final String name;
     private final String description;
-    private final Module module;
+    private final BasicModule module;
     private final Field field;
 
-    public Setting(Module module, Field field)
+    public Setting(BasicModule module, Field field)
     {
         this.name = field.getAnnotation(cat.yoink.xanax.internal.setting.annotation.Setting.class).name();
         this.description = field.getAnnotation(cat.yoink.xanax.internal.setting.annotation.Setting.class).description();
@@ -38,7 +38,7 @@ public abstract class Setting<T> implements Nameable, Describable, ISetting<T>
     }
 
     @Override
-    public Module getModule()
+    public BasicModule getModule()
     {
         return module;
     }

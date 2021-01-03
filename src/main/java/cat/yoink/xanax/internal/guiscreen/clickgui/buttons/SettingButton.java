@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.guiscreen.clickgui.buttons;
 
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.guiscreen.clickgui.IGui;
-import cat.yoink.xanax.internal.feature.module.main.Module;
 import cat.yoink.xanax.internal.setting.Setting;
 
 /**
@@ -9,13 +9,13 @@ import cat.yoink.xanax.internal.setting.Setting;
  */
 public abstract class SettingButton implements IGui
 {
-    protected final Module module;
+    protected final BasicModule module;
     protected final int w;
     protected final int h;
     protected int x;
     protected int y;
 
-    protected SettingButton(Module module, int x, int y, int w, int h)
+    protected SettingButton(BasicModule module, int x, int y, int w, int h)
     {
         this.module = module;
         this.x = x;

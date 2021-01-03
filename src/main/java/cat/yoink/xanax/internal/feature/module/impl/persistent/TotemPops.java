@@ -3,7 +3,7 @@ package cat.yoink.xanax.internal.feature.module.impl.persistent;
 import cat.yoink.xanax.internal.event.impl.PacketEvent;
 import cat.yoink.xanax.internal.event.impl.PopEvent;
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.feature.module.main.ModuleData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.server.SPacketEntityStatus;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
         description = "List for the totem pops",
         hidden = true
 )
-public final class TotemPops extends Module
+public final class TotemPops extends BasicModule
 {
     @SubscribeEvent
     public void onPacket(PacketEvent event)

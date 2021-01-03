@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.setting.types;
 
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.Setting;
 
 import java.lang.reflect.Field;
@@ -12,7 +12,7 @@ public final class StateSetting extends Setting<Boolean>
 {
     private boolean value;
 
-    public StateSetting(Field field, Module module, boolean value)
+    public StateSetting(Field field, BasicModule module, boolean value)
     {
         super(module, field);
         this.value = value;
@@ -25,7 +25,7 @@ public final class StateSetting extends Setting<Boolean>
     }
 
     @Override
-    public void setValue(Module module, Boolean value)
+    public void setValue(BasicModule module, Boolean value)
     {
         this.value = value;
         update();

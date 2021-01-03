@@ -4,7 +4,7 @@ import cat.yoink.xanax.internal.guiscreen.clickgui.buttons.SettingButton;
 import cat.yoink.xanax.internal.font.CFontRenderer;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.setting.types.ListSetting;
 import cat.yoink.xanax.internal.setting.types.StateSetting;
 import cat.yoink.xanax.internal.util.GuiUtil;
@@ -18,7 +18,7 @@ public final class ListButton extends SettingButton
 {
     private final ListSetting setting;
 
-    public ListButton(Module module, int x, int y, int w, int h, ListSetting setting)
+    public ListButton(BasicModule module, int x, int y, int w, int h, ListSetting setting)
     {
         super(module, x, y, w, h);
         this.setting = setting;

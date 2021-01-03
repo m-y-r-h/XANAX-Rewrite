@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.feature.module.state;
 
-import cat.yoink.xanax.internal.feature.module.main.Module;
+import cat.yoink.xanax.internal.feature.module.main.BasicModule;
 import cat.yoink.xanax.internal.feature.module.main.ModuleData;
 import cat.yoink.xanax.internal.traits.interfaces.Toggleable;
 import net.minecraftforge.common.MinecraftForge;
@@ -8,7 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 /**
  * @author yoink
  */
-public abstract class StateModule extends Module implements Toggleable, IState
+public abstract class StateModule extends BasicModule implements Toggleable, IState
 {
     protected boolean state;
 
