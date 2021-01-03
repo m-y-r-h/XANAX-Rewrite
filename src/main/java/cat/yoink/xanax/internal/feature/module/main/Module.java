@@ -1,11 +1,13 @@
 package cat.yoink.xanax.internal.feature.module.main;
 
+import cat.yoink.xanax.internal.feature.Feature;
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
+import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.setting.Setting;
 import cat.yoink.xanax.internal.feature.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.traits.interfaces.Describable;
-import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.traits.interfaces.Nameable;
+import cat.yoink.xanax.internal.traits.manager.Manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
 /**
  * @author yoink
  */
-public abstract class Module implements Minecraft, Describable, Nameable, IModule
+public abstract class Module implements Feature, Describable, Nameable, IModule
 {
     protected final String name;
     protected final String[] aliases;
@@ -64,6 +66,12 @@ public abstract class Module implements Minecraft, Describable, Nameable, IModul
     public final Setting<?> getSetting(String name)
     {
         return settings.stream().filter(setting -> setting.getName().equalsIgnoreCase(name)).findAny().orElse(null);
+    }
+
+    @Override
+    public final Manager<?> getManager()
+    {
+        return ModuleManager.INSTANCE;
     }
 
     @Override

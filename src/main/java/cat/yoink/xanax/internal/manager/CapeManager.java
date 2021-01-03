@@ -1,6 +1,6 @@
 package cat.yoink.xanax.internal.manager;
 
-import cat.yoink.xanax.internal.traits.manager.MapRegistry;
+import cat.yoink.xanax.internal.traits.manager.impl.MapRegistry;
 import cat.yoink.xanax.internal.util.WebUtil;
 import net.minecraft.util.ResourceLocation;
 
@@ -17,6 +17,6 @@ public final class CapeManager extends MapRegistry<String, ResourceLocation>
     { // TODO: 12/27/2020 Make this customizable. When i'm back home O_O
         ResourceLocation cape = new ResourceLocation("cape.png");
         String content = WebUtil.getContent(url);
-        Arrays.stream(content.split("\n")).forEach(s -> add(s, cape));
+        Arrays.stream(content.split("\n")).forEach(s -> register(s, cape));
     }
 }

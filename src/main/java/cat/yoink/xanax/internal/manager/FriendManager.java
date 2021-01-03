@@ -1,7 +1,7 @@
 package cat.yoink.xanax.internal.manager;
 
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
-import cat.yoink.xanax.internal.traits.manager.ListRegistry;
+import cat.yoink.xanax.internal.traits.manager.impl.ListRegistry;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -36,7 +36,7 @@ public final class FriendManager extends ListRegistry<String> implements Configu
         String contents = FileUtil.getContents(new File(directory.getAbsolutePath() + File.separator + "main", "Friends.json"));
         if (contents.equals("")) return false;
         JsonArray json = new JsonParser().parse(contents).getAsJsonArray();
-        json.forEach(friend -> add(friend.getAsString()));
+        json.forEach(friend -> register(friend.getAsString()));
         return true;
     }
 }

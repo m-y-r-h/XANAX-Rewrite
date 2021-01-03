@@ -1,4 +1,6 @@
-package cat.yoink.xanax.internal.traits.manager;
+package cat.yoink.xanax.internal.traits.manager.impl;
+
+import cat.yoink.xanax.internal.traits.manager.Manager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,41 +8,42 @@ import java.util.Map;
 /**
  * @author yoink
  */
-public abstract class MapRegistry<K, V>
+public abstract class MapRegistry<K, V> implements Manager<Map<K, V>>
 {
     private final Map<K, V> registry = new HashMap<>();
 
-    public void add(K k, V v)
+    public final void register(K k, V v)
     {
         registry.put(k, v);
     }
 
-    public void remove(K k)
+    public final void unregister(K k)
     {
         registry.remove(k);
     }
 
-    public boolean containsKey(K k)
+    public final boolean containsKey(K k)
     {
         return registry.containsKey(k);
     }
 
-    public boolean containsValue(V v)
+    public final boolean containsValue(V v)
     {
         return registry.containsValue(v);
     }
 
-    public V getValue(K k)
+    public final V getValue(K k)
     {
         return registry.get(k);
     }
 
-    public K getKey(V v)
+    public final K getKey(V v)
     {
         return registry.entrySet().stream().filter(entry -> v.equals(entry.getValue())).map(Map.Entry::getKey).findAny().orElse(null);
     }
 
-    public Map<K, V> getRegistry()
+    @Override
+    public final Map<K, V> getRegistry()
     {
         return registry;
     }

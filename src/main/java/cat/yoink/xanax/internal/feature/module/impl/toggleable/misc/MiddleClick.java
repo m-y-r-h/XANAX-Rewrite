@@ -50,12 +50,12 @@ public final class MiddleClick extends StateModule
 
         if (FriendManager.INSTANCE.isFriend(name))
         {
-            FriendManager.INSTANCE.remove(name);
+            FriendManager.INSTANCE.unregister(name);
             ChatUtil.sendPrivateMessage("Removed " + name + " as a friend.");
         }
         else
         {
-            FriendManager.INSTANCE.add(name);
+            FriendManager.INSTANCE.register(name);
             ChatUtil.sendPrivateMessage("Added " + name + " as a friend.");
         }
     }

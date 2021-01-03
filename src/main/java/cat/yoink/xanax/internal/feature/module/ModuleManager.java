@@ -9,7 +9,7 @@ import cat.yoink.xanax.internal.feature.setting.types.NumberSetting;
 import cat.yoink.xanax.internal.feature.setting.types.StateSetting;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
-import cat.yoink.xanax.internal.traits.manager.ListRegistry;
+import cat.yoink.xanax.internal.traits.manager.impl.ListRegistry;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.common.reflect.ClassPath;
 import com.google.gson.JsonElement;
@@ -104,7 +104,7 @@ public final class ModuleManager extends ListRegistry<Module> implements Configu
         {
             if (!(module instanceof StateModule)) MinecraftForge.EVENT_BUS.register(module);
 
-            add((Module) module);
+            register((Module) module);
         }
 
         getRegistry().forEach(module -> {

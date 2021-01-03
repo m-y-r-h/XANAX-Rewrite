@@ -1,15 +1,17 @@
 package cat.yoink.xanax.internal.feature.command.main;
 
+import cat.yoink.xanax.internal.feature.Feature;
+import cat.yoink.xanax.internal.feature.command.CommandManager;
 import cat.yoink.xanax.internal.traits.interfaces.Describable;
-import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
 import cat.yoink.xanax.internal.traits.interfaces.Nameable;
 import cat.yoink.xanax.internal.traits.interfaces.Runnable;
+import cat.yoink.xanax.internal.traits.manager.Manager;
 import cat.yoink.xanax.internal.util.ChatUtil;
 
 /**
  * @author yoink
  */
-public abstract class Command implements Nameable, Describable, Runnable, Minecraft, ICommand
+public abstract class Command implements Nameable, Describable, Runnable, Feature, ICommand
 {
     protected final String name;
     protected final String[] aliases;
@@ -36,6 +38,12 @@ public abstract class Command implements Nameable, Describable, Runnable, Minecr
     {
         ChatUtil.sendPrivateMessage("Usage: " + usage);
         return true;
+    }
+
+    @Override
+    public Manager<?> getManager()
+    {
+        return CommandManager.INSTANCE;
     }
 
     @Override

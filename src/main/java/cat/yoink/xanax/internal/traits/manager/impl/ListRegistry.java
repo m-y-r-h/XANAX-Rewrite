@@ -1,4 +1,6 @@
-package cat.yoink.xanax.internal.traits.manager;
+package cat.yoink.xanax.internal.traits.manager.impl;
+
+import cat.yoink.xanax.internal.traits.manager.Manager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,11 +9,11 @@ import java.util.List;
 /**
  * @author yoink
  */
-public abstract class ListRegistry<E>
+public abstract class ListRegistry<E> implements Manager<List<E>>
 {
     private final List<E> registry = new ArrayList<>();
 
-    public final void add(E e)
+    public final void register(E e)
     {
         registry.add(e);
     }
@@ -22,7 +24,7 @@ public abstract class ListRegistry<E>
         registry.addAll(Arrays.asList(e));
     }
 
-    public final void remove(E e)
+    public final void unregister(E e)
     {
         registry.remove(e);
     }
@@ -38,6 +40,7 @@ public abstract class ListRegistry<E>
         return registry.get(i);
     }
 
+    @Override
     public final List<E> getRegistry()
     {
         return registry;

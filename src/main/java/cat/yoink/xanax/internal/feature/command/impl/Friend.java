@@ -32,7 +32,7 @@ public final class Friend extends Command
             if (FriendManager.INSTANCE.isFriend(arguments[1])) ChatUtil.sendPrivateMessage(arguments[1] + " is already your friend.");
             else
             {
-                FriendManager.INSTANCE.add(arguments[1]);
+                FriendManager.INSTANCE.register(arguments[1]);
                 ChatUtil.sendPrivateMessage("Added " + arguments[1] + " to your friends.");
             }
         }
@@ -40,7 +40,7 @@ public final class Friend extends Command
         {
             if (FriendManager.INSTANCE.isFriend(arguments[1]))
             {
-                FriendManager.INSTANCE.remove(arguments[1]);
+                FriendManager.INSTANCE.unregister(arguments[1]);
                 ChatUtil.sendPrivateMessage("Removed " + arguments[1] + " from your friends.");
             }
             else ChatUtil.sendPrivateMessage(arguments[1] + " is not your friend.");

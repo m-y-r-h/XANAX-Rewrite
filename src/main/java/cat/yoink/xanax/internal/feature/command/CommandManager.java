@@ -4,7 +4,7 @@ import cat.yoink.xanax.internal.XANAX;
 import cat.yoink.xanax.internal.feature.command.main.Command;
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.interfaces.Minecraft;
-import cat.yoink.xanax.internal.traits.manager.ListRegistry;
+import cat.yoink.xanax.internal.traits.manager.impl.ListRegistry;
 import cat.yoink.xanax.internal.util.ChatUtil;
 import cat.yoink.xanax.internal.util.FileUtil;
 import com.google.common.reflect.ClassPath;
@@ -33,7 +33,7 @@ public final class CommandManager extends ListRegistry<Command> implements Confi
             for (ClassPath.ClassInfo info : path.getTopLevelClassesRecursive("cat.yoink.xanax.internal.feature.command.impl"))
             {
                 Class<?> cmd = info.load();
-                if (Command.class.isAssignableFrom(cmd)) add((Command) cmd.newInstance());
+                if (Command.class.isAssignableFrom(cmd)) register((Command) cmd.newInstance());
             }
         }
         catch (Exception ignored) {}
