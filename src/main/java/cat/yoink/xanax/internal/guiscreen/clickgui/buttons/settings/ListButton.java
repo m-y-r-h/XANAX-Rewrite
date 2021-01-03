@@ -5,8 +5,8 @@ import cat.yoink.xanax.internal.font.CFontRenderer;
 import cat.yoink.xanax.internal.feature.module.ModuleManager;
 import cat.yoink.xanax.internal.feature.module.impl.toggleable.client.GuiModule;
 import cat.yoink.xanax.internal.feature.module.main.Module;
-import cat.yoink.xanax.internal.feature.setting.types.ListSetting;
-import cat.yoink.xanax.internal.feature.setting.types.StateSetting;
+import cat.yoink.xanax.internal.setting.types.ListSetting;
+import cat.yoink.xanax.internal.setting.types.StateSetting;
 import cat.yoink.xanax.internal.util.GuiUtil;
 
 import java.awt.*;

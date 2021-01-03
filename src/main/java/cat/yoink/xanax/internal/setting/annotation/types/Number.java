@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.feature.setting.annotation.types;
+package cat.yoink.xanax.internal.setting.annotation.types;
 
 /**
  * @author yoink

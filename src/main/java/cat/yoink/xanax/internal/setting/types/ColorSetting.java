@@ -1,7 +1,7 @@
-package cat.yoink.xanax.internal.feature.setting.types;
+package cat.yoink.xanax.internal.setting.types;
 
 import cat.yoink.xanax.internal.feature.module.main.Module;
-import cat.yoink.xanax.internal.feature.setting.Setting;
+import cat.yoink.xanax.internal.setting.Setting;
 
 import java.awt.*;
 import java.lang.reflect.Field;

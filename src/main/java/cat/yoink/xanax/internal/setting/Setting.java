@@ -1,7 +1,7 @@
-package cat.yoink.xanax.internal.feature.setting;
+package cat.yoink.xanax.internal.setting;
 
 import cat.yoink.xanax.internal.feature.module.main.Module;
-import cat.yoink.xanax.internal.feature.setting.reflect.Reflection;
+import cat.yoink.xanax.internal.setting.reflect.Reflection;
 import cat.yoink.xanax.internal.traits.interfaces.Describable;
 import cat.yoink.xanax.internal.traits.interfaces.Nameable;
 
@@ -19,8 +19,8 @@ public abstract class Setting<T> implements Nameable, Describable, ISetting<T>
 
     public Setting(Module module, Field field)
     {
-        this.name = field.getAnnotation(cat.yoink.xanax.internal.feature.setting.annotation.Setting.class).name();
-        this.description = field.getAnnotation(cat.yoink.xanax.internal.feature.setting.annotation.Setting.class).description();
+        this.name = field.getAnnotation(cat.yoink.xanax.internal.setting.annotation.Setting.class).name();
+        this.description = field.getAnnotation(cat.yoink.xanax.internal.setting.annotation.Setting.class).description();
         this.field = field;
         this.module = module;
     }

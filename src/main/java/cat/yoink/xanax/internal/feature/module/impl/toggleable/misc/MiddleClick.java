@@ -1,11 +1,11 @@
 package cat.yoink.xanax.internal.feature.module.impl.toggleable.misc;
 
-import cat.yoink.xanax.internal.manager.FriendManager;
+import cat.yoink.xanax.internal.feature.other.FriendManager;
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
 import cat.yoink.xanax.internal.feature.module.main.ModuleData;
 import cat.yoink.xanax.internal.feature.module.state.StateModule;
-import cat.yoink.xanax.internal.feature.setting.annotation.Setting;
-import cat.yoink.xanax.internal.feature.setting.annotation.types.List;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
+import cat.yoink.xanax.internal.setting.annotation.types.List;
 import cat.yoink.xanax.internal.util.ChatUtil;
 import cat.yoink.xanax.internal.util.InventoryUtil;
 import net.minecraft.entity.player.EntityPlayer;

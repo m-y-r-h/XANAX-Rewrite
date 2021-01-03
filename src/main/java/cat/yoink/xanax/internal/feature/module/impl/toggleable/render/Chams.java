@@ -4,8 +4,8 @@ import cat.yoink.xanax.internal.event.impl.RenderModelEvent;
 import cat.yoink.xanax.internal.feature.module.ModuleCategory;
 import cat.yoink.xanax.internal.feature.module.main.ModuleData;
 import cat.yoink.xanax.internal.feature.module.state.StateModule;
-import cat.yoink.xanax.internal.feature.setting.annotation.Setting;
-import cat.yoink.xanax.internal.feature.setting.annotation.types.Number;
+import cat.yoink.xanax.internal.setting.annotation.Setting;
+import cat.yoink.xanax.internal.setting.annotation.types.Number;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

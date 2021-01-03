@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.feature.setting;
+package cat.yoink.xanax.internal.setting;
 
 import cat.yoink.xanax.internal.feature.module.main.Module;
 

@@ -2,7 +2,7 @@ package cat.yoink.xanax.internal.feature.command.impl;
 
 import cat.yoink.xanax.internal.feature.command.main.Command;
 import cat.yoink.xanax.internal.feature.command.main.CommandData;
-import cat.yoink.xanax.internal.manager.FriendManager;
+import cat.yoink.xanax.internal.feature.other.FriendManager;
 import cat.yoink.xanax.internal.util.ChatUtil;
 
 /**

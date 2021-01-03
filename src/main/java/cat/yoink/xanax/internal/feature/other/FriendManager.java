@@ -1,4 +1,4 @@
-package cat.yoink.xanax.internal.manager;
+package cat.yoink.xanax.internal.feature.other;
 
 import cat.yoink.xanax.internal.traits.interfaces.Configurable;
 import cat.yoink.xanax.internal.traits.manager.impl.ListRegistry;

@@ -1,6 +1,6 @@
 package cat.yoink.xanax.external.mixin;
 
-import cat.yoink.xanax.internal.manager.CapeManager;
+import cat.yoink.xanax.internal.feature.other.CapeManager;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
